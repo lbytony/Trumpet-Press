@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Trumpet Press - 喇叭芽的博客</title>
+    <link rel="icon" href="../../static/images/logo.png">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/5.13.0/css/fontawesome.min.css">
+    <link rel="stylesheet" href="../../static/css/style.css">
+    <script src="../../static/js/script.js"></script>
+</head>
+<body>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.js"></script>
+<!--[if lte IE 8]>
+<script src="https://cdn.bootcdn.net/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+<![endif]-->
+<!-- 导航 -->
+<header>
+    <nav class="ui attached inverted segment">
+        <div class="m-container">
+            <div class="ui secondary stackable inverted menu">
+                <a href="tp-admin.html"><h2 class="ui blue header item">Trumpet Press 后台管理系统</h2></a>
+                <a href="tp-admin.html" class="m-nav-item item m-mobile-hide">后台管理首页</a>
+                <a href="tp-bloglist.html" class="m-nav-item item m-mobile-hide">文章管理</a>
+                <a href="tp-typelist.html" class="m-nav-item item m-mobile-hide">分类管理</a>
+                <a href="tp-taglist.html" class="m-nav-item item m-mobile-hide">标签管理</a>
+                <a href="tp-setting.html" class="m-nav-item item m-mobile-hide">系统设置</a>
+                <div class="right m-nav-item m-mobile-hide menu">
+                    <a href="../front/index.html" class="m-nav-item item m-mobile-hide">返回主页</a>
+                    <div class="ui dropdown item">
+                        <div class="text">
+                            <img class="ui avatar image" src="../../static/images/Avatar.jpg" alt="Avatar">
+                            Admin
+                        </div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <a href="#" class="item">注销</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="ui white icon button m-right-top m-mobile-show" id="menu-toggle">
+            <i class="sidebar icon"></i>
+        </a>
+    </nav>
+    <div class="ui attached pointing menu">
+        <div class="ui container">
+            <div class="ui breadcrumb m-padding-tb">
+                当前位置：
+                <a href="tp-admin.html" class="section">网站管理</a>
+                <i class="right angle icon divider"></i>
+                <a class="section">分类管理</a>
+                <i class="right angle icon divider"></i>
+                <div class="active section">分类列表</div>
+            </div>
+            <div class="right menu">
+                <a href="#" class="item" id="newType">新增分类</a>
+                <a href="#" class="active blue item">分类列表</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- 中间部分 -->
+<div class="m-container">
+    <div class="ui container m-padding-tb">
+        <form action="#" method="post" class="ui segment form">
+            <div class="field m-margin-none">
+                <div class="ui icon input">
+                    <input type="text" placeholder="类别名称">
+                    <i class="circular search link icon"></i>
+                </div>
+            </div>
+        </form>
+        <table class="ui celled table">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>类别名称</th>
+                <th>文章数量</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>123</td>
+                <td>1111</td>
+                <td>
+                    <a href="#" class="ui mini teal button">编辑</a>
+                    <a href="#" class="ui mini red button">删除</a>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th colspan="6">
+                    <div class="ui right floated pagination menu">
+                        <a class="icon item">
+                            <i class="left chevron icon"></i>
+                        </a>
+                        <a class="active item">1</a>
+                        <a class="item">2</a>
+                        <a class="item">3</a>
+                        <a class="item">4</a>
+                        <a class="icon item">
+                            <i class="right chevron icon"></i>
+                        </a>
+                    </div>
+                </th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="ui mini test modal">
+        <div class="header">
+            新建分类
+        </div>
+        <div class="content">
+            <form action="#" method="post" class="ui form">
+                <div class="field">
+                    <label>请输入新建的类别名称</label>
+                    <div class="ui input">
+                        <input type="text" placeholder="类别名称">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="actions">
+            <button type="button" class="ui negative right labeled icon button">
+                返回
+                <i class="close icon"></i>
+            </button>
+            <button class="ui positive right labeled icon button">
+                确定
+                <i class="check icon"></i>
+            </button>
+        </div>
+    </div>
+    <div class="ui section divider"></div>
+</div>
+<!-- footer -->
+<footer class="ui vertical segment m-padding-tb-massive m-center">
+    <div class="m-container m-center">
+        <p class="m-text-lined m-text-spaced m-opacity-mini m-padding-tb-small">
+            Copyright © 2020 Trumpet Press <br class="m-mobile-show"/>Designed by Li Boyan<br/>
+            <a href="http://www.beian.miit.gov.cn/" style="text-decoration: none; color: black">京ICP备18036120号</a>
+        </p>
+    </div>
+</footer>
+<script>
+    $('#menu-toggle').click(function () {
+        $('.m-nav-item').toggleClass('m-mobile-hide');
+    });
+    $('.ui.dropdown').dropdown();
+    $('#newType').click(function () {
+        $('.mini.modal').modal('show');
+    });
+</script>
+<div>
+    <button onclick="returnTop()" id="btnTop" title="返回顶部"><i class="arrow up icon"></i></button>
+</div>
+<noscript>为正常使用请激活JavaScript</noscript>
+</body>
+</html>

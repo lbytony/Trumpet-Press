@@ -1,0 +1,285 @@
+body {
+    background: url("https://www.toptal.com/designers/subtlepatterns/patterns/double-bubble-outline.png");
+}
+
+/* All Sizes */
+
+.m-container {
+    display: block;
+    max-width: 100%;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.m-biglabel {
+    padding-top: 0.3em !important;
+    padding-bottom: 0.3em !important;
+    margin: 0 0.5em !important;
+}
+
+.m-center {
+    text-align: center;
+}
+
+.m-text-indent {
+    text-indent: 2rem;
+}
+
+/* padding */
+.m-padding-tb-mini {
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+}
+
+.m-padding-none {
+    padding: 0;
+}
+
+.m-padding-mini {
+    padding: 0.2em;
+}
+
+.m-padding-tb-small {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+.m-padding {
+    padding: 1em;
+}
+
+.m-padding-tb {
+    padding-top: 1em !important;
+    padding-bottom: 1em !important;
+}
+
+.m-padding-tb-large {
+    padding-top: 2em !important;
+    padding-bottom: 2em !important;
+}
+
+.m-padding-tb-great {
+    padding-top: 3em;
+    padding-bottom: 3em;
+}
+
+.m-padding-tb-huge {
+    padding-top: 4em;
+    padding-bottom: 4em;
+}
+
+.m-padding-lr-huge {
+    padding-left: 4em !important;
+    padding-right: 4em !important;
+}
+
+.m-padding-tb-massive {
+    padding-top: 5em;
+    padding-bottom: 5em;
+}
+
+.m-text-thin {
+    font-weight: 300;
+}
+
+.m-text-spaced {
+    letter-spacing: 1px;
+}
+
+.m-text-lined {
+    line-height: 1.8 !important;
+}
+
+.m-opacity-mini {
+    opacity: 0.8;
+}
+
+/* margin */
+.m-margin-none {
+    margin: 0 !important;
+}
+
+.m-margin-tb-tiny {
+    margin-top: 0.3em !important;
+    margin-bottom: 0.3em !important;
+}
+
+.m-margin-tb-small {
+    margin-top: 0.5em !important;
+    margin-bottom: 0.5em !important;
+}
+
+.m-margin-tb {
+    margin-top: 1em !important;
+    margin-bottom: 1em !important;
+}
+
+.m-margin-botton-small {
+    margin-bottom: 0.5em !important;
+}
+
+/* width */
+.m-five-width {
+    width: 5em;
+    text-align: right;
+}
+
+.m-fixed {
+    position: fixed;
+    z-index: 10;
+}
+
+.m-right-bottom {
+    bottom: 20px;
+    right: 0;
+}
+
+/* return top */
+#btnTop {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: #89cff0;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+#btnTop:hover {
+    background-color: #1E90FF;
+}
+
+/* icon */
+.fa-wx {
+    background: #99c115;
+    width: 24px;
+    height: 24px;
+}
+
+.fa-github {
+    background: #e2e2e2;
+    width: 24px;
+    height: 24px;
+}
+
+.fa-csdn {
+    background: #f00;
+    width: 24px;
+    height: 24px;
+}
+
+.fa-jianshu {
+    background: #e99888;
+    width: 24px;
+    height: 24px;
+}
+
+.fa-segmentfault {
+    background: #018f56;
+    width: 24px;
+    height: 24px;
+}
+
+.fa-weibo {
+    background: #ecc260;
+    width: 24px;
+    height: 24px;
+}
+
+#sociallink > table {
+    width: 100%;
+}
+
+#sociallink > table td {
+    text-align: center;
+    font-size: 26px;
+}
+
+#sociallink > table td a {
+    position: relative;
+    -webkit-transition: 0.2s ease;
+    -moz-transition: 0.2s ease;
+    -ms-transition: 0.2s ease;
+    transition: 0.2s ease;
+    color: #898d92;
+}
+
+#sociallink > table td a:hover {
+    color: #565a5f;
+}
+
+#sociallink > table td a.tooltip:hover:after {
+    right: -50%;
+    top: -41px;
+    color: #fff;
+    background: #333;
+    font-size: 14px;
+    content: attr(title);
+    display: block;
+    padding: 5px 15px;
+    position: absolute;
+    white-space: nowrap;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+#sociallink > table td a.tooltip:hover:before {
+    top: -12px;
+    right: 8px;
+    border: solid;
+    border-color: #333 transparent;
+    border-width: 5px 5px 0 5px;
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: 2;
+}
+
+.brief-info {
+    padding-top: 0.7em;
+    padding-bottom: 0.3em;
+    letter-spacing: 0.5px;
+}
+
+/* color */
+.m-black {
+    color: #333 !important;
+}
+
+.m-right-top {
+    position: absolute;
+    right: 1em;
+    top: 1.4em;
+}
+
+.m-mobile-show {
+    display: none !important;
+}
+
+@media screen and (max-width: 768px) {
+    .m-mobile-hide {
+        display: none !important;
+    }
+
+    .m-mobile-show {
+        display: block !important;
+    }
+
+    .m-mobile-wide {
+        width: 100%;
+    }
+
+    .m-container {
+        width: auto;
+        margin-left: 1em;
+        margin-right: 1em;
+    }
+}

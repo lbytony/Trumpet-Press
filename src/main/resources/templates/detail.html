@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>详情 - Trumpet Press - 喇叭芽的博客</title>
+    <link rel="icon" href="../static/images/logo.png">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/5.13.0/css/fontawesome.min.css">
+    <link href="https://cdn.bootcdn.net/ajax/libs/animate.css/4.1.0/animate.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/prism/9000.0.1/themes/prism.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/prism/9000.0.1/prism.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.min.js"></script>
+<script src="../static/lib/tocbot/tocbot.js"></script>
+<script src="../static/js/script.js"></script>
+<!-- 导航 -->
+<header>
+    <nav class="ui attached segment">
+        <div class="ui container">
+            <div class="ui secondary stackable menu">
+                <a href="index.html">
+                    <img src="../static/images/logo.png" alt="logo" class="ui tiny item image m-mobile-hide"/>
+                </a>
+                <h1 class="ui blue header item" style="padding: 5px; margin-left: 0">
+                    <a href="index.html">Trumpet Press</a>
+                </h1>
+                <a href="index.html" class="item m-mobile-hide">首页</a>
+                <a href="archives.html" class="m-nav-item item m-mobile-hide">归档</a>
+                <a href="types.html" class="m-nav-item item m-mobile-hide">分类</a>
+                <a href="tags.html" class="m-nav-item item m-mobile-hide">标签</a>
+                <a href="resume.html" class="m-nav-item item m-mobile-hide">关于我</a>
+                <a href="about.html" class="m-nav-item item m-mobile-hide">关于网站</a>
+                <div class="m-nav-item right item m-mobile-hide">
+                    <div class="ui icon input">
+                        <input type="text" placeholder="搜索...">
+                        <i class="search link icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 移动端的一个btn，展开menu -->
+        <a href="#" class="ui white icon button m-right-top m-mobile-show" id="menu-toggle">
+            <i class="sidebar icon"></i>
+        </a>
+    </nav>
+</header>
+
+<!-- 中间部分 -->
+<div>
+    <div class="ui container m-padding-tb">
+        <div class="ui stackable grid">
+            <!-- 左侧栏 -->
+            <div class="four wide column">
+                <div class="ui top attached center aligned segment">
+                    <img src="../static/images/Avatar.jpg" alt="Avatar" class="ui small centered rounded image">
+                    <h3 class="ui header">李泊岩</h3>
+                    <p>
+                        Undergraduate Student
+                    </p>
+                    <p>
+                        Beijing University of Technology
+                    </p>
+                    <p><i class="map marker alternate icon"></i>北京</p>
+                </div>
+                <div class="ui attached center aligned segment">
+                    <div class="ui divided grid">
+                        <div class="eight wide column">
+                            79
+                            <br>
+                            文章
+                        </div>
+                        <div class="eight wide column">
+                            79
+                            <br>
+                            标签
+                        </div>
+                    </div>
+                </div>
+                <div class="ui bottom attached center aligned segment" id="sociallink">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <a href="#" title="WeChat" class="tooltip" id="wechat">
+                                    <img src="../static/images/fa-wx.png" class="fa fa-wx" alt="WeChat"/>
+                                </a>
+                                <div class="ui mini modal">
+                                    <div class="header">微信二维码</div>
+                                    <div class="image content">
+                                        <img src="../static/images/MyQR.jpg" alt="My WeChat QR Code"
+                                             style="width: inherit;">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <a href="https://www.jianshu.com/u/7dc0dbb256d5" target="_blank" title="简书"
+                                   class="tooltip">
+                                    <img src="../static/images/fa-jianshu.png" class="fa fa-jianshu" alt="简书"/>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="https://github.com/lbytony" target="_blank" title="GitHub" class="tooltip">
+                                    <img src="../static/images/fa-github.png" class="fa fa-github" alt="GitHub"/>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="https://segmentfault.com/u/lbytony" target="_blank" title="SegmentFault"
+                                   class="tooltip">
+                                    <img src="../static/images/fa-segmentfault.png" class="fa fa-segmentfault"
+                                         alt="SegmentFault"/>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="https://blog.csdn.net/lbytony" target="_blank" title="CSDN" class="tooltip">
+                                    <img src="../static/images/fa-csdn.png" class="fa fa-csdn" alt="CSDN"/>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="https://weibo.com/lbytony" target="_blank" title="Weibo" class="tooltip">
+                                    <img src="../static/images/fa-weibo.png" class="fa fa-weibo" alt="Weibo"/>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="m-mobile-hide">
+                    <h4 class="ui black header">最新文章</h4>
+                    <div class="ui link list">
+                        <p><a href="" class="item m-black"><i class="angle right icon"></i>123123</a></p>
+                        <p><a href="" class="item m-black"><i class="angle right icon"></i>123123</a></p>
+                        <p><a href="" class="item m-black"><i class="angle right icon"></i>123123</a></p>
+                    </div>
+                </div>
+
+            </div>
+            <!-- 博客列表 -->
+            <div class="eight wide column">
+                <div class="ui container">
+                    <!-- Title -->
+                    <div class="ui top attached segment">
+                        <div class="two column grid">
+                            <div class="column">
+                                <h1 class="ui header m-margin-tb-tiny">123123</h1>
+                            </div>
+                            <div class="right aligned column">
+                                <div class="ui horizontal link list m-margin-tb-small">
+                                    <div class="item">
+                                        <i class="calendar icon"></i>2019-09-04&nbsp;
+                                    </div>
+                                    <div class="item">
+                                        <i class="archive icon"></i>xxx&nbsp;
+                                    </div>
+                                    <div class="item">
+                                        <i class="tag icon"></i>xxx&nbsp;
+                                    </div>
+                                    <div class="item">
+                                        <i class="eye icon"></i>543&nbsp;
+                                    </div>
+                                    <div class="item">
+                                        <div class="ui red basic tiny label">原创</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Content -->
+                    <div class="ui attached segment">
+                        <div id="content" class="js-toc-content">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium at delectus,
+                            distinctio eum minima officia perspiciatis quae quod ratione tempora? Asperiores aut et
+                            molestiae omnis optio provident quos rerum totam.
+                        </div>
+                    </div>
+                    <!-- Like -->
+                    <div class="ui center aligned basic segment">
+                        <button id="payBtn" class="ui red basic circular button"><i class="thumbs up outline icon"></i>赞赏</button>
+                        <button class="ui blue basic circular button"><i class="like icon"></i>喜欢</button>
+                    </div>
+                    <div class="ui toPay flowing popup transition hidden">
+                        <div class="ui white basic label">
+                            <div class="ui images" style="font-size: inherit">
+                                <div class="image">
+                                    <img src="../static/images/alipay.jpg" alt="支付宝" class="ui rounded image"
+                                         style="width: 120px">
+                                    <div>支付宝</div>
+                                </div>
+                                <div class="image">
+                                    <img src="../static/images/wechatpay.png" alt="微信支付" class="ui rounded image"
+                                         style="width: 120px">
+                                    <div>微信支付</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Comment -->
+                    <div class="bottom attached segment" id="comment-container">
+                        <div class="ui blue segment">
+                            <div class="ui comments">
+                                <h3 class="ui dividing header">评论</h3>
+                                <div class="comment">
+                                    <a class="avatar">
+                                        <img src="../static/images/Avatar.jpg">
+                                    </a>
+                                    <div class="content">
+                                        <a class="author">李泊岩</a>
+                                        <div class="metadata">
+                                            <span class="date">今天下午 5:42</span>
+                                        </div>
+                                        <div class="text">太赞了！ </div>
+                                        <div class="actions">
+                                            <a class="reply">回复</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="comment">
+                                    <a class="avatar">
+                                        <img src="../static/images/Avatar.jpg">
+                                    </a>
+                                    <div class="content">
+                                        <a class="author">Elliot Fu</a>
+                                        <div class="metadata">
+                                            <span class="date">昨天上午12:30</span>
+                                        </div>
+                                        <div class="text">
+                                            <p>這對我的研究是非常有用.謝謝!</p>
+                                        </div>
+                                        <div class="actions">
+                                            <a class="reply">回复</a>
+                                        </div>
+                                    </div>
+                                    <div class="comments">
+                                        <div class="comment">
+                                            <a class="avatar">
+                                                <img src="../static/images/Avatar.jpg">
+                                            </a>
+                                            <div class="content">
+                                                <a class="author">Jenny Hess</a>
+                                                <div class="metadata">
+                                                    <span class="date">刚刚</span>
+                                                </div>
+                                                <div class="text">艾略特你永远是多么正确 :) </div>
+                                                <div class="actions">
+                                                    <a class="reply">回复</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="comment">
+                                    <a class="avatar">
+                                        <img src="../static/images/Avatar.jpg">
+                                    </a>
+                                    <div class="content">
+                                        <a class="author">Joe Henderson</a>
+                                        <div class="metadata">
+                                            <span class="date">5 天以前</span>
+                                        </div>
+                                        <div class="text">老兄，这太棒了。非常感谢。 </div>
+                                        <div class="actions">
+                                            <a class="reply">回复</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ui form m-margin-tb">
+                                    <div class="field">
+                                        <textarea name="content" placeholder="请输入评论信息..."></textarea>
+                                    </div>
+                                    <div class="fields">
+                                        <div class="field m-mobile-wide m-margin-botton-small">
+                                            <div class="ui left icon input">
+                                                <i class="user icon"></i>
+                                                <input type="text" name="nickname" placeholder="昵称">
+                                            </div>
+                                        </div>
+                                        <div class="field m-mobile-wide m-margin-botton-small">
+                                            <div class="ui left icon input">
+                                                <i class="mail icon"></i>
+                                                <input type="email" name="email" placeholder="邮箱">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="ui blue labeled submit icon button m-mobile-wide">
+                                        <i class="icon edit"></i>评论
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 右侧栏 -->
+            <div class="four wide column m-mobile-hide">
+                <div>
+                    <div class="m-padding-tb">
+                        <h4 class="ui black header">标签</h4>
+                        <div>
+                            <a href="#" target="_blank" class="ui blue basic label m-margin-tb-tiny">122
+                                <div class="detail">23</div>
+                            </a>
+                            <a href="#" target="_blank" class="ui blue basic label m-margin-tb-tiny">122
+                                <div class="detail">23</div>
+                            </a>
+                            <a href="#" target="_blank" class="ui blue basic label m-margin-tb-tiny">122
+                                <div class="detail">23</div>
+                            </a>
+                            <a href="#" target="_blank" class="ui blue basic label m-margin-tb-tiny">122
+                                <div class="detail">23</div>
+                            </a>
+                            <a href="#" target="_blank" class="ui blue basic label m-margin-tb-tiny">122
+                                <div class="detail">23</div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="m-padding-tb">
+                        <h4 class="ui black header">分类</h4>
+                        <div class="ui link list">
+                            <p><a href="" class="item m-black"><i class="angle right icon"></i>123123</a></p>
+                            <p><a href="" class="item m-black"><i class="angle right icon"></i>123123</a></p>
+                            <p><a href="" class="item m-black"><i class="angle right icon"></i>123123</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui section divider"></div>
+</div>
+<!-- footer -->
+<footer class="ui vertical segment m-padding-tb-massive">
+    <div class="ui center aligned container">
+        <div class="ui divided stackable grid">
+            <div class="four wide column">
+                <div class="ui link list">
+                    <div class="item">
+                        <img src="../static/images/QRCode.jpg" class="ui rounded image" alt="WeChatQRCode"
+                             style="width: 100px"/>
+                    </div>
+                    <h5 class="ui header" style="margin-top: 0">微信公众号：李泊岩</h5>
+                </div>
+            </div>
+
+            <div class="four wide column">
+                <h4 class="ui header m-text-spaced">友情链接</h4>
+                <div class="ui link list">
+                    <a href="https://www.codesheep.cn/" class="item">CodeSheep · 程序羊</a>
+                    <a href="https://www.liaoxuefeng.com/" class="item">廖雪峰的官方网站</a>
+                    <a href="https://www.aliyun.com/" class="item">阿里云</a>
+                    <a href="https://cloud.tencent.com/" class="item">腾讯云</a>
+                </div>
+            </div>
+            <div class="four wide column">
+                <h4 class="ui header m-text-spaced">联系我</h4>
+                <div class="ui link list">
+                    <a href="mailto:lbytony@126.com" class="item">Email: lbytony@126.com</a>
+                    <a href="http://wpa.qq.com/msgrd?v=3&uin=543553697&site=qq&menu=yes" class="item" target="_blank">QQ:
+                        543553697</a>
+                    <a href="" class="item">WeChat: liboyan1123</a>
+                </div>
+            </div>
+            <div class="four wide column">
+                <h4 class="ui header m-text-spaced">关于网站</h4>
+                <div class="ui link list">
+                    <a href="admin/tp-login.html" class="item">网站管理</a>
+                </div>
+            </div>
+        </div>
+        <div class="ui section divider"></div>
+        <p class="m-text-lined m-text-spaced m-opacity-mini m-padding-tb-small">
+            Copyright © 2020 Trumpet Press <br class="m-mobile-show"/>Designed by Li Boyan<br/>
+            <a href="http://www.beian.miit.gov.cn/" style="text-decoration: none; color: black">京ICP备18036120号</a>
+        </p>
+    </div>
+</footer>
+<div class="m-padding m-fixed m-right-bottom">
+    <div class="ui vertical icon buttons">
+        <button class="ui blue button" id="toc">目录</button>
+        <a href="#comment-container" class="ui blue button">留言</a>
+        <button class="ui page blue button"><i class="weixin icon"></i></button>
+        <button id="toTop" class="ui blue button"><i class="arrow up icon"></i></button>
+    </div>
+</div>
+<div class="ui toc-container flowing popup transition hidden" style="width: 250px;">
+    <ol class="js-toc">
+        目录
+    </ol>
+</div>
+<div id="qrcode" class="ui page-qr flowing popup transition hidden m-padding-none" style="width: 140px"></div>
+<script>
+    $('#menu-toggle').click(function () {
+        $('.m-nav-item').toggleClass('m-mobile-hide');
+    });
+    $('#payBtn').popup({
+        popup: $('.toPay.popup'),
+        on: 'click',
+        position: 'bottom center'
+    });
+    // 生成页面目录
+    $('#toc').popup({
+        popup: $('.toc-container.popup'),
+        on: 'click',
+        position: 'left center'
+    });
+    tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.js-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.js-toc-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+    //
+    $('.page').popup({
+        popup: $('.page-qr'),
+        position: 'left center'
+    });
+    var qrcode = new QRCode("qrcode", {
+        text: "http://www.liboyan.cn/",
+        width: 140,
+        height: 140,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+    });
+    $('#toTop').click(function () {
+        $(window).scrollTo(0, 500);
+    });
+
+    $('#wechat').click(function () {
+        $('.mini.modal').modal('show');
+    });
+</script>
+<noscript>为正常使用请激活JavaScript</noscript>
+</body>
+</html>

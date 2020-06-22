@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.liboyan.trumpetpress.model.dao.UserDao">
+
+    <resultMap type="cn.liboyan.trumpetpress.model.entity.User" id="UserMap">
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="userIp" column="user_ip" jdbcType="VARCHAR"/>
+        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+        <result property="userPassword" column="user_password" jdbcType="VARCHAR"/>
+        <result property="userSex" column="user_sex" jdbcType="OTHER"/>
+        <result property="userEmail" column="user_email" jdbcType="VARCHAR"/>
+        <result property="userPhone" column="user_phone" jdbcType="VARCHAR"/>
+        <result property="userAvatar" column="user_avatar" jdbcType="VARCHAR"/>
+        <result property="userIsAdmin" column="user_is_admin" jdbcType="INTEGER"/>
+        <result property="userLastLogin" column="user_last_login" jdbcType="TIMESTAMP"/>
+        <result property="userRegisterTime" column="user_register_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="UserMap">
+        select
+          user_id, user_ip, user_name, user_password, user_sex, user_email, user_phone, user_avatar, user_is_admin, user_last_login, user_register_time
+        from trumpetpress.t_user
+        where user_id = #{userId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="UserMap">
+        select
+          user_id, user_ip, user_name, user_password, user_sex, user_email, user_phone, user_avatar, user_is_admin, user_last_login, user_register_time
+        from trumpetpress.t_user
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="UserMap">
+        select
+          user_id, user_ip, user_name, user_password, user_sex, user_email, user_phone, user_avatar, user_is_admin, user_last_login, user_register_time
+        from trumpetpress.t_user
+        <where>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="userIp != null and userIp != ''">
+                and user_ip = #{userIp}
+            </if>
+            <if test="userName != null and userName != ''">
+                and user_name = #{userName}
+            </if>
+            <if test="userPassword != null and userPassword != ''">
+                and user_password = #{userPassword}
+            </if>
+            <if test="userSex != null">
+                and user_sex = #{userSex}
+            </if>
+            <if test="userEmail != null and userEmail != ''">
+                and user_email = #{userEmail}
+            </if>
+            <if test="userPhone != null and userPhone != ''">
+                and user_phone = #{userPhone}
+            </if>
+            <if test="userAvatar != null and userAvatar != ''">
+                and user_avatar = #{userAvatar}
+            </if>
+            <if test="userIsAdmin != null">
+                and user_is_admin = #{userIsAdmin}
+            </if>
+            <if test="userLastLogin != null">
+                and user_last_login = #{userLastLogin}
+            </if>
+            <if test="userRegisterTime != null">
+                and user_register_time = #{userRegisterTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="userId" useGeneratedKeys="true">
+        insert into trumpetpress.t_user(user_ip, user_name, user_password, user_sex, user_email, user_phone, user_avatar, user_is_admin, user_last_login, user_register_time)
+        values (#{userIp}, #{userName}, #{userPassword}, #{userSex}, #{userEmail}, #{userPhone}, #{userAvatar}, #{userIsAdmin}, #{userLastLogin}, #{userRegisterTime})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update trumpetpress.t_user
+        <set>
+            <if test="userIp != null and userIp != ''">
+                user_ip = #{userIp},
+            </if>
+            <if test="userName != null and userName != ''">
+                user_name = #{userName},
+            </if>
+            <if test="userPassword != null and userPassword != ''">
+                user_password = #{userPassword},
+            </if>
+            <if test="userSex != null">
+                user_sex = #{userSex},
+            </if>
+            <if test="userEmail != null and userEmail != ''">
+                user_email = #{userEmail},
+            </if>
+            <if test="userPhone != null and userPhone != ''">
+                user_phone = #{userPhone},
+            </if>
+            <if test="userAvatar != null and userAvatar != ''">
+                user_avatar = #{userAvatar},
+            </if>
+            <if test="userIsAdmin != null">
+                user_is_admin = #{userIsAdmin},
+            </if>
+            <if test="userLastLogin != null">
+                user_last_login = #{userLastLogin},
+            </if>
+            <if test="userRegisterTime != null">
+                user_register_time = #{userRegisterTime},
+            </if>
+        </set>
+        where user_id = #{userId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from trumpetpress.t_user where user_id = #{userId}
+    </delete>
+
+</mapper>

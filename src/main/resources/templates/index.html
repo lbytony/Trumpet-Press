@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Trumpet Press - 喇叭芽的博客</title>
+    <link rel="icon" href="../static/images/logo.png">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/5.13.0/css/fontawesome.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <script src="../static/js/script.js"></script>
+</head>
+<body>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.js"></script>
+<!--[if lte IE 8]>
+<script src="https://cdn.bootcdn.net/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+<![endif]-->
+<!-- 导航 -->
+<header>
+    <nav class="ui attached segment">
+        <div class="ui container">
+            <div class="ui secondary stackable menu">
+                <a href="#">
+                    <img src="../static/images/logo.png" alt="logo" class="ui tiny item image m-mobile-hide"/>
+                </a>
+                <h1 class="ui blue header item" style="padding: 5px; margin-left: 0">
+                    <a href="#">Trumpet Press</a>
+                </h1>
+                <a href="index.html" class="item m-mobile-hide">首页</a>
+                <a href="archives.html" class="m-nav-item item m-mobile-hide">归档</a>
+                <a href="types.html" class="m-nav-item item m-mobile-hide">分类</a>
+                <a href="tags.html" class="m-nav-item item m-mobile-hide">标签</a>
+                <a href="resume.html" class="m-nav-item item m-mobile-hide">关于我</a>
+                <a href="about.html" class="m-nav-item item m-mobile-hide">关于网站</a>
+                <div class="m-nav-item right item m-mobile-hide">
+                    <div class="ui icon input">
+                        <input type="text" placeholder="搜索...">
+                        <i class="search link icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="ui white icon button m-right-top m-mobile-show" id="menu-toggle">
+            <i class="sidebar icon"></i>
+        </a>
+    </nav>
+</header>
+
+<!-- 中间部分 -->
+<div>
+    <div class="ui container m-padding-tb">
+        <div class="ui stackable grid">
+            <!-- 左侧栏 -->
+            <div class="four wide column">
+                <div class="ui top attached center aligned segment">
+                    <img src="../static/images/Avatar.jpg" alt="Avatar" class="ui small centered rounded image">
+                    <h3 class="ui header">李泊岩</h3>
+                    <p>
+                        Undergraduate Student
+                    </p>
+                    <p>
+                        Beijing University of Technology
+                    </p>
+                    <p><i class="map marker alternate icon"></i>北京</p>
+                </div>
+                <div class="ui attached center aligned segment">
+                    <div class="ui divided grid">
+                        <div class="eight wide column">
+                            79
+                            <br>
+                            文章
+                        </div>
+                        <div class="eight wide column">
+                            79
+                            <br>
+                            标签
+                        </div>
+                    </div>
+                </div>
+                <div class="ui bottom attached center aligned segment" id="sociallink">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <a href="#" title="WeChat" class="tooltip" id="wechat">
+                                    <img src="../static/images/fa-wx.png" class="fa fa-wx" alt="WeChat"/>
+                                </a>
+                                <div class="ui mini modal">
+                                    <div class="header">微信二维码</div>
+                                    <div class="image content">
+                                        <img src="../static/images/MyQR.jpg" alt="My WeChat QR Code"
+                                             style="width: inherit;">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <a href="https://www.jianshu.com/u/7dc0dbb256d5" target="_blank" title="简书"
+                                   class="tooltip">
+                                    <img src="../static/images/fa-jianshu.png" class="fa fa-jianshu" alt="简书"/>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="https://github.com/lbytony" target="_blank" title="GitHub" class="tooltip">
+                                    <img src="../static/images/fa-github.png" class="fa fa-github" alt="GitHub"/>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="https://segmentfault.com/u/lbytony" target="_blank" title="SegmentFault"
+                                   class="tooltip">
+                                    <img src="../static/images/fa-segmentfault.png" class="fa fa-segmentfault"
+                                         alt="SegmentFault"/>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="https://blog.csdn.net/lbytony" target="_blank" title="CSDN" class="tooltip">
+                                    <img src="../static/images/fa-csdn.png" class="fa fa-csdn" alt="CSDN"/>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="https://weibo.com/lbytony" target="_blank" title="Weibo" class="tooltip">
+                                    <img src="../static/images/fa-weibo.png" class="fa fa-weibo" alt="Weibo"/>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h4 class="ui black header">最新文章</h4>
+                <div class="ui link list">
+                    <p><a href="" class="item m-black"><i class="angle right icon"></i>123123</a></p>
+                    <p><a href="" class="item m-black"><i class="angle right icon"></i>123123</a></p>
+                    <p><a href="" class="item m-black"><i class="angle right icon"></i>123123</a></p>
+                </div>
+            </div>
+            <!-- 博客列表 -->
+            <div class="eight wide column">
+                <div class="ui attached segment">
+                    <div class="ui vertical segment">
+                        <h2 class="ui header">123123</h2>
+                        <div class="right aligned column">
+                            <div class="ui horizontal link list m-margin-tb-small">
+                                <div class="item">
+                                    <i class="calendar icon"></i>2019-09-04&nbsp;
+                                </div>
+                                <div class="item">
+                                    <i class="archive icon"></i>xxx&nbsp;
+                                </div>
+                                <div class="item">
+                                    <i class="tag icon"></i>xxx&nbsp;
+                                </div>
+                            </div>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, dolore dolorum excepturi ipsum
+                            maxime minus molestias provident quam rem! Adipisci est laboriosam modi nihil quas
+                            recusandae reiciendis sapiente sunt veniam?
+                        </p>
+                    </div>
+                    <div class="ui vertical segment">
+                        <h2 class="ui header">123123</h2>
+                        <div class="right aligned column">
+                            <div class="ui horizontal link list m-margin-tb-small">
+                                <div class="item">
+                                    <i class="calendar icon"></i>2019-09-04&nbsp;
+                                </div>
+                                <div class="item">
+                                    <i class="archive icon"></i>xxx&nbsp;
+                                </div>
+                                <div class="item">
+                                    <i class="tag icon"></i>xxx&nbsp;
+                                </div>
+                            </div>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, dolore dolorum excepturi ipsum
+                            maxime minus molestias provident quam rem! Adipisci est laboriosam modi nihil quas
+                            recusandae reiciendis sapiente sunt veniam?
+                        </p>
+                    </div>
+                    <div class="ui vertical segment">
+                        <h2 class="ui header">123123</h2>
+                        <div class="right aligned column">
+                            <div class="ui horizontal link list m-margin-tb-small">
+                                <div class="item">
+                                    <i class="calendar icon"></i>2019-09-04&nbsp;
+                                </div>
+                                <div class="item">
+                                    <i class="archive icon"></i>xxx&nbsp;
+                                </div>
+                                <div class="item">
+                                    <i class="tag icon"></i>xxx&nbsp;
+                                </div>
+                            </div>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, dolore dolorum excepturi ipsum
+                            maxime minus molestias provident quam rem! Adipisci est laboriosam modi nihil quas
+                            recusandae reiciendis sapiente sunt veniam?
+                        </p>
+                    </div>
+                    <div class="ui vertical segment">
+                        <h2 class="ui header">123123</h2>
+                        <div class="right aligned column">
+                            <div class="ui horizontal link list m-margin-tb-small">
+                                <div class="item">
+                                    <i class="calendar icon"></i>2019-09-04&nbsp;
+                                </div>
+                                <div class="item">
+                                    <i class="archive icon"></i>xxx&nbsp;
+                                </div>
+                                <div class="item">
+                                    <i class="tag icon"></i>xxx&nbsp;
+                                </div>
+                            </div>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, dolore dolorum excepturi ipsum
+                            maxime minus molestias provident quam rem! Adipisci est laboriosam modi nihil quas
+                            recusandae reiciendis sapiente sunt veniam?
+                        </p>
+                    </div>
+                    <div class="ui vertical segment">
+                        <h2 class="ui header">123123</h2>
+                        <div class="right aligned column">
+                            <div class="ui horizontal link list m-margin-tb-small">
+                                <div class="item">
+                                    <i class="calendar icon"></i>2019-09-04&nbsp;
+                                </div>
+                                <div class="item">
+                                    <i class="archive icon"></i>xxx&nbsp;
+                                </div>
+                                <div class="item">
+                                    <i class="tag icon"></i>xxx&nbsp;
+                                </div>
+                            </div>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, dolore dolorum excepturi ipsum
+                            maxime minus molestias provident quam rem! Adipisci est laboriosam modi nihil quas
+                            recusandae reiciendis sapiente sunt veniam?
+                        </p>
+                    </div>
+
+                </div>
+                <div class="ui bottom attached segment">
+                    <div class="ui middle aligned two column grid">
+                        <div class="column">
+                            <button class="ui blue basic button">上一页</button>
+                        </div>
+                        <div class="right aligned column">
+                            <button class="ui teal primary button">下一页</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 右侧栏 -->
+            <div class="four wide column">
+                <div>
+                    <div class="m-padding-tb">
+                        <h4 class="ui black header">标签</h4>
+                        <div>
+                            <a href="#" target="_blank" class="ui blue basic label m-margin-tb-tiny">122
+                                <div class="detail">23</div>
+                            </a>
+                            <a href="#" target="_blank" class="ui blue basic label m-margin-tb-tiny">122
+                                <div class="detail">23</div>
+                            </a>
+                            <a href="#" target="_blank" class="ui blue basic label m-margin-tb-tiny">122
+                                <div class="detail">23</div>
+                            </a>
+                            <a href="#" target="_blank" class="ui blue basic label m-margin-tb-tiny">122
+                                <div class="detail">23</div>
+                            </a>
+                            <a href="#" target="_blank" class="ui blue basic label m-margin-tb-tiny">122
+                                <div class="detail">23</div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="m-padding-tb">
+                        <h4 class="ui black header">分类</h4>
+                        <div class="ui link list">
+                            <p><a href="" class="item m-black"><i class="angle right icon"></i>123123</a></p>
+                            <p><a href="" class="item m-black"><i class="angle right icon"></i>123123</a></p>
+                            <p><a href="" class="item m-black"><i class="angle right icon"></i>123123</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui section divider"></div>
+</div>
+<!-- footer -->
+<footer class="ui vertical segment m-padding-tb-massive">
+    <div class="ui center aligned container">
+        <div class="ui divided stackable grid">
+            <div class="four wide column">
+                <div class="ui link list">
+                    <div class="item">
+                        <img src="../static/images/QRCode.jpg" class="ui rounded image" alt="WeChatQRCode"
+                             style="width: 100px"/>
+                    </div>
+                    <h5 class="ui header" style="margin-top: 0">微信公众号：李泊岩</h5>
+                </div>
+            </div>
+
+            <div class="four wide column">
+                <h4 class="ui header m-text-spaced">友情链接</h4>
+                <div class="ui link list">
+                    <a href="https://www.codesheep.cn/" class="item">CodeSheep · 程序羊</a>
+                    <a href="https://www.liaoxuefeng.com/" class="item">廖雪峰的官方网站</a>
+                    <a href="https://www.aliyun.com/" class="item">阿里云</a>
+                    <a href="https://cloud.tencent.com/" class="item">腾讯云</a>
+                </div>
+            </div>
+            <div class="four wide column">
+                <h4 class="ui header m-text-spaced">联系我</h4>
+                <div class="ui link list">
+                    <a href="mailto:lbytony@126.com" class="item">Email: lbytony@126.com</a>
+                    <a href="http://wpa.qq.com/msgrd?v=3&uin=543553697&site=qq&menu=yes" class="item" target="_blank">QQ:
+                        543553697</a>
+                    <a href="" class="item">WeChat: liboyan1123</a>
+                </div>
+            </div>
+            <div class="four wide column">
+                <h4 class="ui header m-text-spaced">关于网站</h4>
+                <div class="ui link list">
+                    <a href="admin/tp-login.html" class="item">网站管理</a>
+                </div>
+            </div>
+        </div>
+        <div class="ui section divider"></div>
+        <p class="m-text-lined m-text-spaced m-opacity-mini m-padding-tb-small">
+            Copyright © 2020 Trumpet Press <br class="m-mobile-show"/>Designed by Li Boyan<br/>
+            <a href="http://www.beian.miit.gov.cn/" style="text-decoration: none; color: black">京ICP备18036120号</a>
+        </p>
+    </div>
+</footer>
+<script>
+    $('#menu-toggle').click(function () {
+        $('.m-nav-item').toggleClass('m-mobile-hide');
+    });
+    $('#wechat').click(function () {
+        $('.mini.modal').modal('show');
+    });
+</script>
+<div>
+    <button onclick="returnTop()" id="btnTop" title="返回顶部"><i class="arrow up icon"></i></button>
+</div>
+<noscript>为正常使用请激活JavaScript</noscript>
+</body>
+</html>

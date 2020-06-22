@@ -1,0 +1,20 @@
+server:
+  port: 8081
+mybatis:
+  typeAliasesPackage: cn.liboyan.trumpetpress.model.entity
+  mapperLocations: classpath*:mapper/*.xml
+  configuration:
+    cache-enabled: false
+    map-underscore-to-camel-case: true
+spring:
+  thymeleaf:
+    mode: HTML
+    cache: false
+    encoding: UTF-8
+  application:
+    name: trumpet-press
+  profiles:
+    active: dev   # 生产环境prod，开发环境dev
+logging:
+  file:
+    name: log/trumpetpress.log

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>关于网站 - Trumpet Press - 喇叭芽的博客</title>
+    <link rel="icon" href="../static/images/logo.png">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/5.13.0/css/fontawesome.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <script src="../static/js/script.js"></script>
+</head>
+<body>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.js"></script>
+<!-- 导航 -->
+<header>
+    <nav class="ui attached segment">
+        <div class="ui container">
+            <div class="ui secondary stackable menu">
+                <a href="index.html">
+                    <img src="../static/images/logo.png" alt="logo" class="ui tiny item image m-mobile-hide"/>
+                </a>
+                <h1 class="ui blue header item" style="padding: 5px; margin-left: 0">
+                    <a href="index.html">Trumpet Press</a>
+                </h1>
+                <a href="index.html" class="item m-mobile-hide">首页</a>
+                <a href="archives.html" class="m-nav-item item m-mobile-hide">归档</a>
+                <a href="types.html" class="m-nav-item item m-mobile-hide">分类</a>
+                <a href="tags.html" class="m-nav-item item m-mobile-hide">标签</a>
+                <a href="resume.html" class="m-nav-item item m-mobile-hide">关于我</a>
+                <a href="about.html" class="m-nav-item item m-mobile-hide">关于网站</a>
+                <div class="m-nav-item right item m-mobile-hide">
+                    <div class="ui icon input">
+                        <input type="text" placeholder="搜索...">
+                        <i class="search link icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="ui white icon button m-right-top m-mobile-show" id="menu-toggle">
+            <i class="sidebar icon"></i>
+        </a>
+    </nav>
+</header>
+
+<!-- 中间部分 -->
+<div>
+    <div class="ui container m-padding-tb">
+        <div class="ui stackable grid">
+            <!-- 左侧栏 -->
+            <div class="four wide column">
+                <div class="ui top attached center aligned segment">
+                    <img src="../static/images/Avatar.jpg" alt="Avatar" class="ui small centered rounded image">
+                    <h3 class="ui header">李泊岩</h3>
+                    <p>
+                        Undergraduate Student
+                    </p>
+                    <p>
+                        Beijing University of Technology
+                    </p>
+                    <p><i class="map marker alternate icon"></i>北京</p>
+                </div>
+                <div class="ui attached center aligned segment">
+                    <div class="ui divided grid">
+                        <div class="eight wide column">
+                            79
+                            <br>
+                            文章
+                        </div>
+                        <div class="eight wide column">
+                            79
+                            <br>
+                            标签
+                        </div>
+                    </div>
+                </div>
+                <div class="ui bottom attached center aligned segment" id="sociallink">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <a href="#" title="WeChat" class="tooltip" id="wechat">
+                                    <img src="../static/images/fa-wx.png" class="fa fa-wx" alt="WeChat"/>
+                                </a>
+                                <div class="ui mini modal">
+                                    <div class="header">微信二维码</div>
+                                    <div class="image content">
+                                        <img src="../static/images/MyQR.jpg" alt="My WeChat QR Code"
+                                             style="width: inherit;">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <a href="https://www.jianshu.com/u/7dc0dbb256d5" target="_blank" title="简书"
+                                   class="tooltip">
+                                    <img src="../static/images/fa-jianshu.png" class="fa fa-jianshu" alt="简书"/>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="https://github.com/lbytony" target="_blank" title="GitHub" class="tooltip">
+                                    <img src="../static/images/fa-github.png" class="fa fa-github" alt="GitHub"/>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="https://segmentfault.com/u/lbytony" target="_blank" title="SegmentFault"
+                                   class="tooltip">
+                                    <img src="../static/images/fa-segmentfault.png" class="fa fa-segmentfault"
+                                         alt="SegmentFault"/>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="https://blog.csdn.net/lbytony" target="_blank" title="CSDN" class="tooltip">
+                                    <img src="../static/images/fa-csdn.png" class="fa fa-csdn" alt="CSDN"/>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="https://weibo.com/lbytony" target="_blank" title="Weibo" class="tooltip">
+                                    <img src="../static/images/fa-weibo.png" class="fa fa-weibo" alt="Weibo"/>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- 博客列表 -->
+            <div class="twelve wide column">
+                <div class="ui top attached segment">
+                    <h2 class="ui center aligned header">
+                        关于博客
+                    </h2>
+                </div>
+                <div class="ui bottom attached segment m-text-indent m-text-lined m-text-spaced">
+                    <p>
+                        本博客为北京工业大学信息学部计算机学院《计算机软件软件类综合性课程设计》项目，开发时间为2020年4月至2020年7月。
+                    </p>
+                    <p>
+                        项目全部内容已在GitHub中开源。
+                    </p>
+                    <p>
+                        博客中所有内容，如无特殊声明，采用<a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-NC-SA</a>进行许可。
+                    </p>
+                    <h3>博客技术栈说明：</h3>
+                    <h4>博客前端技术栈：</h4>
+                    <p>
+                        UI框架：jQuary、Semantic UI
+                    </p>
+                    <p>
+                        前端插件：Editormd（Markdown编辑器）、tocbot（文章目录生成）
+                    </p>
+                    <h4>博客后端技术栈：</h4>
+                    <p>
+                        系统结构框架：Spring Boot 2.2.5.RELEASE
+                    </p>
+                    <p>
+                        数据库：MySQL 8.0
+                    </p>
+                    <p>
+                        ORM框架：MyBatis
+                    </p>
+                    <p>
+                        日志框架：slf4j
+                    </p>
+                    <h3>灵感来源及技术辅助：</h3>
+                    <p>
+                        李仁密, Spring Boot开发小而美的个人博客:
+                        <a href="https://edu.csdn.net/course/play/6359">https://edu.csdn.net/course/play/6359</a>
+                    </p>
+                    <p>
+                        程序羊 个人博客:
+                        <a href="https://www.codesheep.cn/">https://www.codesheep.cn/</a>
+                    </p>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui section divider"></div>
+</div>
+<!-- footer -->
+<footer class="ui vertical segment m-padding-tb-massive">
+    <div class="ui center aligned container">
+        <div class="ui divided stackable grid">
+            <div class="four wide column">
+                <div class="ui link list">
+                    <div class="item">
+                        <img src="../static/images/QRCode.jpg" class="ui rounded image" alt="WeChatQRCode"
+                             style="width: 100px"/>
+                    </div>
+                    <h5 class="ui header" style="margin-top: 0">微信公众号：李泊岩</h5>
+                </div>
+            </div>
+
+            <div class="four wide column">
+                <h4 class="ui header m-text-spaced">友情链接</h4>
+                <div class="ui link list">
+                    <a href="https://www.codesheep.cn/" class="item">CodeSheep · 程序羊</a>
+                    <a href="https://www.liaoxuefeng.com/" class="item">廖雪峰的官方网站</a>
+                    <a href="https://www.aliyun.com/" class="item">阿里云</a>
+                    <a href="https://cloud.tencent.com/" class="item">腾讯云</a>
+                </div>
+            </div>
+            <div class="four wide column">
+                <h4 class="ui header m-text-spaced">联系我</h4>
+                <div class="ui link list">
+                    <a href="mailto:lbytony@126.com" class="item">Email: lbytony@126.com</a>
+                    <a href="http://wpa.qq.com/msgrd?v=3&uin=543553697&site=qq&menu=yes" class="item" target="_blank">QQ:
+                        543553697</a>
+                    <a href="" class="item">WeChat: liboyan1123</a>
+                </div>
+            </div>
+            <div class="four wide column">
+                <h4 class="ui header m-text-spaced">关于网站</h4>
+                <div class="ui link list">
+                    <a href="admin/tp-login.html" class="item">网站管理</a>
+                </div>
+            </div>
+        </div>
+        <div class="ui section divider"></div>
+        <p class="m-text-lined m-text-spaced m-opacity-mini m-padding-tb-small">
+            Copyright © 2020 Trumpet Press <br class="m-mobile-show"/>Designed by Li Boyan<br/>
+            <a href="http://www.beian.miit.gov.cn/" style="text-decoration: none; color: black">京ICP备18036120号</a>
+        </p>
+    </div>
+</footer>
+<script>
+    $('#menu-toggle').click(function () {
+        $('.m-nav-item').toggleClass('m-mobile-hide');
+    });
+    $('#wechat').click(function () {
+        $('.mini.modal').modal('show');
+    });
+</script>
+<div>
+    <button onclick="returnTop()" id="btnTop" title="返回顶部"><i class="arrow up icon"></i></button>
+</div>
+<noscript>为正常使用请激活JavaScript</noscript>
+</body>
+</html>
