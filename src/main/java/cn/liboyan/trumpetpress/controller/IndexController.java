@@ -1,4 +1,4 @@
-package cn.liboyan.trumpetpress.web;
+package cn.liboyan.trumpetpress.controller;
 
 //import cn.liboyan.trumpetpress.exception.NotFoundException;
 import org.springframework.stereotype.Controller;
@@ -24,5 +24,30 @@ public class IndexController {
 //        }
 //        System.out.println("=========index========");
         return "index";
+    }
+
+    @GetMapping("/detail")
+    public String detail() {
+        return "detail";
+    }
+
+    @GetMapping("/archives")
+    public String archives() {
+        return "archives";
+    }
+
+    @GetMapping("/tags")
+    public String tags() {
+        return "tags";
+    }
+
+    @GetMapping("/types")
+    public String types() {
+        return "types";
+    }
+
+    @GetMapping("/about")
+    public String about() {
+        return "about";
     }
 }

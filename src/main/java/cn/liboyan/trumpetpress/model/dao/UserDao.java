@@ -21,10 +21,19 @@ public interface UserDao {
     User queryById(Long userId);
 
     /**
+     * 通过username和password查询单条数据
+     *
+     * @param username 用户名
+     * @param password 密码
+     * @return 实例对象
+     */
+    User queryByUsernameAndPassword(String username, String password);
+
+    /**
      * 查询指定行数据
      *
      * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param limit  查询条数
      * @return 对象列表
      */
     List<User> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);

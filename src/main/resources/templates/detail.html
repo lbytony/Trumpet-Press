@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="zh">
-<head>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_fragments::head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -14,15 +14,20 @@
     <link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
-<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.js"></script>
-<script src="https://cdn.bootcdn.net/ajax/libs/prism/9000.0.1/prism.min.js"></script>
-<script src="https://cdn.bootcdn.net/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script src="https://cdn.bootcdn.net/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.min.js"></script>
-<script src="../static/lib/tocbot/tocbot.js"></script>
-<script src="../static/js/script.js"></script>
+<div th:replace="_fragments::script">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/prism/9000.0.1/prism.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.min.js"></script>
+    <script src="../static/lib/tocbot/tocbot.js"></script>
+    <script src="../static/js/script.js"></script>
+    <!--[if lte IE 8]>
+    <script src="https://cdn.bootcdn.net/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+</div>
 <!-- 导航 -->
-<header>
+<header th:replace="_fragments::header">
     <nav class="ui attached segment">
         <div class="ui container">
             <div class="ui secondary stackable menu">
@@ -59,88 +64,88 @@
         <div class="ui stackable grid">
             <!-- 左侧栏 -->
             <div class="four wide column">
-                <div class="ui top attached center aligned segment">
-                    <img src="../static/images/Avatar.jpg" alt="Avatar" class="ui small centered rounded image">
-                    <h3 class="ui header">李泊岩</h3>
-                    <p>
-                        Undergraduate Student
-                    </p>
-                    <p>
-                        Beijing University of Technology
-                    </p>
-                    <p><i class="map marker alternate icon"></i>北京</p>
-                </div>
-                <div class="ui attached center aligned segment">
-                    <div class="ui divided grid">
-                        <div class="eight wide column">
-                            79
-                            <br>
-                            文章
-                        </div>
-                        <div class="eight wide column">
-                            79
-                            <br>
-                            标签
+                <div th:replace="_fragments::personalinfo">
+                    <div class="ui top attached center aligned segment">
+                        <img src="../static/images/Avatar.jpg" alt="Avatar" class="ui small centered rounded image">
+                        <h3 class="ui header">李泊岩</h3>
+                        <p>
+                            Undergraduate Student
+                        </p>
+                        <p>
+                            Beijing University of Technology
+                        </p>
+                        <p><i class="map marker alternate icon"></i>北京</p>
+                    </div>
+                    <div class="ui attached center aligned segment">
+                        <div class="ui divided grid">
+                            <div class="eight wide column">
+                                79
+                                <br>
+                                文章
+                            </div>
+                            <div class="eight wide column">
+                                79
+                                <br>
+                                标签
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="ui bottom attached center aligned segment" id="sociallink">
-                    <table>
-                        <tbody>
-                        <tr>
-                            <td>
-                                <a href="#" title="WeChat" class="tooltip" id="wechat">
-                                    <img src="../static/images/fa-wx.png" class="fa fa-wx" alt="WeChat"/>
-                                </a>
-                                <div class="ui mini modal">
-                                    <div class="header">微信二维码</div>
-                                    <div class="image content">
-                                        <img src="../static/images/MyQR.jpg" alt="My WeChat QR Code"
-                                             style="width: inherit;">
+                    <div class="ui bottom attached center aligned segment" id="sociallink">
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <a href="#" title="WeChat" class="tooltip wechat">
+                                        <img src="../static/images/fa-wx.png" class="fa fa-wx" alt="WeChat"/>
+                                    </a>
+                                    <div class="ui mini modal">
+                                        <div class="header">微信二维码</div>
+                                        <div class="image content">
+                                            <img src="../static/images/MyQR.jpg" alt="My WeChat QR Code"
+                                                 style="width: inherit;">
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="https://www.jianshu.com/u/7dc0dbb256d5" target="_blank" title="简书"
-                                   class="tooltip">
-                                    <img src="../static/images/fa-jianshu.png" class="fa fa-jianshu" alt="简书"/>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="https://github.com/lbytony" target="_blank" title="GitHub" class="tooltip">
-                                    <img src="../static/images/fa-github.png" class="fa fa-github" alt="GitHub"/>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="https://segmentfault.com/u/lbytony" target="_blank" title="SegmentFault"
-                                   class="tooltip">
-                                    <img src="../static/images/fa-segmentfault.png" class="fa fa-segmentfault"
-                                         alt="SegmentFault"/>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="https://blog.csdn.net/lbytony" target="_blank" title="CSDN" class="tooltip">
-                                    <img src="../static/images/fa-csdn.png" class="fa fa-csdn" alt="CSDN"/>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="https://weibo.com/lbytony" target="_blank" title="Weibo" class="tooltip">
-                                    <img src="../static/images/fa-weibo.png" class="fa fa-weibo" alt="Weibo"/>
-                                </a>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="m-mobile-hide">
-                    <h4 class="ui black header">最新文章</h4>
-                    <div class="ui link list">
-                        <p><a href="" class="item m-black"><i class="angle right icon"></i>123123</a></p>
-                        <p><a href="" class="item m-black"><i class="angle right icon"></i>123123</a></p>
-                        <p><a href="" class="item m-black"><i class="angle right icon"></i>123123</a></p>
+                                </td>
+                                <td>
+                                    <a href="https://www.jianshu.com/u/7dc0dbb256d5" target="_blank" title="简书"
+                                       class="tooltip">
+                                        <img src="../static/images/fa-jianshu.png" class="fa fa-jianshu" alt="简书"/>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="https://github.com/lbytony" target="_blank" title="GitHub" class="tooltip">
+                                        <img src="../static/images/fa-github.png" class="fa fa-github" alt="GitHub"/>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="https://segmentfault.com/u/lbytony" target="_blank" title="SegmentFault"
+                                       class="tooltip">
+                                        <img src="../static/images/fa-segmentfault.png" class="fa fa-segmentfault"
+                                             alt="SegmentFault"/>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="https://blog.csdn.net/lbytony" target="_blank" title="CSDN"
+                                       class="tooltip">
+                                        <img src="../static/images/fa-csdn.png" class="fa fa-csdn" alt="CSDN"/>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="https://weibo.com/lbytony" target="_blank" title="Weibo" class="tooltip">
+                                        <img src="../static/images/fa-weibo.png" class="fa fa-weibo" alt="Weibo"/>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-
+                <h4 class="ui black header">最新文章</h4>
+                <div class="ui link list">
+                    <p><a href="" class="item m-black"><i class="angle right icon"></i>123123</a></p>
+                    <p><a href="" class="item m-black"><i class="angle right icon"></i>123123</a></p>
+                    <p><a href="" class="item m-black"><i class="angle right icon"></i>123123</a></p>
+                </div>
             </div>
             <!-- 博客列表 -->
             <div class="eight wide column">
@@ -191,12 +196,12 @@
                             <div class="ui images" style="font-size: inherit">
                                 <div class="image">
                                     <img src="../static/images/alipay.jpg" alt="支付宝" class="ui rounded image"
-                                         style="width: 120px">
+                                         style="width: 120px" th:src="@{/images/alipay.jpg}">
                                     <div>支付宝</div>
                                 </div>
                                 <div class="image">
                                     <img src="../static/images/wechatpay.png" alt="微信支付" class="ui rounded image"
-                                         style="width: 120px">
+                                         style="width: 120px" th:src="@{/images/wechatpay.png}">
                                     <div>微信支付</div>
                                 </div>
                             </div>
@@ -209,7 +214,7 @@
                                 <h3 class="ui dividing header">评论</h3>
                                 <div class="comment">
                                     <a class="avatar">
-                                        <img src="../static/images/Avatar.jpg">
+                                        <img src="../static/images/Avatar.jpg" th:src="@{/images/Avatar.jpg}">
                                     </a>
                                     <div class="content">
                                         <a class="author">李泊岩</a>
@@ -224,7 +229,7 @@
                                 </div>
                                 <div class="comment">
                                     <a class="avatar">
-                                        <img src="../static/images/Avatar.jpg">
+                                        <img src="../static/images/Avatar.jpg" th:src="@{/images/Avatar.jpg}">
                                     </a>
                                     <div class="content">
                                         <a class="author">Elliot Fu</a>
@@ -241,7 +246,7 @@
                                     <div class="comments">
                                         <div class="comment">
                                             <a class="avatar">
-                                                <img src="../static/images/Avatar.jpg">
+                                                <img src="../static/images/Avatar.jpg" th:src="@{/images/Avatar.jpg}">
                                             </a>
                                             <div class="content">
                                                 <a class="author">Jenny Hess</a>
@@ -258,7 +263,7 @@
                                 </div>
                                 <div class="comment">
                                     <a class="avatar">
-                                        <img src="../static/images/Avatar.jpg">
+                                        <img src="../static/images/Avatar.jpg" th:src="@{/images/Avatar.jpg}">
                                     </a>
                                     <div class="content">
                                         <a class="author">Joe Henderson</a>
@@ -337,7 +342,7 @@
     <div class="ui section divider"></div>
 </div>
 <!-- footer -->
-<footer class="ui vertical segment m-padding-tb-massive">
+<footer class="ui vertical segment m-padding-tb-massive" th:replace="_fragments::footer">
     <div class="ui center aligned container">
         <div class="ui divided stackable grid">
             <div class="four wide column">
@@ -365,7 +370,7 @@
                     <a href="mailto:lbytony@126.com" class="item">Email: lbytony@126.com</a>
                     <a href="http://wpa.qq.com/msgrd?v=3&uin=543553697&site=qq&menu=yes" class="item" target="_blank">QQ:
                         543553697</a>
-                    <a href="" class="item">WeChat: liboyan1123</a>
+                    <a href="#" class="item wechat">WeChat: liboyan1123</a>
                 </div>
             </div>
             <div class="four wide column">
@@ -438,7 +443,7 @@
         $(window).scrollTo(0, 500);
     });
 
-    $('#wechat').click(function () {
+    $('.wechat').click(function () {
         $('.mini.modal').modal('show');
     });
 </script>
