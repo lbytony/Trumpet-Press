@@ -1,5 +1,8 @@
 package cn.liboyan.trumpetpress.utils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -24,7 +27,9 @@ public class CaptchaCodeUtils {
     // 使用到Algerian字体，系统里没有的话需要安装字体，字体只显示大写，去掉了1,0,i,o几个容易混淆的字符
     public static final String VERIFY_CODES = "123456789ABCDEFGHJKLMNPQRSTUVWXYZ";
 
-    private static Random random = new SecureRandom();
+    private static final Random random = new SecureRandom();
+
+    public static final Logger logger = LoggerFactory.getLogger(CaptchaCodeUtils.class);
 
     /**
      * 使用系统默认字符源生成验证码
@@ -81,7 +86,8 @@ public class CaptchaCodeUtils {
         }
         Arrays.sort(fractions);
 
-        g2.setColor(Color.GRAY);// 设置边框色
+        // 设置边框色
+        g2.setColor(Color.GRAY);
         g2.fillRect(0, 0, w, h);
 
         Color c = getRandColor(200, 250);
@@ -90,7 +96,8 @@ public class CaptchaCodeUtils {
 
         // 绘制干扰线
         Random random = new Random();
-        g2.setColor(getRandColor(160, 200));// 设置线条的颜色
+        // 设置线条的颜色
+        g2.setColor(getRandColor(160, 200));
         for (int i = 0; i < 20; i++) {
             int x = random.nextInt(w - 1);
             int y = random.nextInt(h - 1);
@@ -100,7 +107,8 @@ public class CaptchaCodeUtils {
         }
 
         // 添加噪点
-        float yawpRate = 0.05f;// 噪声率
+        // 噪声率
+        float yawpRate = 0.05f;
         int area = (int) (yawpRate * w * h);
         for (int i = 0; i < area; i++) {
             int x = random.nextInt(w);
@@ -108,9 +116,7 @@ public class CaptchaCodeUtils {
             int rgb = getRandomIntColor();
             image.setRGB(x, y, rgb);
         }
-
         shear(g2, w, h, c);// 使图片扭曲
-
         g2.setColor(getRandColor(100, 160));
         int fontSize = h - 4;
         Font font = new Font("Algerian", Font.ITALIC, fontSize);
@@ -119,11 +125,10 @@ public class CaptchaCodeUtils {
         for (int i = 0; i < verifySize; i++) {
             AffineTransform affine = new AffineTransform();
             affine.setToRotation(Math.PI / 4 * rand.nextDouble() * (rand.nextBoolean() ? 1 : -1),
-                    (w / verifySize) * i + fontSize / 2, h / 2);
+                    (1.0 * w / verifySize) * i + fontSize / 2.0, h / 2.0);
             g2.setTransform(affine);
             g2.drawChars(chars, i, 1, ((w - 10) / verifySize) * i + 5, h / 2 + fontSize / 2 - 10);
         }
-
         g2.dispose();
         ImageIO.write(image, "jpg", os);
     }
@@ -165,9 +170,7 @@ public class CaptchaCodeUtils {
     }
 
     private static void shearX(Graphics g, int w1, int h1, Color color) {
-
         int period = random.nextInt(2);
-
         boolean borderGap = true;
         int frames = 1;
         int phase = random.nextInt(2);
@@ -186,9 +189,7 @@ public class CaptchaCodeUtils {
     }
 
     private static void shearY(Graphics g, int w1, int h1, Color color) {
-
         int period = random.nextInt(40) + 10; // 50;
-
         boolean borderGap = true;
         int frames = 20;
         int phase = 7;
@@ -205,9 +206,24 @@ public class CaptchaCodeUtils {
         }
     }
 
+    public static void doGenerateImage() {
+        String code = generateVerifyCode(4);
+        FileOutputStream os = null;
+        try {
+            os = new FileOutputStream("src/main/resources/static/images/captcha.jpg");
+            logger.info("已生成验证码：" + code);
+            outputImage(150, 50, os, code);
+            os.flush();
+            os.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public static void main(String[] args) throws FileNotFoundException {
         String code = generateVerifyCode(4);
-        FileOutputStream os = new FileOutputStream("captcha.jpg");
+        FileOutputStream os = new FileOutputStream("src/main/resources/static/images/captcha.jpg");
         try {
             outputImage(150, 50, os, code);
         } catch (IOException e) {

@@ -60,13 +60,13 @@ body {
 }
 
 .m-padding-tb-great {
-    padding-top: 3em;
-    padding-bottom: 3em;
+    padding-top: 3em !important;
+    padding-bottom: 3em !important;
 }
 
 .m-padding-tb-huge {
-    padding-top: 4em;
-    padding-bottom: 4em;
+    padding-top: 4em !important;
+    padding-bottom: 4em !important;
 }
 
 .m-padding-lr-huge {
@@ -75,8 +75,8 @@ body {
 }
 
 .m-padding-tb-massive {
-    padding-top: 5em;
-    padding-bottom: 5em;
+    padding-top: 5em !important;
+    padding-bottom: 5em !important;
 }
 
 .m-text-thin {

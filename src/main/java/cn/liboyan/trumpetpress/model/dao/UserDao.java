@@ -27,7 +27,7 @@ public interface UserDao {
      * @param password 密码
      * @return 实例对象
      */
-    User queryByUsernameAndPassword(String username, String password);
+    User queryByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
 
     /**
      * 查询指定行数据

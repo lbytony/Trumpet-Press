@@ -1,6 +1,6 @@
 server:
   port: 8081
-mybatis-plus:
+mybatis:
   typeAliasesPackage: cn.liboyan.trumpetpress.model.entity
   configuration:
     cache-enabled: false

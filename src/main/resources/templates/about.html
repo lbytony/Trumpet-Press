@@ -9,13 +9,15 @@
     <link rel="stylesheet" href="https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.css">
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/5.13.0/css/fontawesome.min.css">
     <link rel="stylesheet" href="../static/css/style.css">
-    <script src="../static/js/script.js"></script>
 </head>
 <body>
 <div th:replace="_fragments::script">
     <script src="../static/js/script.js"></script>
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.js"></script>
+    <!--[if lte IE 8]>
+    <script src="https://cdn.bootcdn.net/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
 </div>
 <!-- 导航 -->
 <header th:replace="_fragments::header">
@@ -164,7 +166,7 @@
                     </p>
                     <h4>博客后端技术栈：</h4>
                     <p>
-                        系统结构框架：Spring Boot 2.2.5.RELEASE
+                        系统结构框架：Spring Boot 2.3.1.RELEASE
                     </p>
                     <p>
                         数据库：MySQL 8.0

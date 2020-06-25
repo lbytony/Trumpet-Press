@@ -3,6 +3,7 @@ package cn.liboyan.trumpetpress.service.impl;
 import cn.liboyan.trumpetpress.model.entity.User;
 import cn.liboyan.trumpetpress.model.dao.UserDao;
 import cn.liboyan.trumpetpress.service.UserService;
+import cn.liboyan.trumpetpress.utils.Md5Utils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,7 +22,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User checkUser(String username, String password) {
-        User user = userDao.queryByUsernameAndPassword(username, password);
-        return user;
+        return userDao.queryByUsernameAndPassword(username, Md5Utils.md5(password));
     }
 }
