@@ -53,15 +53,15 @@
         <div class="ui container">
             <div class="ui breadcrumb m-padding-tb">
                 当前位置：
-                <a href="tp-admin.html" class="section">网站管理</a>
+                <a href="tp-admin.html" class="section" th:href="@{/tp-admin/admin}">网站管理</a>
                 <i class="right angle icon divider"></i>
-                <a class="section">分类管理</a>
+                <a href="tp-bloglist.html" class="section" th:href="@{/tp-admin/types}">分类管理</a>
                 <i class="right angle icon divider"></i>
                 <div class="active section">分类列表</div>
             </div>
             <div class="right menu">
-                <a href="#" class="item" id="newType">新增分类</a>
-                <a href="#" class="active blue item">分类列表</a>
+                <a href="tp-type.html" class="blue item" th:href="@{/tp-admin/types/input}">新增分类</a>
+                <a href="tp-typelist.html" class="active blue item" th:href="@{/tp-admin/types}">分类列表</a>
             </div>
         </div>
     </div>
@@ -88,13 +88,14 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1</td>
-                <td>123</td>
+            <tr th:each="type, iterStat: ${pageInfo.list}">
+                <td th:text="${iterStat.count}">1</td>
+                <td th:text="${type.typeName}">123</td>
                 <td>1111</td>
                 <td>
-                    <a href="#" class="ui mini teal button">编辑</a>
-                    <a href="#" class="ui mini red button">删除</a>
+                    <a href="#" class="ui mini teal button"
+                       th:href="@{/tp-admin/types/edit/{id}(id=${type.typeId})}">编辑</a>
+                    <a href="#" class="ui mini red button" th:href="@{/tp-admin/types/delete/{id}(id=${type.typeId})}">删除</a>
                 </td>
             </tr>
             </tbody>
@@ -118,38 +119,13 @@
             </tfoot>
         </table>
     </div>
-    <div class="ui mini test modal">
-        <div class="header">
-            新建分类
-        </div>
-        <div class="content">
-            <form action="#" method="post" class="ui form">
-                <div class="field">
-                    <label>请输入新建的类别名称</label>
-                    <div class="ui input">
-                        <input type="text" placeholder="类别名称">
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="actions">
-            <button type="button" class="ui negative right labeled icon button">
-                返回
-                <i class="close icon"></i>
-            </button>
-            <button class="ui positive right labeled icon button">
-                确定
-                <i class="check icon"></i>
-            </button>
-        </div>
-    </div>
     <div class="ui section divider"></div>
 </div>
 <!-- footer -->
-<footer class="ui vertical segment m-padding-tb-massive m-center">
+<footer class="ui vertical segment m-center">
     <div class="m-container m-center">
         <p class="m-text-lined m-text-spaced m-opacity-mini m-padding-tb-small">
-            Copyright © 2020 Trumpet Press <br class="m-mobile-show"/>Designed by Li Boyan<br/>
+            Copyright © 2020 Trumpet Press<br class="m-mobile-show"/>Designed by Li Boyan<br/>
             <a href="http://www.beian.miit.gov.cn/" style="text-decoration: none; color: black">京ICP备18036120号</a>
         </p>
     </div>
@@ -159,9 +135,6 @@
         $('.m-nav-item').toggleClass('m-mobile-hide');
     });
     $('.ui.dropdown').dropdown();
-    $('#newType').click(function () {
-        $('.mini.modal').modal('show');
-    });
 </script>
 <div>
     <button onclick="returnTop()" id="btnTop" title="返回顶部"><i class="arrow up icon"></i></button>

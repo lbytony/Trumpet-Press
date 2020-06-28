@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="admin/_fragments::head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>网站管理 - Trumpet Press - 喇叭芽的博客</title>
+    <title>博客发布 - Trumpet Press - 喇叭芽的博客</title>
     <link rel="icon" href="../../static/images/logo.png">
     <link rel="stylesheet" href="https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.css">
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/5.13.0/css/fontawesome.min.css">
+    <link rel="stylesheet" href="../../static/lib/editormd/css/editormd.min.css">
     <link rel="stylesheet" href="../../static/css/style.css">
+    <script src="../../static/js/script.js"></script>
 </head>
 <body>
 <div th:replace="admin/_fragments::script">
@@ -54,6 +56,14 @@
             <div class="ui breadcrumb m-padding-tb">
                 当前位置：
                 <a href="tp-admin.html" class="section" th:href="@{/tp-admin/admin}">网站管理</a>
+                <i class="right angle icon divider"></i>
+                <a href="tp-bloglist.html" class="section" th:href="@{/tp-admin/blogs}">分类管理</a>
+                <i class="right angle icon divider"></i>
+                <div class="active section">新建分类</div>
+            </div>
+            <div class="right menu">
+                <a href="tp-type.html" class="active blue item" th:href="@{/tp-admin/types/input}">新增分类</a>
+                <a href="tp-typelist.html" class="blue item" th:href="@{/tp-admin/types}">分类列表</a>
             </div>
         </div>
     </div>
@@ -62,45 +72,23 @@
 <!-- 中间部分 -->
 <div class="m-container">
     <div class="ui container m-padding-tb">
-        <div class="ui top attached segment">
-            <h2 class="ui center aligned header">博客概况</h2>
-        </div>
-        <div class="ui attached segment m-padding-tb-large">
-            <div class="ui five statistics ">
-                <div class="blue statistic">
-                    <div class="value">
-                        22
-                    </div>
-                    <div class="label">文章</div>
-                </div>
-                <div class="statistic">
-                    <div class="value">
-                        30
-                    </div>
-                    <div class="label">分类</div>
-                </div>
-                <div class="brown statistic">
-                    <div class="value">
-                        22
-                    </div>
-                    <div class="label">标签</div>
-                </div>
-                <div class="red statistic">
-                    <div class="value">
-                        22
-                    </div>
-                    <div class="red label">喜欢</div>
-                </div>
-                <div class="orange statistic">
-                    <div class="value">
-                        156
-                    </div>
-                    <div class="red label">阅读</div>
+        <form action="#" class="ui form" method="post"
+              th:action="${type.getTypeId()}==null ? @{/tp-admin/types/input}: @{/tp-admin/types/edit/{id}(id=*{id})}">
+            <input type="hidden" name="id" th:value="${type.getTypeId()}">
+            <div class="required field m-padding-tb-great">
+                <div class="ui labeled input">
+                    <div class="ui label">分类名称</div>
+                    <input type="text" name="typeName" placeholder="请输入新增分类的名称" th:value="${type.getTypeName()}">
                 </div>
             </div>
-        </div>
+            <div class="ui error message"></div>
+            <div class="ui error message" th:unless="${#strings.isEmpty(message)}" th:text="${message}"></div>
+            <div class="ui right aligned container">
+                <button type="button" class="ui button" onclick="window.history.go(-1)">返回</button>
+                <button class="ui teal submit button">确定</button>
+            </div>
+        </form>
     </div>
-    <br><br><br><br><br><br><br><br>
     <div class="ui section divider"></div>
 </div>
 <!-- footer -->
@@ -117,6 +105,17 @@
         $('.m-nav-item').toggleClass('m-mobile-hide');
     });
     $('.ui.dropdown').dropdown();
+    $('.ui.form').form({
+        fields: {
+            type: {
+                identifier: 'type',
+                rules: [{
+                    type: 'empty',
+                    prompt: '请输入分类名称'
+                }]
+            }
+        }
+    });
 </script>
 <div>
     <button onclick="returnTop()" id="btnTop" title="返回顶部"><i class="arrow up icon"></i></button>

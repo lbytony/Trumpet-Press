@@ -55,15 +55,15 @@
         <div class="ui container">
             <div class="ui breadcrumb m-padding-tb">
                 当前位置：
-                <a href="tp-admin.html" class="section">网站管理</a>
+                <a href="tp-admin.html" class="section" th:href="@{/tp-admin/admin}">网站管理</a>
                 <i class="right angle icon divider"></i>
-                <a class="section">文章管理</a>
+                <a href="tp-bloglist.html" class="section" th:href="@{/tp-admin/blogs}">文章管理</a>
                 <i class="right angle icon divider"></i>
                 <div class="active section">发布文章</div>
             </div>
             <div class="right menu">
                 <a href="#" class="active blue item">发布</a>
-                <a href="tp-bloglist.html" class="item">博客列表</a>
+                <a href="tp-bloglist.html" class="item" th:href="@{/tp-admin/blogs}">博客列表</a>
             </div>
         </div>
     </div>
@@ -130,12 +130,6 @@
                 </div>
                 <div class="field">
                     <div class="ui checkbox">
-                        <input type="checkbox" name="shareInfo" id="shareInfo" class="hidden">
-                        <label for="shareInfo">转载声明</label>
-                    </div>
-                </div>
-                <div class="field">
-                    <div class="ui checkbox">
                         <input type="checkbox" name="like" id="like" class="hidden">
                         <label for="like">赞赏</label>
                     </div>
@@ -158,7 +152,7 @@
     <div class="ui section divider"></div>
 </div>
 <!-- footer -->
-<footer class="ui vertical segment m-padding-tb-massive m-center">
+<footer class="ui vertical segment m-center">
     <div class="m-container m-center">
         <p class="m-text-lined m-text-spaced m-opacity-mini m-padding-tb-small">
             Copyright © 2020 Trumpet Press <br class="m-mobile-show"/>Designed by Li Boyan<br/>

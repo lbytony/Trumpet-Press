@@ -26,45 +26,17 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/tp-admin")
 public class AdminController {
 
-    public final Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    @Resource
-    private UserService userService;
-
-    @GetMapping
-    public String loginPage() {
-        return "admin/tp-login";
-    }
-
-    @PostMapping("/login")
-    public String login(@RequestParam String username,
-                        @RequestParam String password,
-                        @RequestParam String captcha,
-                        HttpSession session,
-                        RedirectAttributes redirect) {
-        User user = userService.checkUser(username, password);
-        if (user != null) {
-            user.setUserPassword(null);
-            session.setAttribute("user", user);
-            String upperCaptcha = captcha.toUpperCase();
-            if (upperCaptcha.equals(session.getAttribute("captcha"))) {
-                return "admin/tp-admin";
-            } else {
-                logger.info("验证码应为：" + session.getAttribute("captcha") + "，输入的是：" + captcha);
-                redirect.addFlashAttribute("captchaMessage", "验证码错误");
-                return "redirect:/tp-admin";
-            }
-        } else {
-            redirect.addFlashAttribute("message", "用户名或密码错误");
-            return "redirect:/tp-admin";
-        }
-    }
-
-    @GetMapping("/admin")
-    public String adminPage() {
+    /**
+     * 后台管理首页
+     */
+    @GetMapping("/login")
+    public String login() {
         return "admin/tp-admin";
     }
 
+    /**
+     * 注销操作
+     */
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.removeAttribute("user");
@@ -79,11 +51,6 @@ public class AdminController {
     @GetMapping("/tags")
     public String tagslist() {
         return "admin/tp-taglist";
-    }
-
-    @GetMapping("/types")
-    public String typelist() {
-        return "admin/tp-typelist";
     }
 
     @GetMapping("/setting")
