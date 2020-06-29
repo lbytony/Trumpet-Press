@@ -46,7 +46,7 @@ body {
 }
 
 .m-padding {
-    padding: 1em;
+    padding: 1em !important;
 }
 
 .m-padding-tb {

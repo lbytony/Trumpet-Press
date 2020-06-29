@@ -15,31 +15,22 @@
         where tag_id = #{tagId}
     </select>
 
-    <!--查询指定行数据-->
-    <select id="queryAllByLimit" resultMap="TagMap">
-        select
-          tag_id, tag_name
+    <!--查询所有数据 -->
+    <select id="queryAll" resultMap="TagMap">
+        select tag_id,
+               tag_name
         from trumpetpress.t_tag
-        limit #{offset}, #{limit}
     </select>
 
-    <!--通过实体作为筛选条件查询-->
-    <select id="queryAll" resultMap="TagMap">
-        select
-          tag_id, tag_name
-        from trumpetpress.t_tag
-        <where>
-            <if test="tagId != null">
-                and tag_id = #{tagId}
-            </if>
-            <if test="tagName != null and tagName != ''">
-                and tag_name = #{tagName}
-            </if>
-        </where>
-    </select>
+    <!-- 查询条目个数 -->
     <select id="countAllTag" resultType="java.lang.Integer">
         select count(*)
         from trumpetpress.t_tag
+    </select>
+    <select id="queryByName" resultType="cn.liboyan.trumpetpress.model.entity.Tag">
+        select tag_id, tag_name
+        from trumpetpress.t_tag
+        where tag_name = #{typeName}
     </select>
 
     <!--新增所有列-->

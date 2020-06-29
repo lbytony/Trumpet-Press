@@ -114,9 +114,4 @@ public class TypeController {
         return "redirect:/tp-admin/types";
     }
 
-    @ResponseBody
-    @GetMapping("/types/countAll")
-    public int countTypes() {
-        return typeService.countAllType();
-    }
 }

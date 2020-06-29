@@ -21,26 +21,14 @@ public interface TagDao {
     Tag queryById(Long tagId);
 
     /**
-     * 查询指定行数据
+     * 查询所有数据
      *
-     * @param offset 查询起始位置
-     * @param limit 查询条数
      * @return 对象列表
      */
-    List<Tag> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
-
-
-    /**
-     * 通过实体作为筛选条件查询
-     *
-     * @param tag 实例对象
-     * @return 对象列表
-     */
-    List<Tag> queryAll(Tag tag);
+    List<Tag> queryAll();
 
     /**
      * 新增数据
-     *
      * @param tag 实例对象
      * @return 影响行数
      */
@@ -48,7 +36,6 @@ public interface TagDao {
 
     /**
      * 修改数据
-     *
      * @param tag 实例对象
      * @return 影响行数
      */
@@ -62,5 +49,12 @@ public interface TagDao {
      */
     int deleteById(Long tagId);
 
+    /**
+     * 查询条目个数
+     *
+     * @return 对象列表
+     */
     int countAllTag();
+
+    Tag queryByName(String tagName);
 }

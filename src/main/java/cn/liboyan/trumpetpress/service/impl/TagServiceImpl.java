@@ -31,15 +31,13 @@ public class TagServiceImpl implements TagService {
     }
 
     /**
-     * 查询多条数据
+     * 查询所有数据
      *
-     * @param offset 查询起始位置
-     * @param limit 查询条数
      * @return 对象列表
      */
     @Override
-    public List<Tag> queryAllByLimit(int offset, int limit) {
-        return this.tagDao.queryAllByLimit(offset, limit);
+    public List<Tag> queryAll() {
+        return this.tagDao.queryAll();
     }
 
     /**
@@ -61,9 +59,8 @@ public class TagServiceImpl implements TagService {
      * @return 实例对象
      */
     @Override
-    public Tag update(Tag tag) {
-        this.tagDao.update(tag);
-        return this.queryById(tag.getTagId());
+    public int update(Tag tag) {
+        return this.tagDao.update(tag);
     }
 
     /**
@@ -80,5 +77,10 @@ public class TagServiceImpl implements TagService {
     @Override
     public int countAllTag() {
         return this.tagDao.countAllTag();
+    }
+
+    @Override
+    public Tag queryByName(String tagName) {
+        return this.tagDao.queryByName(tagName);
     }
 }

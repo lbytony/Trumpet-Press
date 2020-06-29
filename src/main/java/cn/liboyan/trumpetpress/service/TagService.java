@@ -20,13 +20,11 @@ public interface TagService {
     Tag queryById(Long tagId);
 
     /**
-     * 查询多条数据
+     * 查询所有数据
      *
-     * @param offset 查询起始位置
-     * @param limit 查询条数
      * @return 对象列表
      */
-    List<Tag> queryAllByLimit(int offset, int limit);
+    List<Tag> queryAll();
 
     /**
      * 新增数据
@@ -42,7 +40,7 @@ public interface TagService {
      * @param tag 实例对象
      * @return 实例对象
      */
-    Tag update(Tag tag);
+    int update(Tag tag);
 
     /**
      * 通过主键删除数据
@@ -53,4 +51,6 @@ public interface TagService {
     boolean deleteById(Long tagId);
 
     int countAllTag();
+
+    Tag queryByName(String tagName);
 }
