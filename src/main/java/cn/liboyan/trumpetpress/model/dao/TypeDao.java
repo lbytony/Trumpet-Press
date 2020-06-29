@@ -57,10 +57,10 @@ public interface TypeDao {
     /**
      * 通过名称查询单条数据
      *
-     * @param name 类型名称
+     * @param typeName 类型名称
      * @return 实例对象
      */
-    Type queryByName(String name);
+    Type queryByName(String typeName);
 
     /**
      * 分页查询用户
@@ -68,4 +68,7 @@ public interface TypeDao {
      * @return 对象列表
      */
     List<Type> queryPage();
+
+    int countAllType();
+
 }

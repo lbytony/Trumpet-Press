@@ -76,4 +76,9 @@ public class TagServiceImpl implements TagService {
     public boolean deleteById(Long tagId) {
         return this.tagDao.deleteById(tagId) > 0;
     }
+
+    @Override
+    public int countAllTag() {
+        return this.tagDao.countAllTag();
+    }
 }

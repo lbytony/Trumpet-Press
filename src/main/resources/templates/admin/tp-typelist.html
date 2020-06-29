@@ -91,7 +91,7 @@
             <tr th:each="type, iterStat: ${pageInfo.list}">
                 <td th:text="${iterStat.count}">1</td>
                 <td th:text="${type.typeName}">123</td>
-                <td>1111</td>
+                <td th:text="${type.typeCount}">1111</td>
                 <td>
                     <a href="#" class="ui mini teal button"
                        th:href="@{/tp-admin/types/edit/{id}(id=${type.typeId})}">编辑</a>
@@ -103,14 +103,12 @@
             <tr>
                 <th colspan="6">
                     <div class="ui right floated pagination menu">
-                        <a class="icon item">
+                        <a class="icon item" th:unless="${pageInfo.isIsFirstPage()}"
+                           th:href="@{/tp-admin/types(pageNum=${pageInfo.getPrePage()})}">
                             <i class="left chevron icon"></i>
                         </a>
-                        <a class="active item">1</a>
-                        <a class="item">2</a>
-                        <a class="item">3</a>
-                        <a class="item">4</a>
-                        <a class="icon item">
+                        <a class="icon item" th:unless="${pageInfo.isIsLastPage()}"
+                           th:href="@{/tp-admin/types(pageNum=${pageInfo.getNextPage()})}">
                             <i class="right chevron icon"></i>
                         </a>
                     </div>

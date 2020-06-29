@@ -62,4 +62,5 @@ public interface TagDao {
      */
     int deleteById(Long tagId);
 
+    int countAllTag();
 }

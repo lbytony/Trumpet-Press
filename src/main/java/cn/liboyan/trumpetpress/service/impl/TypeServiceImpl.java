@@ -21,6 +21,7 @@ import java.util.List;
  */
 @Service("typeService")
 public class TypeServiceImpl implements TypeService {
+
     @Resource
     private TypeDao typeDao;
 
@@ -78,6 +79,11 @@ public class TypeServiceImpl implements TypeService {
     @Override
     public Type queryByName(String typeName) {
         return this.typeDao.queryByName(typeName);
+    }
+
+    @Override
+    public int countAllType() {
+        return this.typeDao.countAllType();
     }
 
     @Override

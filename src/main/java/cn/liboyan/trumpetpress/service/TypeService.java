@@ -63,6 +63,13 @@ public interface TypeService {
     Type queryByName(String typeName);
 
     /**
+     * 计算分类总条目
+     *
+     * @return 条目个数
+     */
+    int countAllType();
+
+    /**
      * 分页查询接口
      *
      * @param pageRequest 自定义，统一分页查询请求

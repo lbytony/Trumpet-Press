@@ -76,4 +76,9 @@ public class ArticleServiceImpl implements ArticleService {
     public boolean deleteById(Long articleId) {
         return this.articleDao.deleteById(articleId) > 0;
     }
+
+    @Override
+    public int countAllArticle() {
+        return this.articleDao.countAllArticle();
+    }
 }

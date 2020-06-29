@@ -52,4 +52,5 @@ public interface TagService {
      */
     boolean deleteById(Long tagId);
 
+    int countAllTag();
 }

@@ -34,7 +34,7 @@ public class TypeController {
      * 返回分类列表
      */
     @GetMapping("/types")
-    public String typelist(Model model, @RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum) {
+    public String showList(Model model, @RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum) {
         //按照排序字段 倒序 排序
         String orderBy = "'type_id' desc";
         PageHelper.startPage(pageNum, 10, orderBy);
@@ -60,6 +60,7 @@ public class TypeController {
     public String inputPost(Type type, RedirectAttributes redirect) {
         Type type1 = typeService.queryByName(type.getTypeName());
         if (type1 != null) {
+            logger.error("分类重复" + type.getTypeName());
             redirect.addFlashAttribute("message", "分类已重复");
             return "redirect:/tp-admin/types";
         }
@@ -88,8 +89,7 @@ public class TypeController {
     public String editPost(Type type, RedirectAttributes attributes, @PathVariable Long id) {
         Type type1 = typeService.queryByName(type.getTypeName());
         if (type1 != null) {
-            attributes.addFlashAttribute("message", "不能添加重复的分类");
-            return "redirect:/tp-admin/types/input";
+            return "redirect:/tp-admin/types";
         }
         type.setTypeId(id);
         int t = typeService.update(type);
@@ -112,5 +112,11 @@ public class TypeController {
         typeService.deleteById(id);
         attributes.addFlashAttribute("message", "删除成功");
         return "redirect:/tp-admin/types";
+    }
+
+    @ResponseBody
+    @GetMapping("/types/countAll")
+    public int countTypes() {
+        return typeService.countAllType();
     }
 }

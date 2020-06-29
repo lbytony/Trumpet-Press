@@ -52,4 +52,5 @@ public interface ArticleService {
      */
     boolean deleteById(Long articleId);
 
+    int countAllArticle();
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="admin/_fragments::head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
@@ -68,19 +68,19 @@
         <div class="ui attached segment m-padding-tb-large">
             <div class="ui five statistics ">
                 <div class="blue statistic">
-                    <div class="value">
+                    <div class="value" th:text="${article}">
                         22
                     </div>
                     <div class="label">文章</div>
                 </div>
                 <div class="statistic">
-                    <div class="value">
+                    <div class="value" th:text="${type}">
                         30
                     </div>
                     <div class="label">分类</div>
                 </div>
                 <div class="brown statistic">
-                    <div class="value">
+                    <div class="value" th:text="${tag}">
                         22
                     </div>
                     <div class="label">标签</div>

@@ -37,6 +37,10 @@
             </if>
         </where>
     </select>
+    <select id="countAllTag" resultType="java.lang.Integer">
+        select count(*)
+        from trumpetpress.t_tag
+    </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="tagId" useGeneratedKeys="true">

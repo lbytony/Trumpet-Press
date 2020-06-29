@@ -62,4 +62,5 @@ public interface ArticleDao {
      */
     int deleteById(Long articleId);
 
+    int countAllArticle();
 }

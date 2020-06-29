@@ -73,11 +73,17 @@
             </if>
         </where>
     </select>
+    <select id="countAllArticle" resultType="java.lang.Integer">
+        select count(*)
+        from trumpetpress.t_article
+    </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="articleId" useGeneratedKeys="true">
-        insert into trumpetpress.t_article(article_title, article_content, article_views, article_likes, article_status, article_comments, article_create_time, article_update_time, user_id, type_id)
-        values (#{articleTitle}, #{articleContent}, #{articleViews}, #{articleLikes}, #{articleStatus}, #{articleComments}, #{articleCreateTime}, #{articleUpdateTime}, #{userId}, #{typeId})
+        insert into trumpetpress.t_article(article_title, article_content, article_views, article_likes, article_status,
+                                           article_comments, article_create_time, article_update_time, user_id, type_id)
+        values (#{articleTitle}, #{articleContent}, #{articleViews}, #{articleLikes}, #{articleStatus},
+                #{articleComments}, #{articleCreateTime}, #{articleUpdateTime}, #{userId}, #{typeId})
     </insert>
 
     <!--通过主键修改数据-->

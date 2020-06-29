@@ -19,6 +19,10 @@ public class Type implements Serializable {
      */
     private String typeName;
 
+    /**
+     * 类型文章数
+     */
+    private Integer typeCount;
 
     public Long getTypeId() {
         return typeId;
@@ -36,11 +40,20 @@ public class Type implements Serializable {
         this.typeName = typeName;
     }
 
+    public Integer getTypeCount() {
+        return typeCount;
+    }
+
+    public void setTypeCount(Integer typeCount) {
+        this.typeCount = typeCount;
+    }
+
     @Override
     public String toString() {
         return "Type{" +
                 "typeId=" + typeId +
                 ", typeName='" + typeName + '\'' +
+                ", typeCount=" + typeCount +
                 '}';
     }
 }
