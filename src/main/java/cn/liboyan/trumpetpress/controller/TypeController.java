@@ -60,14 +60,17 @@ public class TypeController {
     public String inputPost(Type type, RedirectAttributes redirect) {
         Type type1 = typeService.queryByName(type.getTypeName());
         if (type1 != null) {
-            logger.error("分类重复" + type.getTypeName());
+            logger.error("分类重复：" + type.getTypeName());
+            redirect.addFlashAttribute("type", "error");
             redirect.addFlashAttribute("message", "分类已重复");
             return "redirect:/tp-admin/types";
         }
         Type t = typeService.insert(type);
         if (t == null) {
+            redirect.addFlashAttribute("type", "error");
             redirect.addFlashAttribute("message", "新增失败");
         } else {
+            redirect.addFlashAttribute("type", "success");
             redirect.addFlashAttribute("message", "新增成功");
         }
         return "redirect:/tp-admin/types";
@@ -86,18 +89,23 @@ public class TypeController {
      * 修改分类条目
      */
     @PostMapping("/types/edit/{id}")
-    public String editPost(Type type, RedirectAttributes attributes, @PathVariable Long id) {
+    public String editPost(Type type, RedirectAttributes redirect, @PathVariable Long id) {
         Type type1 = typeService.queryByName(type.getTypeName());
         if (type1 != null) {
-            return "redirect:/tp-admin/types";
+            logger.error("分类重复：" + type.getTypeName());
+            redirect.addFlashAttribute("type", "error");
+            redirect.addFlashAttribute("message", "分类已重复，请重新输入。");
+            return "redirect:/tp-admin/types/edit/" + id;
         }
         type.setTypeId(id);
         int t = typeService.update(type);
         logger.info("修改完成 " + t);
         if (t == 0) {
-            attributes.addFlashAttribute("message", "编辑失败");
+            redirect.addFlashAttribute("type", "error");
+            redirect.addFlashAttribute("message", "编辑失败");
         } else {
-            attributes.addFlashAttribute("message", "编辑成功");
+            redirect.addFlashAttribute("type", "success");
+            redirect.addFlashAttribute("message", "编辑成功");
         }
         return "redirect:/tp-admin/types";
     }
@@ -108,9 +116,10 @@ public class TypeController {
      * @param id 删除编号
      */
     @GetMapping("/types/delete/{id}")
-    public String delete(@PathVariable Long id, RedirectAttributes attributes) {
+    public String delete(@PathVariable Long id, RedirectAttributes redirect) {
         typeService.deleteById(id);
-        attributes.addFlashAttribute("message", "删除成功");
+        redirect.addFlashAttribute("type", "success");
+        redirect.addFlashAttribute("message", "删除成功");
         return "redirect:/tp-admin/types";
     }
 

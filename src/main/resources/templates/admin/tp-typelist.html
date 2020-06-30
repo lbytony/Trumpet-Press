@@ -70,6 +70,11 @@
 <!-- 中间部分 -->
 <div class="m-container">
     <div class="ui container m-padding-tb">
+        <div class="ui message m-text-lined" th:unless="${#strings.isEmpty(message)}" th:classappend="${type}">
+            <i class="close icon"></i>
+            <div class="header">提示：</div>
+            <p th:text="${message}">添加成功</p>
+        </div>
         <form action="#" method="post" class="ui segment form">
             <div class="field m-margin-none">
                 <div class="ui icon input">
@@ -133,6 +138,9 @@
         $('.m-nav-item').toggleClass('m-mobile-hide');
     });
     $('.ui.dropdown').dropdown();
+    $('.message .close').on('click', function () {
+        $(this).closest('.message').transition('fade');
+    });
 </script>
 <div>
     <button onclick="returnTop()" id="btnTop" title="返回顶部"><i class="arrow up icon"></i></button>
