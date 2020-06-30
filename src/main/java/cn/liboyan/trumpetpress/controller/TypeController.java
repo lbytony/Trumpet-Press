@@ -91,6 +91,9 @@ public class TypeController {
     @PostMapping("/types/edit/{id}")
     public String editPost(Type type, RedirectAttributes redirect, @PathVariable Long id) {
         Type type1 = typeService.queryByName(type.getTypeName());
+        if (type1.getTypeId().equals(id)) {
+            return "redirect:/tp-admin/types";
+        }
         if (type1 != null) {
             logger.error("分类重复：" + type.getTypeName());
             redirect.addFlashAttribute("type", "error");

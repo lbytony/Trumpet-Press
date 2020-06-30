@@ -73,7 +73,7 @@
 <div class="m-container">
     <div class="ui container m-padding-tb">
         <form action="#" class="ui form" method="post"
-              th:action="${type.getTypeId()}==null ? @{/tp-admin/types/input}: @{/tp-admin/types/edit/{id}(id=*{id})}">
+              th:action="${type.getTypeId()}==null? @{/tp-admin/types/input}: @{/tp-admin/types/edit/{id}(id=${type.getTypeId()})}">
             <input type="hidden" name="id" th:value="${type.getTypeId()}">
             <div class="required field m-padding-tb-great">
                 <div class="ui labeled input">
