@@ -57,13 +57,13 @@
                 当前位置：
                 <a href="tp-admin.html" class="section" th:href="@{/tp-admin/admin}">网站管理</a>
                 <i class="right angle icon divider"></i>
-                <a href="tp-articlelist.html" class="section" th:href="@{/tp-admin/blogs}">文章管理</a>
+                <a href="tp-articlelist.html" class="section" th:href="@{/tp-admin/articles}">文章管理</a>
                 <i class="right angle icon divider"></i>
                 <div class="active section">发布文章</div>
             </div>
             <div class="right menu">
-                <a href="#" class="active blue item">发布</a>
-                <a href="tp-articlelist.html" class="item" th:href="@{/tp-admin/blogs}">博客列表</a>
+                <a href="tp-article.html" class="active blue item">发布</a>
+                <a href="tp-articlelist.html" class="item" th:href="@{/tp-admin/articles}">博客列表</a>
             </div>
         </div>
     </div>
@@ -190,10 +190,11 @@
             width: "100%",
             height: 640,
             syncScrolling: "single",
-            path: "../static/lib/editormd/lib/",
+            path: "../../static/lib/editormd/lib/",
             placeholder: "请输入博客内容，支持Markdown语法"
         });
     });
+
 </script>
 <div>
     <button onclick="returnTop()" id="btnTop" title="返回顶部"><i class="arrow up icon"></i></button>

@@ -1,7 +1,10 @@
 package cn.liboyan.trumpetpress.model.entity;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import java.util.Date;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * (Article)实体类
@@ -11,9 +14,7 @@ import java.io.Serializable;
  */
 public class Article implements Serializable {
     private static final long serialVersionUID = -63402543301614282L;
-    /**
-    * 博客ID
-    */
+
     private Long articleId;
     /**
     * 博客标题
@@ -28,16 +29,16 @@ public class Article implements Serializable {
     */
     private Integer articleViews;
     /**
-    * 博客点赞量
-    */
+     * 博客点赞量
+     */
     private Integer articleLikes;
     /**
-    * 博客状态 1发布 0草稿
-    */
-    private Object articleStatus;
+     * 博客状态 1发布 0草稿
+     */
+    private Boolean articleStatus;
     /**
-    * 博客评论数
-    */
+     * 博客评论数
+     */
     private Integer articleComments;
     /**
     * 创建时间
@@ -45,17 +46,66 @@ public class Article implements Serializable {
     private Date articleCreateTime;
     /**
     * 更新时间
-    */
+     */
     private Date articleUpdateTime;
     /**
-    * 创建人ID
-    */
+     * 创建人ID
+     */
     private Long userId;
     /**
-    * 类型ID
-    */
+     * 类型ID
+     */
     private Long typeId;
 
+    private List<Tag> articleTags;
+
+    private Type articleType;
+
+    private Boolean isRecommend;
+
+    private Boolean isOriginal;
+
+    private User user;
+
+    public Boolean getRecommend() {
+        return isRecommend;
+    }
+
+    public void setRecommend(Boolean recommend) {
+        isRecommend = recommend;
+    }
+
+    public Boolean getOriginal() {
+        return isOriginal;
+    }
+
+    public void setOriginal(Boolean original) {
+        isOriginal = original;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Tag> getArticleTags() {
+        return articleTags;
+    }
+
+    public void setArticleTags(List<Tag> articleTags) {
+        this.articleTags = articleTags;
+    }
+
+    public Type getArticleType() {
+        return articleType;
+    }
+
+    public void setArticleType(Type articleType) {
+        this.articleType = articleType;
+    }
 
     public Long getArticleId() {
         return articleId;
@@ -97,11 +147,11 @@ public class Article implements Serializable {
         this.articleLikes = articleLikes;
     }
 
-    public Object getArticleStatus() {
+    public Boolean getArticleStatus() {
         return articleStatus;
     }
 
-    public void setArticleStatus(Object articleStatus) {
+    public void setArticleStatus(Boolean articleStatus) {
         this.articleStatus = articleStatus;
     }
 
@@ -145,4 +195,25 @@ public class Article implements Serializable {
         this.typeId = typeId;
     }
 
+    @Override
+    public String toString() {
+        return "Article{" +
+                "articleId=" + articleId +
+                ", articleTitle='" + articleTitle + '\'' +
+                ", articleContent=" + articleContent +
+                ", articleViews=" + articleViews +
+                ", articleLikes=" + articleLikes +
+                ", articleStatus=" + articleStatus +
+                ", articleComments=" + articleComments +
+                ", articleCreateTime=" + articleCreateTime +
+                ", articleUpdateTime=" + articleUpdateTime +
+                ", userId=" + userId +
+                ", typeId=" + typeId +
+                ", articleTags=" + articleTags +
+                ", articleType=" + articleType +
+                ", isRecommend=" + isRecommend +
+                ", isOriginal=" + isOriginal +
+                ", user=" + user +
+                '}';
+    }
 }

@@ -39,7 +39,7 @@
                type_name
         from trumpetpress.t_type
     </select>
-    <select id="countAllType" resultType="java.lang.Integer">
+    <select id="countAllTypes" resultType="java.lang.Integer">
         select count(*)
         from trumpetpress.t_type
     </select>

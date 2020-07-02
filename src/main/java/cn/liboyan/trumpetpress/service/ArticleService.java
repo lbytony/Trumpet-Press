@@ -1,6 +1,7 @@
 package cn.liboyan.trumpetpress.service;
 
 import cn.liboyan.trumpetpress.model.entity.Article;
+
 import java.util.List;
 
 /**
@@ -20,13 +21,19 @@ public interface ArticleService {
     Article queryById(Long articleId);
 
     /**
-     * 查询多条数据
+     * 通过title查询单条数据
      *
-     * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param articleTitle 标题
+     * @return 实例对象
+     */
+    Article queryByTitle(String articleTitle);
+
+    /**
+     * 通过title查询单条数据
+     *
      * @return 对象列表
      */
-    List<Article> queryAllByLimit(int offset, int limit);
+    List<Article> queryAll();
 
     /**
      * 新增数据
@@ -42,7 +49,7 @@ public interface ArticleService {
      * @param article 实例对象
      * @return 实例对象
      */
-    Article update(Article article);
+    int update(Article article);
 
     /**
      * 通过主键删除数据
@@ -53,4 +60,10 @@ public interface ArticleService {
     boolean deleteById(Long articleId);
 
     int countAllArticle();
+
+    int countAllViews();
+
+    int countAllLikes();
+
+    List<Article> queryBySearch(Article article);
 }

@@ -1,7 +1,7 @@
 package cn.liboyan.trumpetpress.model.dao;
 
 import cn.liboyan.trumpetpress.model.entity.Article;
-import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 /**
@@ -21,22 +21,11 @@ public interface ArticleDao {
     Article queryById(Long articleId);
 
     /**
-     * 查询指定行数据
-     *
-     * @param offset 查询起始位置
-     * @param limit 查询条数
-     * @return 对象列表
-     */
-    List<Article> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
-
-
-    /**
      * 通过实体作为筛选条件查询
      *
-     * @param article 实例对象
      * @return 对象列表
      */
-    List<Article> queryAll(Article article);
+    List<Article> queryAll();
 
     /**
      * 新增数据
@@ -63,4 +52,12 @@ public interface ArticleDao {
     int deleteById(Long articleId);
 
     int countAllArticle();
+
+    int countAllLikes();
+
+    int countAllViews();
+
+    Article queryByTitle(String articleTitle);
+
+    List<Article> queryBySearch();
 }

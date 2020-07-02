@@ -82,8 +82,8 @@ public class TypeServiceImpl implements TypeService {
     }
 
     @Override
-    public int countAllType() {
-        return this.typeDao.countAllType();
+    public int countAllTypes() {
+        return this.typeDao.countAllTypes();
     }
 
     @Override

@@ -50,7 +50,7 @@ public interface TagService {
      */
     boolean deleteById(Long tagId);
 
-    int countAllTag();
+    int countAllTags();
 
     Tag queryByName(String tagName);
 }

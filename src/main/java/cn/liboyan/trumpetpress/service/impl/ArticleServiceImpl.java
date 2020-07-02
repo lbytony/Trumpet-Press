@@ -21,7 +21,6 @@ public class ArticleServiceImpl implements ArticleService {
 
     /**
      * 通过ID查询单条数据
-     *
      * @param articleId 主键
      * @return 实例对象
      */
@@ -31,15 +30,19 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     /**
-     * 查询多条数据
+     * 通过title查询单条数据
      *
-     * @param offset 查询起始位置
-     * @param limit 查询条数
-     * @return 对象列表
+     * @param articleTitle 标题
+     * @return 实例对象
      */
     @Override
-    public List<Article> queryAllByLimit(int offset, int limit) {
-        return this.articleDao.queryAllByLimit(offset, limit);
+    public Article queryByTitle(String articleTitle) {
+        return this.articleDao.queryByTitle(articleTitle);
+    }
+
+    @Override
+    public List<Article> queryAll() {
+        return this.articleDao.queryAll();
     }
 
     /**
@@ -61,9 +64,8 @@ public class ArticleServiceImpl implements ArticleService {
      * @return 实例对象
      */
     @Override
-    public Article update(Article article) {
-        this.articleDao.update(article);
-        return this.queryById(article.getArticleId());
+    public int update(Article article) {
+        return this.articleDao.update(article);
     }
 
     /**
@@ -77,8 +79,38 @@ public class ArticleServiceImpl implements ArticleService {
         return this.articleDao.deleteById(articleId) > 0;
     }
 
+    /**
+     * 查询文章数量
+     *
+     * @return 文章数量
+     */
     @Override
     public int countAllArticle() {
         return this.articleDao.countAllArticle();
+    }
+
+    /**
+     * 查询阅读数量
+     *
+     * @return 总阅读数
+     */
+    @Override
+    public int countAllViews() {
+        return this.articleDao.countAllViews();
+    }
+
+    /**
+     * 查询点赞数量
+     *
+     * @return 总点赞数
+     */
+    @Override
+    public int countAllLikes() {
+        return this.articleDao.countAllLikes();
+    }
+
+    @Override
+    public List<Article> queryBySearch(Article article) {
+        return this.articleDao.queryBySearch();
     }
 }

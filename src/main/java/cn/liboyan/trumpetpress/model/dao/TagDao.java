@@ -50,11 +50,15 @@ public interface TagDao {
     int deleteById(Long tagId);
 
     /**
-     * 查询条目个数
-     *
-     * @return 对象列表
+     * 查询标签个数
      */
-    int countAllTag();
+    int countAllTags();
 
+    /**
+     * 通过名称查询单条数据
+     *
+     * @param tagName 名称
+     * @return 实例对象
+     */
     Tag queryByName(String tagName);
 }

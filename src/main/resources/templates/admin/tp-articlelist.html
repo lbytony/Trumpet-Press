@@ -53,15 +53,15 @@
         <div class="ui container">
             <div class="ui breadcrumb m-padding-tb">
                 当前位置：
-                <a href="tp-admin.html" class="section">网站管理</a>
+                <a href="tp-admin.html" class="section" th:href="@{/tp-admin/admin}">网站管理</a>
                 <i class="right angle icon divider"></i>
-                <a class="section">文章管理</a>
+                <a class="section" th:href="@{/tp-admin/articles}">文章管理</a>
                 <i class="right angle icon divider"></i>
                 <div class="active section">博客列表</div>
             </div>
             <div class="right menu">
-                <a href="tp-article.html" class="item">发布</a>
-                <a href="#" class="active blue item">博客列表</a>
+                <a href="tp-article.html" class="item" th:href="@{/tp-admin/articles/input}">发布</a>
+                <a href="tp-articlelist.html" class="active blue item" th:href="@{/tp-admin/articles}">博客列表</a>
             </div>
         </div>
     </div>
@@ -71,18 +71,20 @@
 <div class="m-container">
     <div class="ui container m-padding-tb">
         <form action="#" method="post" class="ui segment form">
+            <input type="hidden" name="pageInfo">
             <div class="inline fields m-margin-none">
                 <div class="field">
                     <input type="text" name="title" placeholder="文章标题">
                 </div>
                 <div class="field">
                     <div class="ui selection dropdown">
-                        <input type="hidden" name="type">
+                        <input type="hidden" name="typeId">
                         <i class="dropdown icon"></i>
                         <div class="default text">分类</div>
                         <div class="menu">
-                            <div class="item" data-value="1">错误日志</div>
-                            <div class="item" data-value="2">开发人员手册</div>
+                            <div th:each="type: ${types}" class="item" data-value="1"
+                                 th:data-value="${type.typeId}" th:name="${type.typeName}">错误日志
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -93,59 +95,73 @@
                     </div>
                 </div>
                 <div class="field">
-                    <button class="ui teal basic button">
-                        <i class="search icon"></i>
-                        搜索
+                    <div class="ui checkbox">
+                        <input type="checkbox" id="status" name="status">
+                        <label for="status">已发布</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <button type="button" class="ui teal basic button" id="searchBtn">
+                        <i class="search icon"></i>搜索
                     </button>
                 </div>
                 <div class="field">
-                    <a href="#" class="ui blue right button"><i class="plus icon"></i>新增</a>
+                    <a href="#" class="ui blue right button" th:href="@{/tp-admin/articles/input}"><i
+                            class="plus icon"></i>新增</a>
                 </div>
             </div>
         </form>
-        <table class="ui celled table">
-            <thead>
-            <tr>
-                <th>序号</th>
-                <th>标题</th>
-                <th>类型</th>
-                <th>推荐</th>
-                <th>更新时间</th>
-                <th>操作</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>1</td>
-                <td>123</td>
-                <td>1111</td>
-                <td>是</td>
-                <td>123123：0</td>
-                <td>
-                    <a href="#" class="ui mini teal button">编辑</a>
-                    <a href="#" class="ui mini red button">删除</a>
-                </td>
-            </tr>
-            </tbody>
-            <tfoot>
-            <tr>
-                <th colspan="6">
-                    <div class="ui right floated pagination menu">
-                        <a class="icon item">
-                            <i class="left chevron icon"></i>
-                        </a>
-                        <a class="active item">1</a>
-                        <a class="item">2</a>
-                        <a class="item">3</a>
-                        <a class="item">4</a>
-                        <a class="icon item">
-                            <i class="right chevron icon"></i>
-                        </a>
-                    </div>
-                </th>
-            </tr>
-            </tfoot>
-        </table>
+        <div id="table-container">
+            <table class="ui celled table" th:fragment="articleList">
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>标题</th>
+                    <th>类型</th>
+                    <th>推荐</th>
+                    <th>阅读量</th>
+                    <th>点赞量</th>
+                    <th>更新时间</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="article, iterStat: ${pageInfo.list}">
+                    <td th:text="${iterStat.count}">1</td>
+                    <td th:text="${article.articleTitle}">123</td>
+                    <td th:text="${article.getArticleType().getTypeName()}">1111</td>
+                    <td th:text="${article.getRecommend()? '是': '否'}">是</td>
+                    <td th:text="${article.articleViews}">111</td>
+                    <td th:text="${article.articleLikes}">2</td>
+                    <td th:text="${article.articleStatus? '已发布': '草稿'}">已发布</td>
+                    <td th:text="${#dates.format(article.articleUpdateTime, 'yyyy-MM-dd HH:mm')}">123123：0</td>
+                    <td>
+                        <a href="#" class="ui mini teal button"
+                           th:href="@{/tp-admin/articles/edit/{id}(id=${article.articleId})}">编辑</a>
+                        <a href="#" class="ui mini red button"
+                           th:href="@{/tp-admin/articles/delete/{id}(id=${article.articleId})}">删除</a>
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th colspan="9">
+                        <div class="ui right floated pagination menu" th:unless="${pageInfo.pages}>1">
+                            <a class="icon item" th:unless="${pageInfo.isIsFirstPage()}" onclick="page(this)"
+                               th:attr="data-page=${pageInfo.getPrePage()}">
+                                <i class="left chevron icon"></i>
+                            </a>
+                            <a class="icon item" th:unless="${pageInfo.isIsLastPage()}" onclick="page(this)"
+                               th:attr="data-page=${pageInfo.getNextPage()}">
+                                <i class="right chevron icon"></i>
+                            </a>
+                        </div>
+                    </th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
     </div>
     <div class="ui section divider"></div>
 </div>
@@ -163,6 +179,25 @@
         $('.m-nav-item').toggleClass('m-mobile-hide');
     });
     $('.ui.dropdown').dropdown();
+
+    function page(obj) {
+        $("[name='pageInfo']").val($(obj).data("page"));
+        loadData();
+    }
+
+    $('#searchBtn').click(function () {
+        loadData()
+    });
+
+    function loadData() {
+        $("#table-container").load(/*[[@{/tp-admin/articles/search}]]*/"/tp-admin/articles/search", {
+            articleTitle: $("[name='title']").val(),
+            articleTypeId: $("[name='typeId']").val(),
+            isRecommend: $("[name='recommend']").checked(),
+            articleStatus: $("[name='status']").checked(),
+            pageNum: $("[name='pageInfo']").val()
+        });
+    }
 </script>
 <div>
     <button onclick="returnTop()" id="btnTop" title="返回顶部"><i class="arrow up icon"></i></button>

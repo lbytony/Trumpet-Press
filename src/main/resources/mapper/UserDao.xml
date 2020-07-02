@@ -24,14 +24,6 @@
         where user_id = #{userId}
     </select>
 
-    <!--查询指定行数据-->
-    <select id="queryAllByLimit" resultMap="UserMap">
-        select
-          user_id, user_ip, user_name, user_password, user_sex, user_email, user_phone, user_avatar, user_is_admin, user_last_login, user_register_time
-        from trumpetpress.t_user
-        limit #{offset}, #{limit}
-    </select>
-
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="UserMap">
         select

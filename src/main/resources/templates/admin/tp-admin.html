@@ -68,31 +68,31 @@
         <div class="ui attached segment m-padding-tb-large">
             <div class="ui five statistics ">
                 <a class="blue statistic" th:href="@{/tp-admin/articles}">
-                    <div class="value" th:text="${article}">
+                    <div class="value" th:text="${articles}">
                         22
                     </div>
                     <div class="label">文章</div>
                 </a>
                 <a class="statistic" th:href="@{/tp-admin/types}">
-                    <div class="value" th:text="${type}">
+                    <div class="value" th:text="${types}">
                         30
                     </div>
                     <div class="label">分类</div>
                 </a>
                 <a class="brown statistic" th:href="@{/tp-admin/tags}">
-                    <div class="value" th:text="${tag}">
+                    <div class="value" th:text="${tags}">
                         22
                     </div>
                     <div class="label">标签</div>
                 </a>
-                <div class="red statistic">
-                    <div class="value">
+                <a class="red statistic">
+                    <div class="value" th:text="${likes}">
                         22
                     </div>
                     <div class="red label">喜欢</div>
-                </div>
+                </a>
                 <div class="orange statistic">
-                    <div class="value">
+                    <div class="value" th:text="${views}">
                         156
                     </div>
                     <div class="red label">阅读</div>

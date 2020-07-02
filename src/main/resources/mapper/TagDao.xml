@@ -9,8 +9,8 @@
 
     <!--查询单个-->
     <select id="queryById" resultMap="TagMap">
-        select
-          tag_id, tag_name
+        select tag_id,
+               tag_name
         from trumpetpress.t_tag
         where tag_id = #{tagId}
     </select>
@@ -23,7 +23,7 @@
     </select>
 
     <!-- 查询条目个数 -->
-    <select id="countAllTag" resultType="java.lang.Integer">
+    <select id="countAllTags" resultType="java.lang.Integer">
         select count(*)
         from trumpetpress.t_tag
     </select>
@@ -54,5 +54,4 @@
     <delete id="deleteById">
         delete from trumpetpress.t_tag where tag_id = #{tagId}
     </delete>
-
 </mapper>

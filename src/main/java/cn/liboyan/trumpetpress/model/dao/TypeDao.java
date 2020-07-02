@@ -69,6 +69,6 @@ public interface TypeDao {
      */
     List<Type> queryPage();
 
-    int countAllType();
+    int countAllTypes();
 
 }

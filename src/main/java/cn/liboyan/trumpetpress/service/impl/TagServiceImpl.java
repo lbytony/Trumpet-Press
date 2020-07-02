@@ -75,8 +75,8 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
-    public int countAllTag() {
-        return this.tagDao.countAllTag();
+    public int countAllTags() {
+        return this.tagDao.countAllTags();
     }
 
     @Override

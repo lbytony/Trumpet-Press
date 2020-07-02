@@ -67,7 +67,7 @@ public interface TypeService {
      *
      * @return 条目个数
      */
-    int countAllType();
+    int countAllTypes();
 
     /**
      * 分页查询接口

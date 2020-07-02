@@ -1,6 +1,8 @@
 package cn.liboyan.trumpetpress.model.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * (Type)实体类
@@ -23,6 +25,16 @@ public class Type implements Serializable {
      * 类型文章数
      */
     private Integer typeCount;
+
+    private List<Article> articles = new ArrayList<>();
+
+    public List<Article> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
+    }
 
     public Long getTypeId() {
         return typeId;

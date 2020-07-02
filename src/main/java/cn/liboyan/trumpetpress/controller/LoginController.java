@@ -72,9 +72,11 @@ public class LoginController {
             session.setAttribute("user", user);
             String upperCaptcha = captcha.toUpperCase();
             if (upperCaptcha.equals(session.getAttribute("captcha"))) {
-                model.addAttribute("article", articleService.countAllArticle());
-                model.addAttribute("type", typeService.countAllType());
-                model.addAttribute("tag", tagService.countAllTag());
+                model.addAttribute("articles", articleService.countAllArticle());
+                model.addAttribute("types", typeService.countAllTypes());
+                model.addAttribute("tags", tagService.countAllTags());
+                model.addAttribute("views", articleService.countAllViews());
+                model.addAttribute("likes", articleService.countAllLikes());
                 return "admin/tp-admin";
             } else {
                 logger.info("验证码应为：" + session.getAttribute("captcha") + "，输入的是：" + captcha);
@@ -90,12 +92,22 @@ public class LoginController {
     /**
      * 后台管理首页
      */
-    @GetMapping("/login")
+    @GetMapping("/admin")
     public String login(Model model) {
-        model.addAttribute("article", articleService.countAllArticle());
-        model.addAttribute("type", typeService.countAllType());
-        model.addAttribute("tag", tagService.countAllTag());
+        model.addAttribute("articles", articleService.countAllArticle());
+        model.addAttribute("types", typeService.countAllTypes());
+        model.addAttribute("tags", tagService.countAllTags());
+        model.addAttribute("views", articleService.countAllViews());
+        model.addAttribute("likes", articleService.countAllLikes());
         return "admin/tp-admin";
     }
 
+    /**
+     * 注销操作
+     */
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.removeAttribute("user");
+        return "redirect:/tp-admin";
+    }
 }

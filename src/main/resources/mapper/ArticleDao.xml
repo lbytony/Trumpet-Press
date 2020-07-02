@@ -8,82 +8,110 @@
         <result property="articleContent" column="article_content" jdbcType="OTHER"/>
         <result property="articleViews" column="article_views" jdbcType="INTEGER"/>
         <result property="articleLikes" column="article_likes" jdbcType="INTEGER"/>
-        <result property="articleStatus" column="article_status" jdbcType="OTHER"/>
+        <result property="articleStatus" column="article_status" jdbcType="BOOLEAN"/>
         <result property="articleComments" column="article_comments" jdbcType="INTEGER"/>
         <result property="articleCreateTime" column="article_create_time" jdbcType="TIMESTAMP"/>
         <result property="articleUpdateTime" column="article_update_time" jdbcType="TIMESTAMP"/>
         <result property="userId" column="user_id" jdbcType="INTEGER"/>
         <result property="typeId" column="type_id" jdbcType="INTEGER"/>
+        <result property="isRecommend" column="is_recommend" jdbcType="BOOLEAN"/>
+        <result property="isOriginal" column="is_original" jdbcType="BOOLEAN"/>
+        <association property="articleType" column="type_id" javaType="cn.liboyan.trumpetpress.model.entity.Type">
+            <id property="typeId" column="type_id" jdbcType="INTEGER"/>
+            <result property="typeName" column="type_name" jdbcType="VARCHAR"/>
+            <result property="typeCount" column="type_count" jdbcType="INTEGER"/>
+        </association>
+
+
     </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="ArticleMap">
-        select
-          article_id, article_title, article_content, article_views, article_likes, article_status, article_comments, article_create_time, article_update_time, user_id, type_id
+        select article_id,
+               article_title,
+               article_content,
+               article_views,
+               article_likes,
+               article_status,
+               article_comments,
+               article_create_time,
+               article_update_time,
+               user_id,
+               type_id,
+               is_recommend,
+               is_original
         from trumpetpress.t_article
         where article_id = #{articleId}
     </select>
 
-    <!--查询指定行数据-->
-    <select id="queryAllByLimit" resultMap="ArticleMap">
-        select
-          article_id, article_title, article_content, article_views, article_likes, article_status, article_comments, article_create_time, article_update_time, user_id, type_id
-        from trumpetpress.t_article
-        limit #{offset}, #{limit}
-    </select>
-
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="ArticleMap">
-        select
-          article_id, article_title, article_content, article_views, article_likes, article_status, article_comments, article_create_time, article_update_time, user_id, type_id
-        from trumpetpress.t_article
-        <where>
-            <if test="articleId != null">
-                and article_id = #{articleId}
-            </if>
-            <if test="articleTitle != null and articleTitle != ''">
-                and article_title = #{articleTitle}
-            </if>
-            <if test="articleContent != null">
-                and article_content = #{articleContent}
-            </if>
-            <if test="articleViews != null">
-                and article_views = #{articleViews}
-            </if>
-            <if test="articleLikes != null">
-                and article_likes = #{articleLikes}
-            </if>
-            <if test="articleStatus != null">
-                and article_status = #{articleStatus}
-            </if>
-            <if test="articleComments != null">
-                and article_comments = #{articleComments}
-            </if>
-            <if test="articleCreateTime != null">
-                and article_create_time = #{articleCreateTime}
-            </if>
-            <if test="articleUpdateTime != null">
-                and article_update_time = #{articleUpdateTime}
-            </if>
-            <if test="userId != null">
-                and user_id = #{userId}
-            </if>
-            <if test="typeId != null">
-                and type_id = #{typeId}
-            </if>
-        </where>
+        select article.article_id,
+               article.article_title,
+               article.article_content,
+               article.article_views,
+               article.article_likes,
+               article.article_status,
+               article.article_comments,
+               article.article_create_time,
+               article.article_update_time,
+               article.user_id,
+               article.type_id,
+               article.is_recommend,
+               article.is_original,
+               type.type_id,
+               type.type_name,
+               type.type_count
+        from trumpetpress.t_article as article
+                 left outer join trumpetpress.t_type as type
+                                 on article.type_id = type.type_id
     </select>
+
     <select id="countAllArticle" resultType="java.lang.Integer">
-        select count(*)
+        select ifnull(count(*), 0)
         from trumpetpress.t_article
+    </select>
+
+    <select id="countAllLikes" resultType="java.lang.Integer">
+        select ifnull(sum(article_likes), 0)
+        from trumpetpress.t_article
+    </select>
+
+    <select id="countAllViews" resultType="java.lang.Integer">
+        select ifnull(sum(article_views), 0)
+        from trumpetpress.t_article
+    </select>
+
+    <select id="queryByTitle" resultType="cn.liboyan.trumpetpress.model.entity.Article">
+        select article_id,
+               article_title,
+               article_content,
+               article_views,
+               article_likes,
+               article_status,
+               article_comments,
+               article_create_time,
+               article_update_time,
+               user_id,
+               type_id,
+               is_recommend,
+               is_original
+        from trumpetpress.t_article
+        where article_id = #{articleTitle}
+    </select>
+    <select id="queryBySearch" resultType="cn.liboyan.trumpetpress.model.entity.Article">
+        #         TODO
     </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="articleId" useGeneratedKeys="true">
-        insert into trumpetpress.t_article(article_title, article_content, article_views, article_likes, article_status,
-                                           article_comments, article_create_time, article_update_time, user_id, type_id)
-        values (#{articleTitle}, #{articleContent}, #{articleViews}, #{articleLikes}, #{articleStatus},
-                #{articleComments}, #{articleCreateTime}, #{articleUpdateTime}, #{userId}, #{typeId})
+        insert into trumpetpress.t_article(article_id, article_title, article_content, article_views, article_likes,
+                                           article_status,
+                                           article_comments, article_create_time, article_update_time, user_id, type_id,
+                                           is_recommend, is_original)
+        values (NULL, #{articleTitle}, #{articleContent}, #{articleViews}, #{articleLikes}, #{articleStatus},
+                #{articleComments}, #{articleCreateTime}, #{articleUpdateTime}, #{userId}, #{typeId}, #{isRecommend},
+                #{isOriginal})
     </insert>
 
     <!--通过主键修改数据-->
@@ -119,6 +147,12 @@
             </if>
             <if test="typeId != null">
                 type_id = #{typeId},
+            </if>
+            <if test="isRecommend != null">
+                is_recommend = #{isRecommend},
+            </if>
+            <if test="typeId != null">
+                is_original = #{isOriginal},
             </if>
         </set>
         where article_id = #{articleId}
