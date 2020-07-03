@@ -2,6 +2,8 @@ package cn.liboyan.trumpetpress.service.impl;
 
 import cn.liboyan.trumpetpress.model.entity.Article;
 import cn.liboyan.trumpetpress.model.dao.ArticleDao;
+import cn.liboyan.trumpetpress.model.vo.ListArticle;
+import cn.liboyan.trumpetpress.model.vo.SearchArticle;
 import cn.liboyan.trumpetpress.service.ArticleService;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +47,11 @@ public class ArticleServiceImpl implements ArticleService {
         return this.articleDao.queryAll();
     }
 
+    @Override
+    public List<ListArticle> queryListAll() {
+        return this.articleDao.queryListAll();
+    }
+
     /**
      * 新增数据
      *
@@ -52,9 +59,8 @@ public class ArticleServiceImpl implements ArticleService {
      * @return 实例对象
      */
     @Override
-    public Article insert(Article article) {
-        this.articleDao.insert(article);
-        return article;
+    public int insert(Article article) {
+        return this.articleDao.insert(article);
     }
 
     /**
@@ -110,7 +116,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<Article> queryBySearch(Article article) {
+    public List<ListArticle> queryBySearch(SearchArticle article) {
         return this.articleDao.queryBySearch();
     }
 }

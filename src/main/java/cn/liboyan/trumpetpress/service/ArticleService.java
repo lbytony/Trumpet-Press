@@ -1,6 +1,8 @@
 package cn.liboyan.trumpetpress.service;
 
 import cn.liboyan.trumpetpress.model.entity.Article;
+import cn.liboyan.trumpetpress.model.vo.ListArticle;
+import cn.liboyan.trumpetpress.model.vo.SearchArticle;
 
 import java.util.List;
 
@@ -36,12 +38,19 @@ public interface ArticleService {
     List<Article> queryAll();
 
     /**
+     * 通过title查询单条数据
+     *
+     * @return 对象列表
+     */
+    List<ListArticle> queryListAll();
+
+    /**
      * 新增数据
      *
      * @param article 实例对象
      * @return 实例对象
      */
-    Article insert(Article article);
+    int insert(Article article);
 
     /**
      * 修改数据
@@ -65,5 +74,5 @@ public interface ArticleService {
 
     int countAllLikes();
 
-    List<Article> queryBySearch(Article article);
+    List<ListArticle> queryBySearch(SearchArticle article);
 }

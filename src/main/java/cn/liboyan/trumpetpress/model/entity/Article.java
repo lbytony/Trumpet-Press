@@ -17,16 +17,16 @@ public class Article implements Serializable {
 
     private Long articleId;
     /**
-    * 博客标题
-    */
+     * 博客标题
+     */
     private String articleTitle;
     /**
-    * 博客内容
-    */
-    private Object articleContent;
+     * 博客内容
+     */
+    private String articleContent;
     /**
-    * 博客浏览量
-    */
+     * 博客浏览量
+     */
     private Integer articleViews;
     /**
      * 博客点赞量
@@ -67,19 +67,47 @@ public class Article implements Serializable {
 
     private User user;
 
-    public Boolean getRecommend() {
+    private String tagIds;
+
+    private Boolean allowComment;
+
+    private Boolean allowAppreciate;
+
+    public void init() {
+        this.tagIds = tagsToIds(this.articleTags);
+    }
+
+    private String tagsToIds(List<Tag> tags) {
+        if (!tags.isEmpty()) {
+            StringBuilder ids = new StringBuilder();
+            boolean flag = false;
+            for (Tag tag : tags) {
+                if (flag) {
+                    ids.append(",");
+                } else {
+                    flag = true;
+                }
+                ids.append(tag.getTagId());
+            }
+            return ids.toString();
+        } else {
+            return tagIds;
+        }
+    }
+
+    public Boolean getIsRecommend() {
         return isRecommend;
     }
 
-    public void setRecommend(Boolean recommend) {
+    public void setIsRecommend(Boolean recommend) {
         isRecommend = recommend;
     }
 
-    public Boolean getOriginal() {
+    public Boolean getIsOriginal() {
         return isOriginal;
     }
 
-    public void setOriginal(Boolean original) {
+    public void setIsOriginal(Boolean original) {
         isOriginal = original;
     }
 
@@ -123,11 +151,11 @@ public class Article implements Serializable {
         this.articleTitle = articleTitle;
     }
 
-    public Object getArticleContent() {
+    public String getArticleContent() {
         return articleContent;
     }
 
-    public void setArticleContent(Object articleContent) {
+    public void setArticleContent(String articleContent) {
         this.articleContent = articleContent;
     }
 
@@ -195,12 +223,37 @@ public class Article implements Serializable {
         this.typeId = typeId;
     }
 
+    public String getTagIds() {
+        return tagIds;
+    }
+
+    public void setTagIds(String tagIds) {
+        this.tagIds = tagIds;
+    }
+
+    public Boolean getAllowComment() {
+        return allowComment;
+    }
+
+    public void setAllowComment(Boolean allowComment) {
+        this.allowComment = allowComment;
+    }
+
+    public Boolean getAllowAppreciate() {
+        return allowAppreciate;
+    }
+
+    public void setAllowAppreciate(Boolean allowAppreciate) {
+        this.allowAppreciate = allowAppreciate;
+    }
+
+
     @Override
     public String toString() {
         return "Article{" +
                 "articleId=" + articleId +
                 ", articleTitle='" + articleTitle + '\'' +
-                ", articleContent=" + articleContent +
+                ", articleContent='" + articleContent + '\'' +
                 ", articleViews=" + articleViews +
                 ", articleLikes=" + articleLikes +
                 ", articleStatus=" + articleStatus +
@@ -214,6 +267,9 @@ public class Article implements Serializable {
                 ", isRecommend=" + isRecommend +
                 ", isOriginal=" + isOriginal +
                 ", user=" + user +
+                ", tagIds='" + tagIds + '\'' +
+                ", allowComment=" + allowComment +
+                ", allowAppriciate=" + allowAppreciate +
                 '}';
     }
 }

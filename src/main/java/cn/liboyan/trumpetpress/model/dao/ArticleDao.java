@@ -1,6 +1,8 @@
 package cn.liboyan.trumpetpress.model.dao;
 
 import cn.liboyan.trumpetpress.model.entity.Article;
+import cn.liboyan.trumpetpress.model.vo.ListArticle;
+import cn.liboyan.trumpetpress.model.vo.SearchArticle;
 
 import java.util.List;
 
@@ -21,11 +23,18 @@ public interface ArticleDao {
     Article queryById(Long articleId);
 
     /**
-     * 通过实体作为筛选条件查询
+     * 查询所有
      *
      * @return 对象列表
      */
     List<Article> queryAll();
+
+    /**
+     * 在列表中查询所有
+     *
+     * @return 对象列表
+     */
+    List<ListArticle> queryListAll();
 
     /**
      * 新增数据
@@ -59,5 +68,5 @@ public interface ArticleDao {
 
     Article queryByTitle(String articleTitle);
 
-    List<Article> queryBySearch();
+    List<ListArticle> queryBySearch();
 }

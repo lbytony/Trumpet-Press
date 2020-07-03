@@ -6,6 +6,7 @@ import cn.liboyan.trumpetpress.service.TagService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,7 +22,6 @@ public class TagServiceImpl implements TagService {
 
     /**
      * 通过ID查询单条数据
-     *
      * @param tagId 主键
      * @return 实例对象
      */
@@ -32,7 +32,6 @@ public class TagServiceImpl implements TagService {
 
     /**
      * 查询所有数据
-     *
      * @return 对象列表
      */
     @Override
@@ -54,7 +53,6 @@ public class TagServiceImpl implements TagService {
 
     /**
      * 修改数据
-     *
      * @param tag 实例对象
      * @return 实例对象
      */
@@ -64,7 +62,7 @@ public class TagServiceImpl implements TagService {
     }
 
     /**
-     * 通过主键删除数据
+     * 通过主键删除数据\
      *
      * @param tagId 主键
      * @return 是否成功
@@ -82,5 +80,26 @@ public class TagServiceImpl implements TagService {
     @Override
     public Tag queryByName(String tagName) {
         return this.tagDao.queryByName(tagName);
+    }
+
+    @Override
+    public List<Tag> queryByIds(String tagIds) {
+        List<Long> idList = splitIds(tagIds);
+        List<Tag> tagList = new ArrayList<>();
+        for (Long id : idList) {
+            tagList.add(this.tagDao.queryById(id));
+        }
+        return tagList;
+    }
+
+    private List<Long> splitIds(String tagIds) {
+        List<Long> idList = new ArrayList<>();
+        if (!"".equals(tagIds) && tagIds != null) {
+            String[] idArray = tagIds.split(",");
+            for (String s : idArray) {
+                idList.add(new Long(s));
+            }
+        }
+        return idList;
     }
 }
