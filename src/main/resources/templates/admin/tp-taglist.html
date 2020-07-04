@@ -96,7 +96,7 @@
             <tr th:each="tag, iterStat: ${pageInfo.list}">
                 <td th:text="${iterStat.count}">1</td>
                 <td th:text="${tag.tagName}">123</td>
-                <td th:text="${tag.tagCount}">1111</td>
+                <td></td>
                 <td>
                     <a href="#" class="ui mini teal button"
                        th:href="@{/tp-admin/tags/edit/{id}(id=${tag.tagId})}">编辑</a>

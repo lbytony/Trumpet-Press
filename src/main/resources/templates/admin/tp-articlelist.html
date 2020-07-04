@@ -71,7 +71,7 @@
 <div class="m-container">
     <div class="ui container m-padding-tb">
         <form action="#" method="post" class="ui segment form">
-            <input type="hidden" name="pageInfo">
+            <input type="hidden" name="page">
             <div class="inline fields m-margin-none">
                 <div class="field">
                     <input type="text" name="title" id="title" placeholder="文章标题">
@@ -147,14 +147,16 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                    <th colspan="9">
-                        <div class="ui right floated pagination menu" th:unless="${pageInfo.pages}>1">
+                    <th colspan="9" th:if="${pageInfo.pages}>1">
+                        <div class="ui right floated pagination menu">
                             <a class="icon item" th:unless="${pageInfo.isIsFirstPage()}" onclick="page(this)"
-                               th:attr="data-page=${pageInfo.getPrePage()}">
+                               th:attr="data-page=${pageInfo.getPrePage()}"
+                               th:href="@{/tp-admin/articles(pageNum=${pageInfo.getPrePage()})}">
                                 <i class="left chevron icon"></i>
                             </a>
                             <a class="icon item" th:unless="${pageInfo.isIsLastPage()}" onclick="page(this)"
-                               th:attr="data-page=${pageInfo.getNextPage()}">
+                               th:attr="data-page=${pageInfo.getNextPage()}"
+                               th:href="@{/tp-admin/articles(pageNum=${pageInfo.getNextPage()})}">
                                 <i class="right chevron icon"></i>
                             </a>
                         </div>
@@ -182,28 +184,27 @@
     $('.ui.dropdown').dropdown();
 
     function page(obj) {
-        $("[name='pageInfo']").val($(obj).data("page"));
+        $("[name='page']").val($(obj).data("page"));
         loadData();
     }
 
     $('#searchBtn').click(function () {
-        $("[name='pageInfo']").val(0);
-        loadData()
+        $("[name='page']").val(0);
+        loadData();
     });
 
     $('#clearBtn').click(function () {
         $('.ui.selection.dropdown').dropdown('clear');
         $('#title').val('');
-
     });
 
     function loadData() {
-        $("#table-container").load(/*[[@{/tp-admin/articles/search}]]*/"/tp-admin/articles/search", {
+        $("#table-container").load(/*[[@{/tp-admin/articles/search}]]*/ "/tp-admin/articles/search", {
             articleTitle: $("[name='title']").val(),
-            articleTypeId: $("[name='typeId']").val(),
+            typeId: $("[name='typeId']").val(),
             isRecommend: $("[name='recommend']").checked(),
             articleStatus: $("[name='status']").checked(),
-            pageNum: $("[name='pageInfo']").val()
+            pageNum: $("[name='page']").val()
         });
     }
 </script>

@@ -3,11 +3,9 @@ package cn.liboyan.trumpetpress.service.impl;
 import cn.liboyan.trumpetpress.model.entity.Type;
 import cn.liboyan.trumpetpress.model.dao.TypeDao;
 import cn.liboyan.trumpetpress.service.TypeService;
-import cn.liboyan.trumpetpress.utils.PageRequest;
-import cn.liboyan.trumpetpress.utils.PageResult;
-import cn.liboyan.trumpetpress.utils.PageUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -86,23 +84,5 @@ public class TypeServiceImpl implements TypeService {
         return this.typeDao.countAllTypes();
     }
 
-    @Override
-    public PageResult findPage(PageRequest pageRequest) {
-        return PageUtils.getPageResult(pageRequest, getPageInfo(pageRequest));
-    }
 
-    /**
-     * 调用分页插件完成分页
-     *
-     * @param pageRequest 分页请求
-     * @return pageInfo
-     */
-    @Override
-    public PageInfo<Type> getPageInfo(PageRequest pageRequest) {
-        int pageNum = pageRequest.getPageNum();
-        int pageSize = pageRequest.getPageSize();
-        PageHelper.startPage(pageNum, pageSize);
-        List<Type> query = typeDao.queryPage();
-        return new PageInfo<>(query);
-    }
 }

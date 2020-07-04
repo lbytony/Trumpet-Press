@@ -26,6 +26,10 @@ public class Article implements Serializable {
      */
     private String articleContent;
     /**
+     * 博客描述
+     */
+    private String articleDescription;
+    /**
      * 博客浏览量
      */
     private Integer articleViews;
@@ -50,10 +54,6 @@ public class Article implements Serializable {
      */
     private Date articleUpdateTime;
     /**
-     * 创建人ID
-     */
-    private Long userId;
-    /**
      * 类型ID
      */
     private Long typeId;
@@ -66,8 +66,6 @@ public class Article implements Serializable {
 
     private Boolean isOriginal;
 
-    private User user;
-
     private String tagIds;
 
     private Boolean allowComment;
@@ -78,7 +76,7 @@ public class Article implements Serializable {
         this.tagIds = tagsToIds(this.articleTags);
     }
 
-    private String tagsToIds(List<Tag> tags) {
+    public String tagsToIds(List<Tag> tags) {
         if (!tags.isEmpty()) {
             StringBuilder ids = new StringBuilder();
             boolean flag = false;

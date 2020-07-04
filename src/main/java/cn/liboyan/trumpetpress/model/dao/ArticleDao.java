@@ -3,6 +3,7 @@ package cn.liboyan.trumpetpress.model.dao;
 import cn.liboyan.trumpetpress.model.entity.Article;
 import cn.liboyan.trumpetpress.model.vo.ListArticle;
 import cn.liboyan.trumpetpress.model.vo.SearchArticle;
+import cn.liboyan.trumpetpress.model.vo.ShowIndexArticle;
 
 import java.util.List;
 
@@ -69,4 +70,6 @@ public interface ArticleDao {
     Article queryByTitle(String articleTitle);
 
     List<ListArticle> queryBySearch();
+
+    List<ShowIndexArticle> queryIndexAll();
 }

@@ -73,32 +73,13 @@ public class ArticleController {
      * Post新建文章
      */
     @PostMapping("/articles/input")
-    public String inputPost(Article article, RedirectAttributes redirect, HttpSession session) {
-        System.out.println(article);
-        // 设置用户信息
-        article.setUser((User) session.getAttribute("user"));
-        System.out.println("in processing");
-        article.setUserId(article.getUser().getUserId());
+    public String inputPost(Article article, String tagIds, RedirectAttributes redirect, HttpSession session) {
         // 设置分类信息
         article.setArticleType(typeService.queryById(article.getTypeId()));
-        // 设置时间
-        article.setArticleCreateTime(new Date());
-        article.setArticleUpdateTime(new Date());
         // 设置标签信息
-        article.setArticleTags(tagService.queryByIds(article.getTagIds()));
-        if (article.getIsRecommend() == null) {
-            article.setIsRecommend(false);
-        }
-        if (article.getIsOriginal() == null) {
-            article.setIsOriginal(false);
-        }
-        if (article.getAllowAppreciate() == null) {
-            article.setAllowAppreciate(false);
-        }
-        if (article.getAllowComment() == null) {
-            article.setAllowComment(false);
-        }
-        System.out.println(article);
+        article.setArticleTags(tagService.queryByIds(tagIds));
+        System.err.println(article);
+        System.err.println(tagIds);
         int t = articleService.insert(article);
         if (t == 0) {
             redirect.addFlashAttribute("type", "error");
@@ -116,11 +97,12 @@ public class ArticleController {
     @GetMapping("/articles/edit/{id}")
     public String editInput(@PathVariable Long id, Model model) {
         Article article = articleService.queryById(id);
-        System.out.println(article);
+        System.err.println(article);
         article.init();
         model.addAttribute("article", article);
         model.addAttribute("types", typeService.queryAll());
         model.addAttribute("tags", tagService.queryAll());
+        model.addAttribute("tagIds", article.getTagIds());
         return "admin/tp-article";
     }
 
@@ -128,10 +110,15 @@ public class ArticleController {
      * 修改文章条目
      */
     @PostMapping("/articles/edit/{id}")
-    public String editPost(Article article, RedirectAttributes redirect, @PathVariable Long id) {
+    public String editPost(Article article, RedirectAttributes redirect, @PathVariable Long id, String tagIds) {
         article.setArticleId(id);
         article.setArticleUpdateTime(new Date());
-        int t = articleService.update(article);
+        // 设置分类信息
+        article.setArticleType(typeService.queryById(article.getTypeId()));
+        // 设置标签信息
+        article.setArticleTags(tagService.queryByIds(tagIds));
+        System.err.println(article);
+        int t = articleService.update(article, id);
         logger.info("修改完成 " + t);
         if (t == 0) {
             redirect.addFlashAttribute("type", "error");
@@ -145,7 +132,6 @@ public class ArticleController {
 
     /**
      * 删除文章条目
-     *
      * @param id 删除编号
      */
     @GetMapping("/articles/delete/{id}")
@@ -162,6 +148,7 @@ public class ArticleController {
     @PostMapping("/articles/search")
     public String search(SearchArticle searchArticle, Model model,
                          @RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum) {
+        logger.info("in Search");
         List<ListArticle> articlesBySearch = articleService.queryBySearch(searchArticle);
         PageHelper.startPage(pageNum, 10);
         PageInfo<ListArticle> pageInfo = new PageInfo<>(articlesBySearch);

@@ -1,9 +1,8 @@
 package cn.liboyan.trumpetpress.service;
 
 import cn.liboyan.trumpetpress.model.entity.Type;
-import cn.liboyan.trumpetpress.utils.PageRequest;
-import cn.liboyan.trumpetpress.utils.PageResult;
 import com.github.pagehelper.PageInfo;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
 
@@ -69,19 +68,4 @@ public interface TypeService {
      */
     int countAllTypes();
 
-    /**
-     * 分页查询接口
-     *
-     * @param pageRequest 自定义，统一分页查询请求
-     * @return PageResult 自定义，统一分页查询结果
-     */
-    PageResult findPage(PageRequest pageRequest);
-
-    /**
-     * 调用分页插件完成分页
-     *
-     * @param pageRequest 分页请求
-     * @return pageInfo
-     */
-    PageInfo<Type> getPageInfo(PageRequest pageRequest);
 }

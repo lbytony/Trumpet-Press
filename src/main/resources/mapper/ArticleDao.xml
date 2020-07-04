@@ -3,35 +3,33 @@
 <mapper namespace="cn.liboyan.trumpetpress.model.dao.ArticleDao">
 
     <resultMap type="cn.liboyan.trumpetpress.model.entity.Article" id="ArticleMap">
-        <result property="articleId" column="article_id" jdbcType="INTEGER"/>
+        <id property="articleId" column="article_id" jdbcType="INTEGER"/>
         <result property="articleTitle" column="article_title" jdbcType="VARCHAR"/>
         <result property="articleContent" column="article_content" jdbcType="LONGVARCHAR"/>
+        <result property="articleDescription" column="article_description" jdbcType="LONGVARCHAR"/>
         <result property="articleViews" column="article_views" jdbcType="INTEGER"/>
         <result property="articleLikes" column="article_likes" jdbcType="INTEGER"/>
         <result property="articleStatus" column="article_status" jdbcType="BOOLEAN"/>
         <result property="articleComments" column="article_comments" jdbcType="INTEGER"/>
         <result property="articleCreateTime" column="article_create_time" jdbcType="TIMESTAMP"/>
         <result property="articleUpdateTime" column="article_update_time" jdbcType="TIMESTAMP"/>
-        <result property="userId" column="user_id" jdbcType="INTEGER"/>
         <result property="typeId" column="type_id" jdbcType="INTEGER"/>
         <result property="isRecommend" column="is_recommend" jdbcType="BOOLEAN"/>
         <result property="isOriginal" column="is_original" jdbcType="BOOLEAN"/>
         <result property="allowAppreciate" column="allow_appreciate" jdbcType="BOOLEAN"/>
         <result property="allowComment" column="allow_comment" jdbcType="BOOLEAN"/>
-
         <association property="articleType" column="type_id" javaType="cn.liboyan.trumpetpress.model.entity.Type">
             <id property="typeId" column="type_id" jdbcType="INTEGER"/>
             <result property="typeName" column="type_name" jdbcType="VARCHAR"/>
         </association>
-
         <collection property="articleTags" ofType="cn.liboyan.trumpetpress.model.entity.Tag">
-            <id property="tagId" column="tag_id"/>
-            <result property="tagName" column="tag_name"/>
+            <result property="tagId" column="tag_id" jdbcType="INTEGER"/>
+            <result property="tagName" column="tag_name" jdbcType="VARCHAR"/>
         </collection>
     </resultMap>
 
     <resultMap type="cn.liboyan.trumpetpress.model.vo.ListArticle" id="ListArticleMap">
-        <result property="articleId" column="article_id" jdbcType="INTEGER"/>
+        <id property="articleId" column="article_id" jdbcType="INTEGER"/>
         <result property="articleTitle" column="article_title" jdbcType="VARCHAR"/>
         <result property="articleViews" column="article_views" jdbcType="INTEGER"/>
         <result property="articleLikes" column="article_likes" jdbcType="INTEGER"/>
@@ -39,6 +37,19 @@
         <result property="articleUpdateTime" column="article_update_time" jdbcType="TIMESTAMP"/>
         <result property="typeId" column="type_id" jdbcType="INTEGER"/>
         <result property="isRecommend" column="is_recommend" jdbcType="BOOLEAN"/>
+        <association property="articleType" column="type_id" javaType="cn.liboyan.trumpetpress.model.entity.Type">
+            <id property="typeId" column="type_id" jdbcType="INTEGER"/>
+            <result property="typeName" column="type_name" jdbcType="VARCHAR"/>
+        </association>
+    </resultMap>
+
+    <resultMap type="cn.liboyan.trumpetpress.model.vo.ShowIndexArticle" id="ShowIndexArticleMap">
+        <result property="articleId" column="article_id" jdbcType="INTEGER"/>
+        <result property="articleTitle" column="article_title" jdbcType="VARCHAR"/>
+        <result property="articleDescription" column="article_description" jdbcType="LONGVARCHAR"/>
+        <result property="articleViews" column="article_views" jdbcType="INTEGER"/>
+        <result property="articleUpdateTime" column="article_update_time" jdbcType="TIMESTAMP"/>
+        <result property="typeId" column="type_id" jdbcType="INTEGER"/>
         <association property="articleType" column="type_id" javaType="cn.liboyan.trumpetpress.model.entity.Type">
             <id property="typeId" column="type_id" jdbcType="INTEGER"/>
             <result property="typeName" column="type_name" jdbcType="VARCHAR"/>
@@ -47,64 +58,105 @@
 
     <!--查询单个-->
     <select id="queryById" resultMap="ArticleMap">
+        select a.*, t.*, tag.*
+        from trumpetpress.t_article as a
+                 left outer join trumpetpress.t_type as t on t.type_id = a.type_id
+                 left outer join trumpetpress.t_tag_article as tag_article on a.article_id = tag_article.article_id
+                 left outer join trumpetpress.t_tag as tag on tag.tag_id = tag_article.tag_id
+        where a.article_id = #{articleId}
+    </select>
+
+    <!--查询所有-->
+    <select id="queryAll" resultMap="ArticleMap">
+
+        select a.*, t.*, tag.*
+        from trumpetpress.t_article as a
+                 left outer join trumpetpress.t_type as t on t.type_id = a.type_id
+                 left outer join trumpetpress.t_tag_article as tag_article on a.article_id = tag_article.article_id
+                 left outer join trumpetpress.t_tag as tag on tag.tag_id = tag_article.tag_id
+    </select>
+
+    <!--查询所有-->
+    <select id="queryListAll" resultMap="ListArticleMap">
+        select a.article_id,
+               a.article_title,
+               a.article_views,
+               a.article_likes,
+               a.article_status,
+               a.article_update_time,
+               a.type_id,
+               a.is_recommend,
+               t.*,
+               tag.*
+        from trumpetpress.t_article as a
+                 left outer join trumpetpress.t_type as t on t.type_id = a.type_id
+                 left outer join trumpetpress.t_tag_article as tag_article on a.article_id = tag_article.article_id
+                 left outer join trumpetpress.t_tag as tag on tag.tag_id = tag_article.tag_id
+    </select>
+
+    <select id="queryByTitle" resultType="cn.liboyan.trumpetpress.model.entity.Article">
         select article_id,
                article_title,
                article_content,
+               article_description,
                article_views,
                article_likes,
                article_status,
                article_comments,
                article_create_time,
                article_update_time,
-               user_id,
                type_id,
                is_recommend,
                is_original,
                allow_appreciate,
                allow_comment
         from trumpetpress.t_article
-        where article_id = #{articleId}
+        where article_id = #{articleTitle}
     </select>
 
-    <!--查询所有-->
-    <select id="queryAll" resultMap="ArticleMap">
-        select article.article_id,
-               article.article_title,
-               article.article_content,
-               article.article_views,
-               article.article_likes,
-               article.article_status,
-               article.article_comments,
-               article.article_create_time,
-               article.article_update_time,
-               article.user_id,
-               article.type_id,
-               article.is_recommend,
-               article.is_original,
-               type.type_id,
-               type.type_name,
-               type.type_count
-        from trumpetpress.t_article as article
-                 left outer join trumpetpress.t_type as type
-                                 on article.type_id = type.type_id
+    <select id="queryBySearch" parameterType="cn.liboyan.trumpetpress.model.vo.SearchArticle"
+            resultMap="ListArticleMap">
+        <bind name="pattern" value="'%' + title + '%'"/>
+        select a.article_id,
+        a.article_title,
+        a.article_views,
+        a.article_likes,
+        a.article_status,
+        a.article_update_time,
+        a.type_id,
+        a.is_recommend,
+        t.type_id,
+        t.type_name
+        from trumpetpress.t_article as a, trumpetpress.t_type as t
+        <where>
+            a.type_id = t.type_id
+            <if test="typeId != null">
+                and a.type_id = #{typeId}
+            </if>
+            <if test="title != null">
+                and a.article_title like #{pattern}
+            </if>
+            <if test="isRecommend != null">
+                and a.is_recommend = #{isRecommend}
+            </if>
+            <if test="title != null">
+                and a.article_status = #{articleStatus}
+            </if>
+        </where>
     </select>
 
-    <!--查询所有-->
-    <select id="queryListAll" resultMap="ListArticleMap">
-        select article.article_id,
-               article.article_title,
-               article.article_views,
-               article.article_likes,
-               article.article_status,
-               article.article_update_time,
-               article.type_id,
-               article.is_recommend,
-               type.type_id,
-               type.type_name,
-               type.type_count
-        from trumpetpress.t_article as article
-                 left outer join trumpetpress.t_type as type
-                                 on article.type_id = type.type_id
+    <select id="queryIndexAll" resultType="cn.liboyan.trumpetpress.model.vo.ShowIndexArticle">
+        select a.article_id,
+               a.article_title,
+               a.article_description,
+               a.article_views,
+               a.article_update_time,
+               a.type_id,
+               t.type_id,
+               t.type_name
+        from trumpetpress.t_article as a
+                 left outer join trumpetpress.t_type as t on t.type_id = a.type_id
+        where a.article_status = 1
     </select>
 
     <select id="countAllArticle" resultType="java.lang.Integer">
@@ -122,64 +174,12 @@
         from trumpetpress.t_article
     </select>
 
-    <select id="queryByTitle" resultType="cn.liboyan.trumpetpress.model.entity.Article">
-        select article_id,
-               article_title,
-               article_content,
-               article_views,
-               article_likes,
-               article_status,
-               article_comments,
-               article_create_time,
-               article_update_time,
-               user_id,
-               type_id,
-               is_recommend,
-               is_original,
-               allow_appreciate,
-               allow_comment
-        from trumpetpress.t_article
-        where article_id = #{articleTitle}
-    </select>
-
-    <select id="queryBySearch" parameterType="cn.liboyan.trumpetpress.model.vo.SearchArticle"
-            resultMap="ListArticleMap">
-        <bind name="pattern" value="'%' + title + '%'"/>
-        select article.article_id,
-        article.article_title,
-        article.article_views,
-        article.article_likes,
-        article.article_status,
-        article.article_update_time,
-        article.type_id,
-        article.is_recommend,
-        type.type_id,
-        type.type_name,
-        type.type_count
-        from trumpetpress.t_article as article, trumpetpress.t_type as type
-        <where>
-            article.type_id = type.type_id
-            <if test="typeId != null">
-                and article.type_id = #{typeId}
-            </if>
-            <if test="title != null">
-                and article.article_title like #{pattern}
-            </if>
-            <if test="isRecommend != null">
-                and article.is_recommend = #{isRecommend}
-            </if>
-            <if test="title != null">
-                and article.article_status = #{articleStatus}
-            </if>
-        </where>
-    </select>
-
     <!--新增所有列-->
     <insert id="insert" keyProperty="articleId" useGeneratedKeys="true">
         insert into trumpetpress.t_article(article_title, article_content, article_status, article_create_time,
-                                           article_update_time, user_id, type_id, is_recommend, is_original)
+                                           article_update_time, type_id, is_recommend, is_original, article_description)
         values (#{articleTitle}, #{articleContent}, #{articleStatus}, #{articleCreateTime}, #{articleUpdateTime},
-                #{userId}, #{typeId}, #{isRecommend}, #{isOriginal})
+                #{typeId}, #{isRecommend}, #{isOriginal}, #{articleDescription})
     </insert>
 
     <!--通过主键修改数据-->
@@ -210,9 +210,6 @@
             <if test="articleUpdateTime != null">
                 article_update_time = #{articleUpdateTime},
             </if>
-            <if test="userId != null">
-                user_id = #{userId},
-            </if>
             <if test="typeId != null">
                 type_id = #{typeId},
             </if>
@@ -227,6 +224,9 @@
             </if>
             <if test="allowComment != null">
                 allow_comment = #{allowComment},
+            </if>
+            <if test="articleDescription != null">
+                article_description = #{articleDescription},
             </if>
         </set>
         where article_id = #{articleId}

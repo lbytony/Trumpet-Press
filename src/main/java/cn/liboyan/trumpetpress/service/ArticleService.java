@@ -3,6 +3,7 @@ package cn.liboyan.trumpetpress.service;
 import cn.liboyan.trumpetpress.model.entity.Article;
 import cn.liboyan.trumpetpress.model.vo.ListArticle;
 import cn.liboyan.trumpetpress.model.vo.SearchArticle;
+import cn.liboyan.trumpetpress.model.vo.ShowIndexArticle;
 
 import java.util.List;
 
@@ -45,6 +46,13 @@ public interface ArticleService {
     List<ListArticle> queryListAll();
 
     /**
+     * 通过title查询单条数据
+     *
+     * @return 对象列表
+     */
+    List<ShowIndexArticle> queryIndexAll();
+
+    /**
      * 新增数据
      *
      * @param article 实例对象
@@ -58,7 +66,7 @@ public interface ArticleService {
      * @param article 实例对象
      * @return 实例对象
      */
-    int update(Article article);
+    int update(Article article, Long id);
 
     /**
      * 通过主键删除数据

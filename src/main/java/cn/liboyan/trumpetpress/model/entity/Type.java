@@ -3,9 +3,6 @@ package cn.liboyan.trumpetpress.model.entity;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * (Type)实体类
  *

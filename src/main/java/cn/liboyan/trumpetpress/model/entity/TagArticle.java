@@ -3,7 +3,6 @@ package cn.liboyan.trumpetpress.model.entity;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * (TagArticle)实体类
@@ -22,7 +21,5 @@ public class TagArticle implements Serializable {
     * 博客ID
     */
     private Long articleId;
-
-    private List<Tag> tags;
 
 }
