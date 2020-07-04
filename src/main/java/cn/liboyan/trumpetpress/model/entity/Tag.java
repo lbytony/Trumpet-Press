@@ -1,6 +1,9 @@
 package cn.liboyan.trumpetpress.model.entity;
 
+import lombok.Data;
+
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * (Tag)实体类
@@ -8,6 +11,7 @@ import java.io.Serializable;
  * @author Li Boyan
  * @since 2020-05-03 13:39:39
  */
+@Data
 public class Tag implements Serializable {
     private static final long serialVersionUID = 410899272658086005L;
     /**
@@ -18,42 +22,7 @@ public class Tag implements Serializable {
      * 标签名称
      */
     private String tagName;
-    /**
-     * 标签文章数
-     */
-    private String tagCount;
 
+    private List<Article> tagArticles;
 
-    public Long getTagId() {
-        return tagId;
-    }
-
-    public void setTagId(Long tagId) {
-        this.tagId = tagId;
-    }
-
-    public String getTagName() {
-        return tagName;
-    }
-
-    public void setTagName(String tagName) {
-        this.tagName = tagName;
-    }
-
-    public String getTagCount() {
-        return tagCount;
-    }
-
-    public void setTagCount(String tagCount) {
-        this.tagCount = tagCount;
-    }
-
-    @Override
-    public String toString() {
-        return "Tag{" +
-                "tagId=" + tagId +
-                ", tagName='" + tagName + '\'' +
-                ", tagCount='" + tagCount + '\'' +
-                '}';
-    }
 }

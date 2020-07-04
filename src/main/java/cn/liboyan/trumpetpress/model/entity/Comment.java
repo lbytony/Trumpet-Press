@@ -1,5 +1,7 @@
 package cn.liboyan.trumpetpress.model.entity;
 
+import lombok.Data;
+
 import java.util.Date;
 import java.io.Serializable;
 
@@ -9,6 +11,7 @@ import java.io.Serializable;
  * @author Li Boyan
  * @since 2020-05-03 13:39:39
  */
+@Data
 public class Comment implements Serializable {
     private static final long serialVersionUID = -54012277137849154L;
     /**

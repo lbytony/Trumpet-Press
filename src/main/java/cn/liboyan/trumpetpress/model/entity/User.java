@@ -1,5 +1,7 @@
 package cn.liboyan.trumpetpress.model.entity;
 
+import lombok.Data;
+
 import java.util.Date;
 import java.io.Serializable;
 
@@ -9,6 +11,7 @@ import java.io.Serializable;
  * @author Li Boyan
  * @since 2020-05-03 13:39:39
  */
+@Data
 public class User implements Serializable {
     private static final long serialVersionUID = 987178322925872408L;
     /**
@@ -55,94 +58,5 @@ public class User implements Serializable {
     * 用户注册时间
     */
     private Date userRegisterTime;
-
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public String getUserIp() {
-        return userIp;
-    }
-
-    public void setUserIp(String userIp) {
-        this.userIp = userIp;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getUserPassword() {
-        return userPassword;
-    }
-
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-    }
-
-    public Object getUserSex() {
-        return userSex;
-    }
-
-    public void setUserSex(Object userSex) {
-        this.userSex = userSex;
-    }
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
-    public String getUserPhone() {
-        return userPhone;
-    }
-
-    public void setUserPhone(String userPhone) {
-        this.userPhone = userPhone;
-    }
-
-    public String getUserAvatar() {
-        return userAvatar;
-    }
-
-    public void setUserAvatar(String userAvatar) {
-        this.userAvatar = userAvatar;
-    }
-
-    public Integer getUserIsAdmin() {
-        return userIsAdmin;
-    }
-
-    public void setUserIsAdmin(Integer userIsAdmin) {
-        this.userIsAdmin = userIsAdmin;
-    }
-
-    public Date getUserLastLogin() {
-        return userLastLogin;
-    }
-
-    public void setUserLastLogin(Date userLastLogin) {
-        this.userLastLogin = userLastLogin;
-    }
-
-    public Date getUserRegisterTime() {
-        return userRegisterTime;
-    }
-
-    public void setUserRegisterTime(Date userRegisterTime) {
-        this.userRegisterTime = userRegisterTime;
-    }
 
 }

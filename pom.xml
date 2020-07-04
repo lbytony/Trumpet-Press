@@ -84,6 +84,10 @@
             <artifactId>org.eclipse.jgit</artifactId>
             <version>5.8.0.202006091008-r</version>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
 
     </dependencies>
 

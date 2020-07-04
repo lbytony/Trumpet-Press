@@ -22,8 +22,12 @@
         <association property="articleType" column="type_id" javaType="cn.liboyan.trumpetpress.model.entity.Type">
             <id property="typeId" column="type_id" jdbcType="INTEGER"/>
             <result property="typeName" column="type_name" jdbcType="VARCHAR"/>
-            <result property="typeCount" column="type_count" jdbcType="INTEGER"/>
         </association>
+
+        <collection property="articleTags" ofType="cn.liboyan.trumpetpress.model.entity.Tag">
+            <id property="tagId" column="tag_id"/>
+            <result property="tagName" column="tag_name"/>
+        </collection>
     </resultMap>
 
     <resultMap type="cn.liboyan.trumpetpress.model.vo.ListArticle" id="ListArticleMap">
@@ -38,7 +42,6 @@
         <association property="articleType" column="type_id" javaType="cn.liboyan.trumpetpress.model.entity.Type">
             <id property="typeId" column="type_id" jdbcType="INTEGER"/>
             <result property="typeName" column="type_name" jdbcType="VARCHAR"/>
-            <result property="typeCount" column="type_count" jdbcType="INTEGER"/>
         </association>
     </resultMap>
 
