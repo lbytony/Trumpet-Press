@@ -1,4 +1,4 @@
-package cn.liboyan.trumpetpress.controller;
+package cn.liboyan.trumpetpress.controller.admin;
 
 import cn.liboyan.trumpetpress.model.entity.Tag;
 import cn.liboyan.trumpetpress.service.TagService;
@@ -38,7 +38,8 @@ public class TagController {
         //按照排序字段 倒序 排序
         String orderBy = "'tag_id' desc";
         PageHelper.startPage(pageNum, 10, orderBy);
-        List<Tag> list = tagService.queryAll();
+        List<Tag> list = tagService.queryListAll();
+        System.err.println(list);
         PageInfo<Tag> pageInfo = new PageInfo<>(list);
         model.addAttribute("pageInfo", pageInfo);
         return "admin/tp-taglist";

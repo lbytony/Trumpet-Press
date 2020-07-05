@@ -68,7 +68,6 @@
 
     <!--查询所有-->
     <select id="queryAll" resultMap="ArticleMap">
-
         select a.*, t.*, tag.*
         from trumpetpress.t_article as a
                  left outer join trumpetpress.t_type as t on t.type_id = a.type_id
@@ -172,6 +171,23 @@
     <select id="countAllViews" resultType="java.lang.Integer">
         select ifnull(sum(article_views), 0)
         from trumpetpress.t_article
+    </select>
+    <select id="queryByGlobalSearch" resultMap="ShowIndexArticleMap">
+        select a.article_id,
+               a.article_title,
+               a.article_description,
+               a.article_views,
+               a.article_update_time,
+               a.type_id,
+               t.type_id,
+               t.type_name
+        from trumpetpress.t_article as a
+                 left outer join trumpetpress.t_type as t on t.type_id = a.type_id
+        where a.article_status = 1
+          and (
+                a.article_title like #{query} or
+                a.article_content like #{query} or
+                a.article_description like #{query})
     </select>
 
     <!--新增所有列-->

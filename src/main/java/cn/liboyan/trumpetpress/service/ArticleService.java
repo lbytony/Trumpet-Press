@@ -83,4 +83,6 @@ public interface ArticleService {
     int countAllLikes();
 
     List<ListArticle> queryBySearch(SearchArticle article);
+
+    List<ShowIndexArticle> queryByGlobalSearch(String query);
 }

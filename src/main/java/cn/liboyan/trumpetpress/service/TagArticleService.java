@@ -1,5 +1,6 @@
 package cn.liboyan.trumpetpress.service;
 
+import cn.liboyan.trumpetpress.model.entity.Tag;
 import cn.liboyan.trumpetpress.model.entity.TagArticle;
 import java.util.List;
 
@@ -35,23 +36,25 @@ public interface TagArticleService {
      * @param tagArticle 实例对象
      * @return 实例对象
      */
-    TagArticle insert(TagArticle tagArticle);
+    int insert(TagArticle tagArticle);
 
     /**
      * 修改数据
      *
-     * @param tagArticle 实例对象
      * @return 实例对象
      */
-    TagArticle update(TagArticle tagArticle);
+    void update(List<Tag> tags, Long articleId);
 
     /**
      * 通过主键删除数据
      *
-     * @param  tag  Tag外键
-     * @param  article  Article外键
+     * @param article Article外键
      * @return 是否成功
      */
-    boolean deleteById(Long tag, Long article);
+    boolean deleteByArticleId(Long article);
+
+    boolean deleteByTagId(Long tag);
+
+    void insertTags(List<Tag> tags, Long articleId);
 
 }

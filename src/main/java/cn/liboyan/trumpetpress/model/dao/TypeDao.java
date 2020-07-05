@@ -1,7 +1,6 @@
 package cn.liboyan.trumpetpress.model.dao;
 
 import cn.liboyan.trumpetpress.model.entity.Type;
-import cn.liboyan.trumpetpress.model.vo.ListType;
 
 import java.util.List;
 
@@ -28,7 +27,7 @@ public interface TypeDao {
      */
     List<Type> queryAll();
 
-    List<ListType> queryListAll();
+    List<Type> queryListAll();
 
     /**
      * 新增数据

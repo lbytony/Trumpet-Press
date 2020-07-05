@@ -45,10 +45,12 @@
                 <a href="resume.html" class="m-nav-item item m-mobile-hide" th:href="@{resume}">关于我</a>
                 <a href="about.html" class="m-nav-item item m-mobile-hide" th:href="@{about}">关于网站</a>
                 <div class="m-nav-item right item m-mobile-hide">
-                    <div class="ui icon input">
-                        <input type="text" placeholder="搜索...">
-                        <i class="search link icon"></i>
-                    </div>
+                    <form name="search" action="#" method="post" th:action="@{/search}" target="_blank">
+                        <div class="ui icon input">
+                            <input type="text" name="query" placeholder="搜索..." th:value="${query}">
+                            <i onclick="document.forms['search'].submit()" class="search link icon"></i>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

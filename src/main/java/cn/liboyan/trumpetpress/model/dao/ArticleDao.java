@@ -71,4 +71,6 @@ public interface ArticleDao {
     List<ListArticle> queryBySearch();
 
     List<ShowIndexArticle> queryIndexAll();
+
+    List<ShowIndexArticle> queryByGlobalSearch(String query);
 }

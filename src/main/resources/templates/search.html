@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Trumpet Press - 喇叭芽的博客</title>
+    <title>分类 - Trumpet Press - 喇叭芽的博客</title>
     <link rel="icon" href="../static/images/logo.png">
     <link rel="stylesheet" href="https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.css">
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/5.13.0/css/fontawesome.min.css">
     <link rel="stylesheet" href="../static/css/style.css">
+    <script src="../static/js/script.js"></script>
 </head>
 <body>
 <div th:replace="_fragments::script">
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.js"></script>
-    <script src="../static/js/script.js"></script>
     <!--[if lte IE 8]>
     <script src="https://cdn.bootcdn.net/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -24,11 +24,11 @@
     <nav class="ui attached segment">
         <div class="ui container">
             <div class="ui secondary stackable menu">
-                <a href="#">
+                <a href="index.html">
                     <img src="../static/images/logo.png" alt="logo" class="ui tiny item image m-mobile-hide"/>
                 </a>
                 <h1 class="ui blue header item" style="padding: 5px; margin-left: 0">
-                    <a href="#">Trumpet Press</a>
+                    <a href="index.html">Trumpet Press</a>
                 </h1>
                 <a href="index.html" class="item m-mobile-hide">首页</a>
                 <a href="archives.html" class="m-nav-item item m-mobile-hide">归档</a>
@@ -134,9 +134,9 @@
                 </div>
             </div>
             <!-- 博客列表 -->
-            <div class="eight wide column">
+            <div class="twelve wide column">
                 <div class="ui top attached center aligned segment">
-                    <h3 class="ui blue header">博客文章</h3>
+                    <h2 class="ui blue header">搜索结果</h2>
                 </div>
                 <div class="ui attached segment" th:each="article: ${pageInfo.list}" th:object="${article}">
                     <div class="ui vertical segment m-padding-tb-mini">
@@ -171,47 +171,20 @@
                     <div class="ui middle aligned two column grid">
                         <div class="column" th:unless="${pageInfo.isIsFirstPage()}">
                             <button class="ui blue basic button"
-                                    th:href="@{/(pageNum=${pageInfo.getPrePage()})}">上一页
+                                    th:href="@{/search(pageNum=${pageInfo.getPrePage()})}">上一页
                             </button>
                         </div>
                         <div class="right aligned column" th:unless="${pageInfo.isIsLastPage()}">
                             <button class="ui teal primary button"
-                                    th:href="@{/(pageNum=${pageInfo.getNextPage()})}">下一页
+                                    th:href="@{/search(pageNum=${pageInfo.getNextPage()})}">下一页
                             </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 右侧栏 -->
-            <div class="four wide column">
-                <div>
-                    <div class="m-padding-tb">
-                        <h4 class="ui black header">标签</h4>
-                        <div>
-                            <a href="#" target="_blank" class="ui blue basic label m-margin-tb-tiny"
-                               th:each="tag: ${tags}" th:href="@{/tags/{id}(id=${tag.tagId})}">
-                                <span th:text="${tag.tagName}">122</span>
-                                <div class="detail" th:text="${tag.tagCount}">23</div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="m-padding-tb">
-                        <h4 class="ui black header">分类</h4>
-                        <div class="ui link list">
-                            <p th:each="type: ${types}">
-                                <a href="#" class="item m-black" th:href="@{/types/{id}(id=${type.typeId})}">
-                                    <i class="angle right icon"></i>
-                                    <span th:text="${type.typeName}">
-                                        123123
-                                    </span>
-                                </a>
-                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="ui section divider"></div>
 </div>
 <!-- footer -->
@@ -243,7 +216,7 @@
                     <a href="mailto:lbytony@126.com" class="item">Email: lbytony@126.com</a>
                     <a href="http://wpa.qq.com/msgrd?v=3&uin=543553697&site=qq&menu=yes" class="item" target="_blank">QQ:
                         543553697</a>
-                    <a href="#" class="item wechat">WeChat: liboyan1123</a>
+                    <a href="" class="item">WeChat: liboyan1123</a>
                 </div>
             </div>
             <div class="four wide column">
@@ -264,7 +237,11 @@
     $('#menu-toggle').click(function () {
         $('.m-nav-item').toggleClass('m-mobile-hide');
     });
-    $('.wechat').click(function () {
+    $('#choice div.item').on('click', function () {
+        $(this).children().children().removeClass("teal").addClass("black");
+        $(this).siblings().children().children().removeClass("black").addClass("teal");
+    });
+    $('#wechat').click(function () {
         $('.mini.modal').modal('show');
     });
 </script>

@@ -55,12 +55,19 @@
                 article_id = #{articleId},
             </if>
         </set>
-        where  = #{}
+        where = #{}
     </update>
 
     <!--通过主键删除-->
-    <delete id="deleteById">
-        delete from trumpetpress.t_tag_article where tag_id = #{tag} and article_id = #{article}
+    <delete id="deleteByArticleId">
+        delete
+        from trumpetpress.t_tag_article
+        where article_id = #{article}
+    </delete>
+    <delete id="deleteByTagId">
+        delete
+        from trumpetpress.t_tag_article
+        where tag_id = #{tag}
     </delete>
 
 </mapper>

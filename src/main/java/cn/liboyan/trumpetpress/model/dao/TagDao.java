@@ -28,7 +28,15 @@ public interface TagDao {
     List<Tag> queryAll();
 
     /**
+     * 查询所有数据，含个数
+     *
+     * @return 对象列表
+     */
+    List<Tag> queryListAll();
+
+    /**
      * 新增数据
+     *
      * @param tag 实例对象
      * @return 影响行数
      */

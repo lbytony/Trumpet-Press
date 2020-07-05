@@ -1,4 +1,4 @@
-package cn.liboyan.trumpetpress.controller;
+package cn.liboyan.trumpetpress.controller.admin;
 
 import cn.liboyan.trumpetpress.model.entity.Article;
 import cn.liboyan.trumpetpress.model.entity.User;
@@ -98,11 +98,9 @@ public class ArticleController {
     public String editInput(@PathVariable Long id, Model model) {
         Article article = articleService.queryById(id);
         System.err.println(article);
-        article.init();
         model.addAttribute("article", article);
         model.addAttribute("types", typeService.queryAll());
         model.addAttribute("tags", tagService.queryAll());
-        model.addAttribute("tagIds", article.getTagIds());
         return "admin/tp-article";
     }
 
@@ -111,13 +109,11 @@ public class ArticleController {
      */
     @PostMapping("/articles/edit/{id}")
     public String editPost(Article article, RedirectAttributes redirect, @PathVariable Long id, String tagIds) {
-        article.setArticleId(id);
-        article.setArticleUpdateTime(new Date());
+        System.err.println(article);
         // 设置分类信息
         article.setArticleType(typeService.queryById(article.getTypeId()));
         // 设置标签信息
         article.setArticleTags(tagService.queryByIds(tagIds));
-        System.err.println(article);
         int t = articleService.update(article, id);
         logger.info("修改完成 " + t);
         if (t == 0) {

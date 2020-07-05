@@ -5,6 +5,7 @@
     <resultMap type="cn.liboyan.trumpetpress.model.entity.Tag" id="TagMap">
         <id property="tagId" column="tag_id" jdbcType="INTEGER"/>
         <result property="tagName" column="tag_name" jdbcType="VARCHAR"/>
+        <result property="tagCount" column="tag_count" jdbcType="INTEGER"/>
     </resultMap>
 
     <!--查询单个-->
@@ -22,11 +23,20 @@
         from trumpetpress.t_tag
     </select>
 
+    <select id="queryListAll" resultMap="TagMap">
+        select tag.tag_id, tag.tag_name, count(a.article_id) as tag_count
+        from trumpetpress.t_tag as tag
+                 left outer join trumpetpress.t_tag_article as tag_article on tag.tag_id = tag_article.tag_id
+                 left outer join trumpetpress.t_article as a on a.article_id = tag_article.article_id
+        group by tag.tag_id
+    </select>
+
     <!-- 查询条目个数 -->
     <select id="countAllTags" resultType="java.lang.Integer">
         select count(*)
         from trumpetpress.t_tag
     </select>
+
     <select id="queryByName" resultType="cn.liboyan.trumpetpress.model.entity.Tag">
         select tag_id, tag_name
         from trumpetpress.t_tag

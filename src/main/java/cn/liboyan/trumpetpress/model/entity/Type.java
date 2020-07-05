@@ -21,4 +21,6 @@ public class Type implements Serializable {
      */
     private String typeName;
 
+    private Integer typeCount;
+
 }

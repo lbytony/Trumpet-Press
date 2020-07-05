@@ -2,11 +2,7 @@ package cn.liboyan.trumpetpress.service.impl;
 
 import cn.liboyan.trumpetpress.model.entity.Type;
 import cn.liboyan.trumpetpress.model.dao.TypeDao;
-import cn.liboyan.trumpetpress.model.vo.ListType;
 import cn.liboyan.trumpetpress.service.TypeService;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -36,7 +32,7 @@ public class TypeServiceImpl implements TypeService {
     }
 
     @Override
-    public List<ListType> queryListAll() {
+    public List<Type> queryListAll() {
         return this.typeDao.queryListAll();
     }
 

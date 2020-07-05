@@ -3,10 +3,13 @@ package cn.liboyan.trumpetpress.service.impl;
 import cn.liboyan.trumpetpress.exception.NotFoundException;
 import cn.liboyan.trumpetpress.model.entity.Article;
 import cn.liboyan.trumpetpress.model.dao.ArticleDao;
+import cn.liboyan.trumpetpress.model.entity.Tag;
+import cn.liboyan.trumpetpress.model.entity.TagArticle;
 import cn.liboyan.trumpetpress.model.vo.ListArticle;
 import cn.liboyan.trumpetpress.model.vo.SearchArticle;
 import cn.liboyan.trumpetpress.model.vo.ShowIndexArticle;
 import cn.liboyan.trumpetpress.service.ArticleService;
+import cn.liboyan.trumpetpress.service.TagArticleService;
 import cn.liboyan.trumpetpress.utils.MyBeanUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -26,14 +29,20 @@ public class ArticleServiceImpl implements ArticleService {
     @Resource
     private ArticleDao articleDao;
 
+    @Resource
+    private TagArticleService tagArticleService;
+
     /**
      * 通过ID查询单条数据
+     *
      * @param articleId 主键
      * @return 实例对象
      */
     @Override
     public Article queryById(Long articleId) {
-        return this.articleDao.queryById(articleId);
+        Article article = this.articleDao.queryById(articleId);
+        article.init();
+        return article;
     }
 
     /**
@@ -63,7 +72,6 @@ public class ArticleServiceImpl implements ArticleService {
 
     /**
      * 新增数据
-     *
      * @param article 实例对象
      * @return 实例对象
      */
@@ -72,24 +80,14 @@ public class ArticleServiceImpl implements ArticleService {
         // 设置时间
         article.setArticleCreateTime(new Date());
         article.setArticleUpdateTime(new Date());
-        if (article.getIsRecommend() == null) {
-            article.setIsRecommend(false);
-        }
-        if (article.getIsOriginal() == null) {
-            article.setIsOriginal(false);
-        }
-        if (article.getAllowAppreciate() == null) {
-            article.setAllowAppreciate(true);
-        }
-        if (article.getAllowComment() == null) {
-            article.setAllowComment(true);
-        }
-        return this.articleDao.insert(article);
+        article = setBooleans(article);
+        int result = this.articleDao.insert(article);
+        tagArticleService.insertTags(article.getArticleTags(), article.getArticleId());
+        return result;
     }
 
     /**
      * 修改数据
-     *
      * @param article 实例对象
      * @return 实例对象
      */
@@ -101,7 +99,8 @@ public class ArticleServiceImpl implements ArticleService {
         }
         BeanUtils.copyProperties(article, article1, MyBeanUtils.getNullPropertyNames(article));
         article1.setArticleUpdateTime(new Date());
-        return this.articleDao.update(article);
+        tagArticleService.update(article1.getArticleTags(), article1.getArticleId());
+        return this.articleDao.update(article1);
     }
 
     /**
@@ -111,6 +110,7 @@ public class ArticleServiceImpl implements ArticleService {
      */
     @Override
     public boolean deleteById(Long articleId) {
+        this.tagArticleService.deleteByArticleId(articleId);
         return this.articleDao.deleteById(articleId) > 0;
     }
 
@@ -144,5 +144,26 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<ListArticle> queryBySearch(SearchArticle article) {
         return this.articleDao.queryBySearch();
+    }
+
+    @Override
+    public List<ShowIndexArticle> queryByGlobalSearch(String query) {
+        return this.articleDao.queryByGlobalSearch(query);
+    }
+
+    private Article setBooleans(Article article) {
+        if (article.getIsRecommend() == null) {
+            article.setIsRecommend(false);
+        }
+        if (article.getIsOriginal() == null) {
+            article.setIsOriginal(false);
+        }
+        if (article.getAllowAppreciate() == null) {
+            article.setAllowAppreciate(true);
+        }
+        if (article.getAllowComment() == null) {
+            article.setAllowComment(true);
+        }
+        return article;
     }
 }

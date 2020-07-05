@@ -58,10 +58,11 @@ public interface TagArticleDao {
     /**
      * 通过主键删除数据
      *
-     * @param  tag  Tag外键
-     * @param  article  Article外键
+     * @param article Article外键
      * @return 影响行数
      */
-    int deleteById(Long tag, Long article);
+    int deleteByArticleId(Long article);
+
+    int deleteByTagId(Long tag);
 
 }

@@ -117,7 +117,7 @@
                     <div class="ui left labeled action input">
                         <label class="ui compact basic label">标签</label>
                         <div class="ui fluid multiple search selection dropdown" id="tagDropdown">
-                            <input type="hidden" name="tagIds" th:value="${tagIds}">
+                            <input type="hidden" name="tagIds" th:value="*{tagIds}">
                             <i class="dropdown icon"></i>
                             <div class="default text">标签</div>
                             <div class="menu">

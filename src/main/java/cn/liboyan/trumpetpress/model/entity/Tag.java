@@ -23,11 +23,14 @@ public class Tag implements Serializable {
      */
     private String tagName;
 
+    private Integer tagCount;
+
     @Override
     public String toString() {
         return "Tag{" +
                 "tagId=" + tagId +
                 ", tagName='" + tagName + '\'' +
+                ", tagCount=" + tagCount +
                 '}';
     }
 }

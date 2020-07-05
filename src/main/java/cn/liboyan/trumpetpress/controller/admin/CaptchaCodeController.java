@@ -1,4 +1,4 @@
-package cn.liboyan.trumpetpress.controller;
+package cn.liboyan.trumpetpress.controller.admin;
 
 import cn.liboyan.trumpetpress.utils.CaptchaCodeUtils;
 import org.slf4j.Logger;

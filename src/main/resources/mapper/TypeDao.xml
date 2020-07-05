@@ -5,13 +5,9 @@
     <resultMap type="cn.liboyan.trumpetpress.model.entity.Type" id="TypeMap">
         <result property="typeId" column="type_id" jdbcType="INTEGER"/>
         <result property="typeName" column="type_name" jdbcType="VARCHAR"/>
-    </resultMap>
-
-    <resultMap type="cn.liboyan.trumpetpress.model.vo.ListType" id="ListTypeMap">
-        <result property="typeId" column="type_id" jdbcType="INTEGER"/>
-        <result property="typeName" column="type_name" jdbcType="VARCHAR"/>
         <result property="typeCount" column="type_count" jdbcType="INTEGER"/>
     </resultMap>
+
 
     <!--查询单个-->
     <select id="queryById" resultMap="TypeMap">
@@ -28,7 +24,7 @@
         from trumpetpress.t_type
     </select>
 
-    <select id="queryListAll" resultMap="ListTypeMap">
+    <select id="queryListAll" resultMap="TypeMap">
         select t.type_id,
                t.type_name,
                count(article_id) as type_count

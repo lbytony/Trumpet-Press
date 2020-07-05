@@ -1,7 +1,6 @@
-package cn.liboyan.trumpetpress.controller;
+package cn.liboyan.trumpetpress.controller.admin;
 
 import cn.liboyan.trumpetpress.model.entity.Type;
-import cn.liboyan.trumpetpress.model.vo.ListType;
 import cn.liboyan.trumpetpress.service.TypeService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -39,8 +38,8 @@ public class TypeController {
         //按照排序字段 倒序 排序
         String orderBy = "'type_id' desc";
         PageHelper.startPage(pageNum, 10, orderBy);
-        List<ListType> list = typeService.queryListAll();
-        PageInfo<ListType> pageInfo = new PageInfo<>(list);
+        List<Type> list = typeService.queryListAll();
+        PageInfo<Type> pageInfo = new PageInfo<>(list);
         model.addAttribute("pageInfo", pageInfo);
         return "admin/tp-typelist";
     }

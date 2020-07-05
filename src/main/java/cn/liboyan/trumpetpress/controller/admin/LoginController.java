@@ -1,4 +1,4 @@
-package cn.liboyan.trumpetpress.controller;
+package cn.liboyan.trumpetpress.controller.admin;
 
 import cn.liboyan.trumpetpress.model.entity.User;
 import cn.liboyan.trumpetpress.service.ArticleService;

@@ -1,5 +1,6 @@
 package cn.liboyan.trumpetpress.model.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -11,6 +12,7 @@ import java.io.Serializable;
  * @since 2020-05-03 13:39:39
  */
 @Data
+@AllArgsConstructor
 public class TagArticle implements Serializable {
     private static final long serialVersionUID = 462696437213624266L;
     /**
