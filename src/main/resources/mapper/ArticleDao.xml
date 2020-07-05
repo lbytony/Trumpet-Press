@@ -145,7 +145,7 @@
         </where>
     </select>
 
-    <select id="queryIndexAll" resultType="cn.liboyan.trumpetpress.model.vo.ShowIndexArticle">
+    <select id="queryIndexAll" resultMap="ShowIndexArticleMap">
         select a.article_id,
                a.article_title,
                a.article_description,

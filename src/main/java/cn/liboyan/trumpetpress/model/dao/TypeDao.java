@@ -1,7 +1,8 @@
 package cn.liboyan.trumpetpress.model.dao;
 
 import cn.liboyan.trumpetpress.model.entity.Type;
-import org.apache.ibatis.annotations.Param;
+import cn.liboyan.trumpetpress.model.vo.ListType;
+
 import java.util.List;
 
 /**
@@ -23,10 +24,11 @@ public interface TypeDao {
     /**
      * 通过实体作为筛选条件查询
      *
-     * @param type 实例对象
      * @return 对象列表
      */
-    List<Type> queryAll(Type type);
+    List<Type> queryAll();
+
+    List<ListType> queryListAll();
 
     /**
      * 新增数据
@@ -52,8 +54,6 @@ public interface TypeDao {
      */
     int deleteById(Long typeId);
 
-    List<Type> queryAll();
-
     /**
      * 通过名称查询单条数据
      *
@@ -61,13 +61,6 @@ public interface TypeDao {
      * @return 实例对象
      */
     Type queryByName(String typeName);
-
-    /**
-     * 分页查询用户
-     *
-     * @return 对象列表
-     */
-    List<Type> queryPage();
 
     int countAllTypes();
 

@@ -132,48 +132,52 @@
                         </table>
                     </div>
                 </div>
-                <h4 class="ui black header">最新文章</h4>
-                <div class="ui link list">
-                    <p><a href="" class="item m-black"><i class="angle right icon"></i>123123</a></p>
-                    <p><a href="" class="item m-black"><i class="angle right icon"></i>123123</a></p>
-                    <p><a href="" class="item m-black"><i class="angle right icon"></i>123123</a></p>
-                </div>
             </div>
             <!-- 博客列表 -->
             <div class="eight wide column">
-                <div class="ui attached segment">
-                    <div class="ui vertical segment" th:each="article: ${pageInfo.list}" th:object="${article}">
+                <div class="ui top attached center aligned segment">
+                    <h3 class="ui blue header">博客文章</h3>
+                </div>
+                <div class="ui attached segment" th:each="article: ${pageInfo.list}" th:object="${article}">
+                    <div class="ui vertical segment m-padding-tb-mini">
                         <a href="#" th:href="@{/articles/{id}(id=*{articleId})}" target="_blank">
                             <h2 class="ui header" th:text="*{articleTitle}">123123</h2>
                         </a>
                         <div class="right aligned column">
                             <div class="ui horizontal link list m-margin-tb-small">
                                 <div class="item">
-                                    <i class="calendar icon"></i>
-                                    <span th:text="*{#dates.format(articleUpdateTime, 'yyyy-MM-dd')}">2019-09-04</span>&nbsp;
+                                    <i class="calendar icon"></i>&nbsp;
+                                    <span th:text="*{#dates.format(articleUpdateTime, 'yyyy-MM-dd')}"
+                                          class="middle aligned">2019-09-04</span>
                                 </div>
                                 <div class="item">
-                                    <i class="archive icon"></i><span th:text="*{articleType.typeName}">xxx</span>&nbsp;
+                                    <i class="archive icon"></i>&nbsp;
+                                    <span th:text="*{articleType.typeName}" class="middle aligned">xxx</span>
                                 </div>
                                 <div class="item">
-                                    <i class="eye icon"></i><span th:text="*{articleViews}">xxx</span>&nbsp;
+                                    <i class="eye icon"></i>&nbsp;
+                                    <span th:text="*{articleViews}" class="middle aligned">xxx</span>
                                 </div>
                             </div>
                         </div>
-                        <p th:text="|*{articleDescription}....|">
+                        <p th:text="|*{articleDescription}....|" class="m-padding-top-small">
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, dolore dolorum excepturi ipsum
                             maxime minus molestias provident quam rem! Adipisci est laboriosam modi nihil quas
                             recusandae reiciendis sapiente sunt veniam?
                         </p>
                     </div>
                 </div>
-                <div class="ui bottom attached segment">
+                <div class="ui bottom attached segment" th:if="${pageInfo.pages}>1">
                     <div class="ui middle aligned two column grid">
-                        <div class="column">
-                            <button class="ui blue basic button">上一页</button>
+                        <div class="column" th:unless="${pageInfo.isIsFirstPage()}">
+                            <button class="ui blue basic button"
+                                    th:href="@{/tp-admin/articles(pageNum=${pageInfo.getPrePage()})}">上一页
+                            </button>
                         </div>
-                        <div class="right aligned column">
-                            <button class="ui teal primary button">下一页</button>
+                        <div class="right aligned column" th:unless="${pageInfo.isIsLastPage()}">
+                            <button class="ui teal primary button"
+                                    th:href="@{/tp-admin/articles(pageNum=${pageInfo.getNextPage()})}">下一页
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -184,7 +188,8 @@
                     <div class="m-padding-tb">
                         <h4 class="ui black header">标签</h4>
                         <div>
-                            <a href="#" target="_blank" class="ui blue basic label m-margin-tb-tiny">122
+                            <a href="#" target="_blank" class="ui blue basic label m-margin-tb-tiny" th:href="@{}">
+                                <span th:text="type">122</span>
                                 <div class="detail">23</div>
                             </a>
                             <a href="#" target="_blank" class="ui blue basic label m-margin-tb-tiny">122

@@ -1,6 +1,7 @@
 package cn.liboyan.trumpetpress.service;
 
 import cn.liboyan.trumpetpress.model.entity.Type;
+import cn.liboyan.trumpetpress.model.vo.ListType;
 import com.github.pagehelper.PageInfo;
 import org.springframework.data.domain.PageRequest;
 
@@ -21,6 +22,13 @@ public interface TypeService {
      * @return 实例对象
      */
     Type queryById(Long typeId);
+
+    /**
+     * 查询数据列表
+     *
+     * @return 实例对象
+     */
+    List<ListType> queryListAll();
 
     /**
      * 新增数据

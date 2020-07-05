@@ -19,7 +19,7 @@ body {
 }
 
 .m-center {
-    text-align: center;
+    text-align: center !important;
 }
 
 .m-text-indent {
@@ -28,21 +28,25 @@ body {
 
 /* padding */
 .m-padding-tb-mini {
-    padding-top: 0.2em;
-    padding-bottom: 0.2em;
+    padding-top: 0.2em !important;
+    padding-bottom: 0.2em !important;
 }
 
 .m-padding-none {
-    padding: 0;
+    padding: 0 !important;
 }
 
 .m-padding-mini {
-    padding: 0.2em;
+    padding: 0.2em !important;
 }
 
 .m-padding-tb-small {
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
+    padding-top: 0.5em !important;
+    padding-bottom: 0.5em !important;
+}
+
+.m-padding-top-small {
+    padding-top: 0.5em !important;
 }
 
 .m-padding {

@@ -7,6 +7,12 @@
         <result property="typeName" column="type_name" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <resultMap type="cn.liboyan.trumpetpress.model.vo.ListType" id="ListTypeMap">
+        <result property="typeId" column="type_id" jdbcType="INTEGER"/>
+        <result property="typeName" column="type_name" jdbcType="VARCHAR"/>
+        <result property="typeCount" column="type_count" jdbcType="INTEGER"/>
+    </resultMap>
+
     <!--查询单个-->
     <select id="queryById" resultMap="TypeMap">
         select type_id,
@@ -17,28 +23,27 @@
 
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="TypeMap">
-        select
-        type_id, type_name
+        select type_id,
+               type_name
         from trumpetpress.t_type
-        <where>
-            <if test="typeId != null">
-                and type_id = #{typeId}
-            </if>
-            <if test="typeName != null and typeName != ''">
-                and type_name = #{typeName}
-            </if>
-        </where>
     </select>
+
+    <select id="queryListAll" resultMap="ListTypeMap">
+        select t.type_id,
+               t.type_name,
+               count(article_id) as type_count
+        from trumpetpress.t_type as t
+                 left outer join trumpetpress.t_article as a
+                                 on t.type_id = a.type_id
+        group by t.type_id
+    </select>
+
     <select id="queryByName" resultMap="TypeMap">
         select type_id, type_name
         from trumpetpress.t_type
         where type_name = #{typeName}
     </select>
-    <select id="queryPage" resultMap="TypeMap">
-        select type_id,
-               type_name
-        from trumpetpress.t_type
-    </select>
+
     <select id="countAllTypes" resultType="java.lang.Integer">
         select count(*)
         from trumpetpress.t_type

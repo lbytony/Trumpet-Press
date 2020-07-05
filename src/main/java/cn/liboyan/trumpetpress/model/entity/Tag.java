@@ -23,6 +23,11 @@ public class Tag implements Serializable {
      */
     private String tagName;
 
-    private List<Article> tagArticles;
-
+    @Override
+    public String toString() {
+        return "Tag{" +
+                "tagId=" + tagId +
+                ", tagName='" + tagName + '\'' +
+                '}';
+    }
 }

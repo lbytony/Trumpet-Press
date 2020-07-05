@@ -96,7 +96,7 @@
             <tr th:each="type, iterStat: ${pageInfo.list}">
                 <td th:text="${iterStat.count}">1</td>
                 <td th:text="${type.typeName}">123</td>
-                <td></td>
+                <td th:text="${type.typeCount}">111</td>
                 <td>
                     <a href="#" class="ui mini teal button"
                        th:href="@{/tp-admin/types/edit/{id}(id=${type.typeId})}">编辑</a>

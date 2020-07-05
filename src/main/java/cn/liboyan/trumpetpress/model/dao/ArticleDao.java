@@ -25,7 +25,6 @@ public interface ArticleDao {
 
     /**
      * 查询所有
-     *
      * @return 对象列表
      */
     List<Article> queryAll();

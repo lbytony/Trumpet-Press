@@ -2,6 +2,7 @@ package cn.liboyan.trumpetpress.service.impl;
 
 import cn.liboyan.trumpetpress.model.entity.Type;
 import cn.liboyan.trumpetpress.model.dao.TypeDao;
+import cn.liboyan.trumpetpress.model.vo.ListType;
 import cn.liboyan.trumpetpress.service.TypeService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -32,6 +33,11 @@ public class TypeServiceImpl implements TypeService {
     @Override
     public Type queryById(Long typeId) {
         return this.typeDao.queryById(typeId);
+    }
+
+    @Override
+    public List<ListType> queryListAll() {
+        return this.typeDao.queryListAll();
     }
 
     /**
