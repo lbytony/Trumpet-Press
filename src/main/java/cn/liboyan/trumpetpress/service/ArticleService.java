@@ -21,7 +21,7 @@ public interface ArticleService {
      * @param articleId 主键
      * @return 实例对象
      */
-    Article queryById(Long articleId);
+    Article queryById(Long articleId, boolean onShow);
 
     /**
      * 通过title查询单条数据

@@ -63,4 +63,6 @@ public interface TagService {
     Tag queryByName(String tagName);
 
     List<Tag> queryByIds(String tagIds);
+
+    String queryAllNames(List<Tag> tags);
 }

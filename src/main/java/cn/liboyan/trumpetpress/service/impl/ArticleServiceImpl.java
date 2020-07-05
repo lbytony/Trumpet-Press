@@ -10,6 +10,7 @@ import cn.liboyan.trumpetpress.model.vo.SearchArticle;
 import cn.liboyan.trumpetpress.model.vo.ShowIndexArticle;
 import cn.liboyan.trumpetpress.service.ArticleService;
 import cn.liboyan.trumpetpress.service.TagArticleService;
+import cn.liboyan.trumpetpress.utils.MarkdownUtils;
 import cn.liboyan.trumpetpress.utils.MyBeanUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -36,12 +37,21 @@ public class ArticleServiceImpl implements ArticleService {
      * 通过ID查询单条数据
      *
      * @param articleId 主键
+     * @param onShow    是否为前端博客展示
      * @return 实例对象
      */
     @Override
-    public Article queryById(Long articleId) {
+    public Article queryById(Long articleId, boolean onShow) {
         Article article = this.articleDao.queryById(articleId);
         article.init();
+        if (onShow) {
+            Article a = new Article();
+            BeanUtils.copyProperties(article, a);
+            String content = a.getArticleContent();
+            content = MarkdownUtils.markdownToHtmlExtensions(content);
+            a.setArticleContent(content);
+            return a;
+        }
         return article;
     }
 

@@ -105,6 +105,24 @@ public class TagServiceImpl implements TagService {
         return tagList;
     }
 
+    @Override
+    public String queryAllNames(List<Tag> tags) {
+        if (!tags.isEmpty()) {
+            StringBuilder names = new StringBuilder();
+            boolean flag = false;
+            for (Tag tag : tags) {
+                if (flag) {
+                    names.append(",");
+                } else {
+                    flag = true;
+                }
+                names.append(tag.getTagName());
+            }
+            return names.toString();
+        }
+        return null;
+    }
+
     private List<Long> splitIds(String tagIds) {
         List<Long> idList = new ArrayList<>();
         if (!"".equals(tagIds) && tagIds != null) {

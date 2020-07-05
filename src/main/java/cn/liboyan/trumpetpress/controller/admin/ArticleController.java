@@ -96,7 +96,7 @@ public class ArticleController {
      */
     @GetMapping("/articles/edit/{id}")
     public String editInput(@PathVariable Long id, Model model) {
-        Article article = articleService.queryById(id);
+        Article article = articleService.queryById(id, false);
         System.err.println(article);
         model.addAttribute("article", article);
         model.addAttribute("types", typeService.queryAll());

@@ -140,38 +140,40 @@
                         </table>
                     </div>
                 </div>
-                <h4 class="ui black header">最新文章</h4>
-                <div class="ui link list">
-                    <p><a href="" class="item m-black"><i class="angle right icon"></i>123123</a></p>
-                    <p><a href="" class="item m-black"><i class="angle right icon"></i>123123</a></p>
-                    <p><a href="" class="item m-black"><i class="angle right icon"></i>123123</a></p>
-                </div>
             </div>
             <!-- 博客列表 -->
-            <div class="eight wide column">
+            <div class="eight wide column" th:object="${article}">
                 <div class="ui container">
                     <!-- Title -->
                     <div class="ui top attached segment">
                         <div class="two column grid">
                             <div class="column">
-                                <h1 class="ui header m-margin-tb-tiny">123123</h1>
+                                <h1 class="ui header m-margin-tb-tiny" th:text="*{articleTitle}">123123</h1>
                             </div>
                             <div class="right aligned column">
                                 <div class="ui horizontal link list m-margin-tb-small">
                                     <div class="item">
-                                        <i class="calendar icon"></i>2019-09-04&nbsp;
+                                        <i class="calendar icon"></i>&nbsp;
+                                        <span th:text="*{#dates.format(articleUpdateTime, 'yyyy-MM-dd')}"
+                                              class="middle aligned">2019-09-04</span>
                                     </div>
                                     <div class="item">
-                                        <i class="archive icon"></i>xxx&nbsp;
+                                        <i class="archive icon"></i>&nbsp;
+                                        <span th:text="${tags}" class="middle aligned">2019-09-04</span>
                                     </div>
                                     <div class="item">
-                                        <i class="tag icon"></i>xxx&nbsp;
+                                        <i class="archive icon"></i>&nbsp;
+                                        <span th:text="*{articleType.typeName}" class="middle aligned">xxx</span>
                                     </div>
                                     <div class="item">
-                                        <i class="eye icon"></i>543&nbsp;
+                                        <i class="eye icon"></i>&nbsp;
+                                        <span th:text="*{articleViews}" class="middle aligned">xxx</span>
                                     </div>
-                                    <div class="item">
+                                    <div class="item" th:if="*{isOriginal}">
                                         <div class="ui red basic tiny label">原创</div>
+                                    </div>
+                                    <div class="item" th:unless="*{isOriginal}">
+                                        <div class="ui blue basic tiny label">转载</div>
                                     </div>
                                 </div>
                             </div>
@@ -180,7 +182,7 @@
                     </div>
                     <!-- Content -->
                     <div class="ui attached segment">
-                        <div id="content" class="js-toc-content">
+                        <div id="content" class="js-toc-content" th:utext="*{articleContent}">
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium at delectus,
                             distinctio eum minima officia perspiciatis quae quod ratione tempora? Asperiores aut et
                             molestiae omnis optio provident quos rerum totam.
@@ -188,8 +190,12 @@
                     </div>
                     <!-- Like -->
                     <div class="ui center aligned basic segment">
-                        <button id="payBtn" class="ui red basic circular button"><i class="thumbs up outline icon"></i>赞赏</button>
-                        <button class="ui blue basic circular button"><i class="like icon"></i>喜欢</button>
+                        <button id="payBtn" class="ui red basic circular button" th:disabled="*{!allowAppreciate}">
+                            <i class="thumbs up outline icon"></i>赞赏
+                        </button>
+                        <button class="ui blue basic circular button">
+                            <i class="like icon"></i>喜欢
+                        </button>
                     </div>
                     <div class="ui toPay flowing popup transition hidden">
                         <div class="ui white basic label">
@@ -401,7 +407,7 @@
     </ol>
 </div>
 <div id="qrcode" class="ui page-qr flowing popup transition hidden m-padding-none" style="width: 140px"></div>
-<script>
+<script th:inline="javascript">
     $('#menu-toggle').click(function () {
         $('.m-nav-item').toggleClass('m-mobile-hide');
     });
@@ -431,8 +437,10 @@
         popup: $('.page-qr'),
         position: 'left center'
     });
+    var serverurl = "http://www.liboyan.cn/";
+    var url = /*[[@{/articles/{id}(id=${article.articleId})]]*/"";
     var qrcode = new QRCode("qrcode", {
-        text: "http://www.liboyan.cn/",
+        text: serverurl + url,
         width: 140,
         height: 140,
         colorDark: "#000000",
