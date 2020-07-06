@@ -1,5 +1,3 @@
-server:
-  port: 8081
 mybatis:
   typeAliasesPackage: cn.liboyan.trumpetpress.model.entity
   configuration:

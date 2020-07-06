@@ -18,7 +18,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (Article)表服务实现类
@@ -177,6 +179,16 @@ public class ArticleServiceImpl implements ArticleService {
             article.setArticleTagsName(tagService.queryAllNames(article.getArticleTags()));
         }
         return articles;
+    }
+
+    @Override
+    public Map<String, List<Article>> archiveArticle() {
+        List<String> years = articleDao.queryAllYears();
+        Map<String, List<Article>> map = new HashMap<>();
+        for (String year : years) {
+            map.put(year, articleDao.queryByYear(year));
+        }
+        return map;
     }
 
     private Article setBooleans(Article article) {

@@ -89,16 +89,6 @@ public class IndexController {
         return "detail";
     }
 
-    @GetMapping("/archives")
-    public String archives() {
-        return "archives";
-    }
-
-    @GetMapping("/tags")
-    public String tags() {
-        return "tags";
-    }
-
     @GetMapping("/resume")
     public String resume() {
         return "resume";

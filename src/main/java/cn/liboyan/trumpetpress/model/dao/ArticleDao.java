@@ -78,4 +78,8 @@ public interface ArticleDao {
 
     int countAllViews();
 
+    List<String> queryAllYears();
+
+    List<Article> queryByYear(String year);
+
 }

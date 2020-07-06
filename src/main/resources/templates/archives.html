@@ -138,110 +138,24 @@
             </div>
             <!-- 博客列表 -->
             <div class="eight wide column">
-                <h2 class="ui center aligned header">2020</h2>
-                <div class="ui fluid vertical menu">
-                    <a href="#" class="item">
-                        <span>
-                            <div class="ui blue basic label m-five-width"
-                                 style="padding-top: 0.3em; padding-bottom: 0.3em; margin: 0 0.5em">9月3日</div>
-                            123123
-                        </span>
-                        <div class="ui red basic label m-padding-mini">原创</div>
-                    </a>
-                    <a href="#" class="item">
-                        <span>
-                            <div class="ui blue basic label m-five-width"
-                                 style="padding-top: 0.3em; padding-bottom: 0.3em; margin: 0 0.5em">9月3日</div>
-                            123123
-                        </span>
-                        <div class="ui red basic label m-padding-mini">原创</div>
-                    </a>
-                    <a href="#" class="item">
-                        <span>
-                            <div class="ui blue basic label m-five-width"
-                                 style="padding-top: 0.3em; padding-bottom: 0.3em; margin: 0 0.5em">9月3日</div>
-                            123123
-                        </span>
-                        <div class="ui red basic label m-padding-mini">原创</div>
-                    </a>
-                    <a href="#" class="item">
-                        <span>
-                            <div class="ui blue basic label m-five-width"
-                                 style="padding-top: 0.3em; padding-bottom: 0.3em; margin: 0 0.5em">9月3日</div>
-                            123123
-                        </span>
-                        <div class="ui red basic label m-padding-mini">原创</div>
-                    </a>
-                </div>
-                <h2 class="ui center aligned header">2019</h2>
-                <div class="ui fluid vertical menu">
-                    <a href="#" class="item">
-                        <span>
-                            <div class="ui blue basic label m-five-width"
-                                 style="padding-top: 0.3em; padding-bottom: 0.3em; margin: 0 0.5em">9月3日</div>
-                            123123
-                        </span>
-                        <div class="ui red basic label m-padding-mini">原创</div>
-                    </a>
-                    <a href="#" class="item">
-                        <span>
-                            <div class="ui blue basic label m-five-width"
-                                 style="padding-top: 0.3em; padding-bottom: 0.3em; margin: 0 0.5em">9月3日</div>
-                            123123
-                        </span>
-                        <div class="ui red basic label m-padding-mini">原创</div>
-                    </a>
-                    <a href="#" class="item">
-                        <span>
-                            <div class="ui blue basic label m-five-width"
-                                 style="padding-top: 0.3em; padding-bottom: 0.3em; margin: 0 0.5em">9月3日</div>
-                            123123
-                        </span>
-                        <div class="ui red basic label m-padding-mini">原创</div>
-                    </a>
-                    <a href="#" class="item">
-                        <span>
-                            <div class="ui blue basic label m-five-width"
-                                 style="padding-top: 0.3em; padding-bottom: 0.3em; margin: 0 0.5em">9月3日</div>
-                            123123
-                        </span>
-                        <div class="ui red basic label m-padding-mini">原创</div>
-                    </a>
-                </div>
-                <h2 class="ui center aligned header">2018</h2>
-                <div class="ui fluid vertical menu">
-                    <a href="#" class="item">
-                        <span>
-                            <div class="ui blue basic label m-five-width"
-                                 style="padding-top: 0.3em; padding-bottom: 0.3em; margin: 0 0.5em">9月3日</div>
-                            123123
-                        </span>
-                        <div class="ui red basic label m-padding-mini">原创</div>
-                    </a>
-                    <a href="#" class="item">
-                        <span>
-                            <div class="ui blue basic label m-five-width"
-                                 style="padding-top: 0.3em; padding-bottom: 0.3em; margin: 0 0.5em">9月3日</div>
-                            123123
-                        </span>
-                        <div class="ui red basic label m-padding-mini">原创</div>
-                    </a>
-                    <a href="#" class="item">
-                        <span>
-                            <div class="ui blue basic label m-five-width"
-                                 style="padding-top: 0.3em; padding-bottom: 0.3em; margin: 0 0.5em">9月3日</div>
-                            123123
-                        </span>
-                        <div class="ui red basic label m-padding-mini">原创</div>
-                    </a>
-                    <a href="#" class="item">
-                        <span>
-                            <div class="ui blue basic label m-five-width"
-                                 style="padding-top: 0.3em; padding-bottom: 0.3em; margin: 0 0.5em">9月3日</div>
-                            123123
-                        </span>
-                        <div class="ui red basic label m-padding-mini">原创</div>
-                    </a>
+                <div th:each="item: ${articleMap}">
+                    <h2 class="ui center aligned header" th:text="${item.key}">2020</h2>
+                    <div class="ui fluid vertical menu">
+                        <a href="#" class="item" th:each="article: ${item.value}"
+                           th:href="@{/articles/{id}(id=${article.articleId})}">
+                            <span>
+                                <div class="ui blue basic label"
+                                     style="padding-top: 0.3em; padding-bottom: 0.3em; margin: 0 0.5em"
+                                     th:text="${#dates.format(article.articleCreateTime, 'MM月dd日')}">9月3日</div>
+                                <span th:text="${article.articleTitle}">123123</span>
+                            </span>
+                            <div class="ui red basic label m-padding-mini"
+                                 th:classappend="${article.isOriginal}? 'red': 'blue'"
+                                 th:text="${article.isOriginal}? '原创': '转载'">
+                                原创
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
             <!-- 右侧栏 -->
@@ -250,29 +164,24 @@
                     <div class="m-padding-tb">
                         <h4 class="ui black header">标签</h4>
                         <div>
-                            <a href="#" target="_blank" class="ui blue basic label m-margin-tb-tiny">122
-                                <div class="detail">23</div>
-                            </a>
-                            <a href="#" target="_blank" class="ui blue basic label m-margin-tb-tiny">122
-                                <div class="detail">23</div>
-                            </a>
-                            <a href="#" target="_blank" class="ui blue basic label m-margin-tb-tiny">122
-                                <div class="detail">23</div>
-                            </a>
-                            <a href="#" target="_blank" class="ui blue basic label m-margin-tb-tiny">122
-                                <div class="detail">23</div>
-                            </a>
-                            <a href="#" target="_blank" class="ui blue basic label m-margin-tb-tiny">122
-                                <div class="detail">23</div>
+                            <a href="#" target="_blank" class="ui blue basic label m-margin-tb-tiny"
+                               th:each="tag: ${tags}" th:href="@{/tags/{id}(id=${tag.tagId})}">
+                                <span th:text="${tag.tagName}">122</span>
+                                <div class="detail" th:text="${tag.tagCount}">23</div>
                             </a>
                         </div>
                     </div>
                     <div class="m-padding-tb">
                         <h4 class="ui black header">分类</h4>
                         <div class="ui link list">
-                            <p><a href="" class="item m-black"><i class="angle right icon"></i>123123</a></p>
-                            <p><a href="" class="item m-black"><i class="angle right icon"></i>123123</a></p>
-                            <p><a href="" class="item m-black"><i class="angle right icon"></i>123123</a></p>
+                            <p th:each="type: ${types}">
+                                <a href="#" class="item m-black" th:href="@{/types/{id}(id=${type.typeId})}">
+                                    <i class="angle right icon"></i>
+                                    <span th:text="${type.typeName}">
+                                        123123
+                                    </span>
+                                </a>
+                            </p>
                         </div>
                     </div>
                 </div>

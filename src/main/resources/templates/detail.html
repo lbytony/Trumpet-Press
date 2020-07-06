@@ -193,9 +193,9 @@
                         <button id="payBtn" class="ui red basic circular button" th:disabled="*{!allowAppreciate}">
                             <i class="thumbs up outline icon"></i>赞赏
                         </button>
-                        <button class="ui blue basic circular button">
-                            <i class="like icon"></i>喜欢
-                        </button>
+                        <!--                        <button class="ui blue basic circular button">-->
+                        <!--                            <i class="like icon"></i>喜欢-->
+                        <!--                        </button>-->
                     </div>
                     <div class="ui toPay flowing popup transition hidden">
                         <div class="ui white basic label">
@@ -395,9 +395,9 @@
 </footer>
 <div class="m-padding m-fixed m-right-bottom">
     <div class="ui vertical icon buttons">
-        <button class="ui blue button" id="toc">目录</button>
-        <a href="#comment-container" class="ui blue button">留言</a>
-        <button class="ui page blue button"><i class="weixin icon"></i></button>
+        <!--        <button class="ui blue button" id="toc">目录</button>-->
+        <!--        <a href="#comment-container" class="ui blue button">留言</a>-->
+        <button class="ui page blue button"><i class="qrcode icon"></i></button>
         <button id="toTop" class="ui blue button"><i class="arrow up icon"></i></button>
     </div>
 </div>
@@ -406,7 +406,7 @@
         目录
     </ol>
 </div>
-<div id="qrcode" class="ui page-qr flowing popup transition hidden m-padding-none" style="width: 140px"></div>
+<div id="qrcode" class="ui page-qr flowing popup transition hidden m-padding" style="width: 130px;"></div>
 <script th:inline="javascript">
     $('#menu-toggle').click(function () {
         $('.m-nav-item').toggleClass('m-mobile-hide');
@@ -438,7 +438,7 @@
         position: 'left center'
     });
     var serverurl = "http://www.liboyan.cn/";
-    var url = /*[[@{/articles/{id}(id=${article.articleId})]]*/"";
+    var url = /*[[@{/articles/{id}(id=${article.articleId})}]]*/"";
     var qrcode = new QRCode("qrcode", {
         text: serverurl + url,
         width: 140,

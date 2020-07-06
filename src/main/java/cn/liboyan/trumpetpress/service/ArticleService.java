@@ -6,6 +6,7 @@ import cn.liboyan.trumpetpress.model.vo.SearchArticle;
 import cn.liboyan.trumpetpress.model.vo.ShowIndexArticle;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * (Article)表服务接口
@@ -89,4 +90,6 @@ public interface ArticleService {
     List<ShowIndexArticle> queryByGlobalSearch(String query);
 
     List<ShowIndexArticle> queryByTagId(Long tagId);
+
+    Map<String, List<Article>> archiveArticle();
 }

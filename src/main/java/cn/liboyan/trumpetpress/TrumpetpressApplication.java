@@ -12,12 +12,13 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  */
 @SpringBootApplication
 @MapperScan("cn.liboyan.trumpetpress.model.dao")
-public class TrumpetpressApplication extends SpringBootServletInitializer {
+//public class TrumpetpressApplication extends SpringBootServletInitializer {
+public class TrumpetpressApplication {
 
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder applicationBuilder) {
-        return applicationBuilder.sources(SpringApplication.class);
-    }
+//    @Override
+//    protected SpringApplicationBuilder configure(SpringApplicationBuilder applicationBuilder) {
+//        return applicationBuilder.sources(SpringApplication.class);
+//    }
 
     public static void main(String[] args) {
         SpringApplication.run(TrumpetpressApplication.class, args);

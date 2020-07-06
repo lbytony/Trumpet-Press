@@ -239,6 +239,17 @@
                  left outer join trumpetpress.t_tag as tag on tag.tag_id = tag_article.tag_id
         where tag.tag_id = #{tagId}
     </select>
+    <select id="queryAllYears" resultType="java.lang.String">
+        select date_format(a.article_create_time, '%Y') as year
+        from t_article as a
+        group by year
+        order by year desc
+    </select>
+    <select id="queryByYear" resultType="cn.liboyan.trumpetpress.model.entity.Article">
+        select *
+        from t_article as a
+        where date_format(a.article_create_time, '%Y') = #{year}
+    </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="articleId" useGeneratedKeys="true">
