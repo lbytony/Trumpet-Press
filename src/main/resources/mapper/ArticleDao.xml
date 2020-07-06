@@ -54,6 +54,10 @@
             <id property="typeId" column="type_id" jdbcType="INTEGER"/>
             <result property="typeName" column="type_name" jdbcType="VARCHAR"/>
         </association>
+        <collection property="articleTags" ofType="cn.liboyan.trumpetpress.model.entity.Tag">
+            <result property="tagId" column="tag_id" jdbcType="INTEGER"/>
+            <result property="tagName" column="tag_name" jdbcType="VARCHAR"/>
+        </collection>
     </resultMap>
 
     <!--查询单个-->
@@ -126,20 +130,23 @@
         a.is_recommend,
         t.type_id,
         t.type_name
-        from trumpetpress.t_article as a, trumpetpress.t_type as t
+        from trumpetpress.t_article as a
+        left outer join trumpetpress.t_type as t on t.type_id = a.type_id
         <where>
-            a.type_id = t.type_id
+            <if test="articleStatus != null">
+                and a.article_status = #{articleStatus}
+            </if>
             <if test="typeId != null">
                 and a.type_id = #{typeId}
+            </if>
+            <if test="articleId != null">
+                and a.article_id = #{articleId}
             </if>
             <if test="title != null">
                 and a.article_title like #{pattern}
             </if>
             <if test="isRecommend != null">
                 and a.is_recommend = #{isRecommend}
-            </if>
-            <if test="title != null">
-                and a.article_status = #{articleStatus}
             </if>
         </where>
     </select>
@@ -188,6 +195,49 @@
                 a.article_title like #{query} or
                 a.article_content like #{query} or
                 a.article_description like #{query})
+    </select>
+    <select id="queryByIndexSearch" resultMap="ShowIndexArticleMap">
+        select a.article_id,
+        a.article_title,
+        a.article_description,
+        a.article_views,
+        a.article_update_time,
+        a.type_id,
+        t.type_id,
+        t.type_name
+        from trumpetpress.t_article as a
+        left outer join trumpetpress.t_type as t on t.type_id = a.type_id
+        <where>
+            <if test="articleStatus != null">
+                and a.article_status = #{articleStatus}
+            </if>
+            <if test="typeId != null">
+                and a.type_id = #{typeId}
+            </if>
+            <if test="articleId != null">
+                and a.article_id = #{articleId}
+            </if>
+            <if test="isRecommend != null">
+                and a.is_recommend = #{isRecommend}
+            </if>
+        </where>
+    </select>
+    <select id="queryByTagId" resultMap="ShowIndexArticleMap">
+        select a.article_id,
+               a.article_title,
+               a.article_description,
+               a.article_views,
+               a.article_update_time,
+               a.type_id,
+               t.type_id,
+               t.type_name,
+               tag.tag_id,
+               tag.tag_name
+        from trumpetpress.t_article as a
+                 left outer join trumpetpress.t_type as t on t.type_id = a.type_id
+                 left outer join trumpetpress.t_tag_article as tag_article on a.article_id = tag_article.article_id
+                 left outer join trumpetpress.t_tag as tag on tag.tag_id = tag_article.tag_id
+        where tag.tag_id = #{tagId}
     </select>
 
     <!--新增所有列-->

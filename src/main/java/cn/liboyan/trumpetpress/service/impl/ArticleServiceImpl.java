@@ -10,6 +10,7 @@ import cn.liboyan.trumpetpress.model.vo.SearchArticle;
 import cn.liboyan.trumpetpress.model.vo.ShowIndexArticle;
 import cn.liboyan.trumpetpress.service.ArticleService;
 import cn.liboyan.trumpetpress.service.TagArticleService;
+import cn.liboyan.trumpetpress.service.TagService;
 import cn.liboyan.trumpetpress.utils.MarkdownUtils;
 import cn.liboyan.trumpetpress.utils.MyBeanUtils;
 import org.springframework.beans.BeanUtils;
@@ -32,6 +33,9 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Resource
     private TagArticleService tagArticleService;
+
+    @Resource
+    private TagService tagService;
 
     /**
      * 通过ID查询单条数据
@@ -153,12 +157,26 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public List<ListArticle> queryBySearch(SearchArticle article) {
-        return this.articleDao.queryBySearch();
+        return this.articleDao.queryBySearch(article);
+    }
+
+    @Override
+    public List<ShowIndexArticle> queryByIndexSearch(SearchArticle article) {
+        return this.articleDao.queryByIndexSearch(article);
     }
 
     @Override
     public List<ShowIndexArticle> queryByGlobalSearch(String query) {
         return this.articleDao.queryByGlobalSearch(query);
+    }
+
+    @Override
+    public List<ShowIndexArticle> queryByTagId(Long tagId) {
+        List<ShowIndexArticle> articles = this.articleDao.queryByTagId(tagId);
+        for (ShowIndexArticle article : articles) {
+            article.setArticleTagsName(tagService.queryAllNames(article.getArticleTags()));
+        }
+        return articles;
     }
 
     private Article setBooleans(Article article) {

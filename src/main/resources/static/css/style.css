@@ -22,6 +22,14 @@ body {
     text-align: center !important;
 }
 
+.m-inline-block {
+    display: inline-block !important;
+}
+
+.m-text-thin {
+    font-weight: 300 !important;
+}
+
 .m-text-indent {
     text-indent: 2rem;
 }
@@ -84,7 +92,7 @@ body {
 }
 
 .m-text-thin {
-    font-weight: 300;
+    font-weight: 300 !important;
 }
 
 .m-text-spaced {
@@ -96,12 +104,16 @@ body {
 }
 
 .m-opacity-mini {
-    opacity: 0.8;
+    opacity: 0.8 !important;
 }
 
 /* margin */
 .m-margin-none {
     margin: 0 !important;
+}
+
+.m-margin {
+    margin: 1em !important;
 }
 
 .m-margin-tb-tiny {

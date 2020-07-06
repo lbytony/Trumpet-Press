@@ -112,7 +112,7 @@ public class TagServiceImpl implements TagService {
             boolean flag = false;
             for (Tag tag : tags) {
                 if (flag) {
-                    names.append(",");
+                    names.append("，");
                 } else {
                     flag = true;
                 }

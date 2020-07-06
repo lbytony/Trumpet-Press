@@ -32,6 +32,7 @@
                  left outer join trumpetpress.t_article as a
                                  on t.type_id = a.type_id
         group by t.type_id
+        order by type_count desc
     </select>
 
     <select id="queryByName" resultMap="TypeMap">

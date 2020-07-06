@@ -36,6 +36,18 @@ public interface ArticleDao {
      */
     List<ListArticle> queryListAll();
 
+    Article queryByTitle(String articleTitle);
+
+    List<ListArticle> queryBySearch(SearchArticle searchArticle);
+
+    List<ShowIndexArticle> queryByIndexSearch(SearchArticle searchArticle);
+
+    List<ShowIndexArticle> queryIndexAll();
+
+    List<ShowIndexArticle> queryByGlobalSearch(String query);
+
+    List<ShowIndexArticle> queryByTagId(Long tagId);
+
     /**
      * 新增数据
      *
@@ -66,11 +78,4 @@ public interface ArticleDao {
 
     int countAllViews();
 
-    Article queryByTitle(String articleTitle);
-
-    List<ListArticle> queryBySearch();
-
-    List<ShowIndexArticle> queryIndexAll();
-
-    List<ShowIndexArticle> queryByGlobalSearch(String query);
 }

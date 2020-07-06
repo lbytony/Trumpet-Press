@@ -12,6 +12,8 @@ import lombok.Data;
 @Data
 public class SearchArticle {
 
+    private Long articleId;
+
     private String articleTitle;
 
     private Long typeId;

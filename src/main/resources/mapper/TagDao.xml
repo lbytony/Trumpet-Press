@@ -29,6 +29,7 @@
                  left outer join trumpetpress.t_tag_article as tag_article on tag.tag_id = tag_article.tag_id
                  left outer join trumpetpress.t_article as a on a.article_id = tag_article.article_id
         group by tag.tag_id
+        order by tag_count desc
     </select>
 
     <!-- 查询条目个数 -->
@@ -40,7 +41,7 @@
     <select id="queryByName" resultType="cn.liboyan.trumpetpress.model.entity.Tag">
         select tag_id, tag_name
         from trumpetpress.t_tag
-        where tag_name = #{typeName}
+        where tag_name = #{tagName}
     </select>
 
     <!--新增所有列-->

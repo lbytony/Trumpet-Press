@@ -39,11 +39,11 @@
                     <a href="index.html" th:href="@{/}">Trumpet Press</a>
                 </h1>
                 <a href="index.html" class="item m-mobile-hide" th:href="@{/}">首页</a>
-                <a href="archives.html" class="m-nav-item item m-mobile-hide" th:href="@{archives}">归档</a>
-                <a href="types.html" class="m-nav-item item m-mobile-hide" th:href="@{types}">分类</a>
-                <a href="tags.html" class="m-nav-item item m-mobile-hide" th:href="@{tags}">标签</a>
-                <a href="resume.html" class="m-nav-item item m-mobile-hide" th:href="@{resume}">关于我</a>
-                <a href="about.html" class="m-nav-item item m-mobile-hide" th:href="@{about}">关于网站</a>
+                <a href="archives.html" class="m-nav-item item m-mobile-hide" th:href="@{/archives}">归档</a>
+                <a href="types.html" class="m-nav-item item m-mobile-hide" th:href="@{/types/-1}">分类</a>
+                <a href="tags.html" class="m-nav-item item m-mobile-hide" th:href="@{/tags/-1}">标签</a>
+                <a href="resume.html" class="m-nav-item item m-mobile-hide" th:href="@{/resume}">关于我</a>
+                <a href="about.html" class="m-nav-item item m-mobile-hide" th:href="@{/about}">关于网站</a>
                 <div class="m-nav-item right item m-mobile-hide">
                     <form name="search" action="#" method="post" th:action="@{/search}" target="_blank">
                         <div class="ui icon input">
@@ -75,13 +75,18 @@
     </div>
     <div class="ui attached center aligned segment">
         <div class="ui divided grid">
-            <div class="eight wide column">
-                79
+            <div class="six wide column">
+                <span th:text="${articleCount}">79</span>
                 <br>
                 文章
             </div>
-            <div class="eight wide column">
-                79
+            <div class="five wide column">
+                <span th:text="${typeCount}">79</span>
+                <br>
+                分类
+            </div>
+            <div class="five wide column">
+                <span th:text="${tagCount}">79</span>
                 <br>
                 标签
             </div>
@@ -177,7 +182,7 @@
             <div class="four wide column">
                 <h4 class="ui header m-text-spaced">关于网站</h4>
                 <div class="ui link list">
-                    <a href="admin/tp-login.html" class="item" th:href="@{/tp-admin}">网站管理</a>
+                    <a href="admin/tp-login.html" class="item" target="_blank" th:href="@{/tp-admin}">网站管理</a>
                 </div>
             </div>
         </div>

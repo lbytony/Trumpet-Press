@@ -41,6 +41,12 @@ public class IndexController {
     @Resource
     private TypeService typeService;
 
+    private void addCount(Model model) {
+        model.addAttribute("articleCount", articleService.countAllArticle());
+        model.addAttribute("typeCount", typeService.countAllTypes());
+        model.addAttribute("tagCount", tagService.countAllTags());
+    }
+
     @GetMapping("/")
     public String index(Model model, RedirectAttributes redirect,
                         @RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum) {
@@ -55,6 +61,10 @@ public class IndexController {
         model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("types", types);
         model.addAttribute("tags", tags);
+        model.addAttribute("articleCount", articleService.countAllArticle());
+        model.addAttribute("typeCount", typeService.countAllTypes());
+        model.addAttribute("tagCount", tagService.countAllTags());
+        addCount(model);
         return "index";
     }
 
@@ -66,6 +76,7 @@ public class IndexController {
         PageInfo<ShowIndexArticle> pageInfo = new PageInfo<>(list);
         model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("query", query);
+        addCount(model);
         return "search";
     }
 
@@ -74,6 +85,7 @@ public class IndexController {
         Article article = articleService.queryById(id, true);
         model.addAttribute("article", article);
         model.addAttribute("tags", tagService.queryAllNames(article.getArticleTags()));
+        addCount(model);
         return "detail";
     }
 
@@ -85,11 +97,6 @@ public class IndexController {
     @GetMapping("/tags")
     public String tags() {
         return "tags";
-    }
-
-    @GetMapping("/types")
-    public String types() {
-        return "types";
     }
 
     @GetMapping("/resume")

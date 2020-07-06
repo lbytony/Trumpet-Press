@@ -41,4 +41,8 @@ public class ShowIndexArticle {
     private Long typeId;
 
     private Type articleType;
+
+    private List<Tag> articleTags;
+
+    private String articleTagsName;
 }

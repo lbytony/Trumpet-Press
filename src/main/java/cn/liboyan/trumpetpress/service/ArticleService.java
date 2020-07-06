@@ -84,5 +84,9 @@ public interface ArticleService {
 
     List<ListArticle> queryBySearch(SearchArticle article);
 
+    List<ShowIndexArticle> queryByIndexSearch(SearchArticle article);
+
     List<ShowIndexArticle> queryByGlobalSearch(String query);
+
+    List<ShowIndexArticle> queryByTagId(Long tagId);
 }

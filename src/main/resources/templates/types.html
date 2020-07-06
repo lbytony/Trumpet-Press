@@ -141,160 +141,77 @@
             </div>
             <!-- 博客列表 -->
             <div class="twelve wide column">
-                <div class="ui header center aligned">
-                    <h1 class="ui middle aligned header">全部分类</h1>
-                </div>
-                <div class="ui horizontal link list" id="choice">
-                    <div class="item">
-                        <a>
-                            <div class="ui big black basic label m-biglabel">
-                                Choose
-                            </div>
-                        </a>
-                    </div>
-                    <div class="item">
-                        <a>
-                            <div class="ui big teal basic label m-biglabel">
-                                1111111
-                            </div>
-                        </a>
-                    </div>
-                    <div class="item">
-                        <a>
-                            <div class="ui big teal basic label m-biglabel">
-                                2222222
-                            </div>
-                        </a>
-                    </div>
-                    <div class="item">
-                        <a>
-                            <div class="ui big teal basic label m-biglabel">
-                                3333333
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <br>
-                <br>
-                <div class="ui attached segment">
-                    <div class="ui vertical segment">
-                        <h2 class="ui header">123123</h2>
-                        <div class="right aligned column">
-                            <div class="ui horizontal link list m-margin-tb-small">
-                                <div class="item">
-                                    <i class="calendar icon"></i>2019-09-04&nbsp;
-                                </div>
-                                <div class="item">
-                                    <i class="archive icon"></i>xxx&nbsp;
-                                </div>
-                                <div class="item">
-                                    <i class="tag icon"></i>xxx&nbsp;
-                                </div>
-                            </div>
-                        </div>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, dolore dolorum excepturi ipsum
-                            maxime minus molestias provident quam rem! Adipisci est laboriosam modi nihil quas
-                            recusandae reiciendis sapiente sunt veniam?
-                        </p>
-                    </div>
-                    <div class="ui vertical segment">
-                        <h2 class="ui header">123123</h2>
-                        <div class="right aligned column">
-                            <div class="ui horizontal link list m-margin-tb-small">
-                                <div class="item">
-                                    <i class="calendar icon"></i>2019-09-04&nbsp;
-                                </div>
-                                <div class="item">
-                                    <i class="archive icon"></i>xxx&nbsp;
-                                </div>
-                                <div class="item">
-                                    <i class="tag icon"></i>xxx&nbsp;
-                                </div>
-                            </div>
-                        </div>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, dolore dolorum excepturi ipsum
-                            maxime minus molestias provident quam rem! Adipisci est laboriosam modi nihil quas
-                            recusandae reiciendis sapiente sunt veniam?
-                        </p>
-                    </div>
-                    <div class="ui vertical segment">
-                        <h2 class="ui header">123123</h2>
-                        <div class="right aligned column">
-                            <div class="ui horizontal link list m-margin-tb-small">
-                                <div class="item">
-                                    <i class="calendar icon"></i>2019-09-04&nbsp;
-                                </div>
-                                <div class="item">
-                                    <i class="archive icon"></i>xxx&nbsp;
-                                </div>
-                                <div class="item">
-                                    <i class="tag icon"></i>xxx&nbsp;
-                                </div>
-                            </div>
-                        </div>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, dolore dolorum excepturi ipsum
-                            maxime minus molestias provident quam rem! Adipisci est laboriosam modi nihil quas
-                            recusandae reiciendis sapiente sunt veniam?
-                        </p>
-                    </div>
-                    <div class="ui vertical segment">
-                        <h2 class="ui header">123123</h2>
-                        <div class="right aligned column">
-                            <div class="ui horizontal link list m-margin-tb-small">
-                                <div class="item">
-                                    <i class="calendar icon"></i>2019-09-04&nbsp;
-                                </div>
-                                <div class="item">
-                                    <i class="archive icon"></i>xxx&nbsp;
-                                </div>
-                                <div class="item">
-                                    <i class="tag icon"></i>xxx&nbsp;
-                                </div>
-                            </div>
-                        </div>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, dolore dolorum excepturi ipsum
-                            maxime minus molestias provident quam rem! Adipisci est laboriosam modi nihil quas
-                            recusandae reiciendis sapiente sunt veniam?
-                        </p>
-                    </div>
-                    <div class="ui vertical segment">
-                        <h2 class="ui header">123123</h2>
-                        <div class="right aligned column">
-                            <div class="ui horizontal link list m-margin-tb-small">
-                                <div class="item">
-                                    <i class="calendar icon"></i>2019-09-04&nbsp;
-                                </div>
-                                <div class="item">
-                                    <i class="archive icon"></i>xxx&nbsp;
-                                </div>
-                                <div class="item">
-                                    <i class="tag icon"></i>xxx&nbsp;
-                                </div>
-                            </div>
-                        </div>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, dolore dolorum excepturi ipsum
-                            maxime minus molestias provident quam rem! Adipisci est laboriosam modi nihil quas
-                            recusandae reiciendis sapiente sunt veniam?
-                        </p>
-                    </div>
-                </div>
-                <div class="ui bottom attached segment">
+                <div class="ui top attached segment">
                     <div class="ui middle aligned two column grid">
                         <div class="column">
-                            <button class="ui blue basic button">上一页</button>
+                            <h2 class="ui middle aligned header">分类</h2>
                         </div>
                         <div class="right aligned column">
-                            <button class="ui teal primary button">下一页</button>
+                            共
+                            <h2 class="ui orange header m-inline-block m-text-thin" th:text="${#arrays.length(types)}">
+                                14</h2>
+                            个
+                        </div>
+                    </div>
+                </div>
+                <div class="ui attached segment">
+                    <div class="ui labeled button m-margin" th:each="type: ${types}">
+                        <a class="ui basic button" th:text="${type.typeName}"
+                           th:href="@{/types/{id}(id=${type.typeId})}"
+                           th:classappend="${type.typeId==activeId}? 'blue'">
+                            111
+                        </a>
+                        <div class="ui basic left pointing label" th:text="${type.typeCount}"
+                             th:classappend="${type.typeId==activeId}? 'blue'">
+                            200
+                        </div>
+                    </div>
+                </div>
+                <div class="ui teal top attached segment">
+                    <div class="ui vertical segment m-padding" th:each="article: ${pageInfo.list}"
+                         th:object="${article}">
+                        <a href="#" th:href="@{/articles/{id}(id=*{articleId})}" target="_blank">
+                            <h2 class="ui header" th:text="*{articleTitle}">123123</h2>
+                        </a>
+                        <div class="right aligned column">
+                            <div class="ui horizontal link list m-margin-tb">
+                                <div class="item">
+                                    <i class="calendar icon"></i>&nbsp;
+                                    <span th:text="*{#dates.format(articleUpdateTime, 'yyyy-MM-dd')}"
+                                          class="middle aligned">2019-09-04</span>
+                                </div>
+                                <div class="item">
+                                    <i class="archive icon"></i>&nbsp;
+                                    <span th:text="*{articleType.typeName}" class="middle aligned">xxx</span>
+                                </div>
+                                <div class="item">
+                                    <i class="eye icon"></i>&nbsp;
+                                    <span th:text="*{articleViews}" class="middle aligned">xxx</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p th:text="|*{articleDescription}....|" class="m-padding-top-small">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, dolore dolorum excepturi ipsum
+                            maxime minus molestias provident quam rem! Adipisci est laboriosam modi nihil quas
+                            recusandae reiciendis sapiente sunt veniam?
+                        </p>
+                    </div>
+                </div>
+                <div class="ui bottom attached segment" th:if="${pageInfo.pages}>1">
+                    <div class="ui middle aligned two column grid">
+                        <div class="column" th:unless="${pageInfo.isIsFirstPage()}">
+                            <button class="ui blue basic button"
+                                    th:href="@{/types/{id}(id=${activeId}, pageNum=${pageInfo.getPrePage()})}">上一页
+                            </button>
+                        </div>
+                        <div class="right aligned column" th:unless="${pageInfo.isIsLastPage()}">
+                            <button class="ui teal primary button"
+                                    th:href="@{/types/{id}(id=${activeId}, pageNum=${pageInfo.getNextPage()})}">下一页
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
