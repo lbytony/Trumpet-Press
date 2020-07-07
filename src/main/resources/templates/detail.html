@@ -431,7 +431,7 @@
         popup: $('.page-qr'),
         position: 'left center'
     });
-    var serverurl = "http://www.liboyan.cn/";
+    var serverurl = "http://liboyan.cn:8083/";
     var url = /*[[@{/articles/{id}(id=${article.articleId})}]]*/"";
     var qrcode = new QRCode("qrcode", {
         text: serverurl + url,
