@@ -132,29 +132,29 @@
             <div class="field">
                 <textarea name="articleDescription" placeholder="博客描述" th:text="*{articleDescription}"></textarea>
             </div>
-            <div class="inline fields">
-                <div class="field">
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox" name="isRecommend" id="isRecommend" class="hidden"
-                               th:checked="*{isRecommend}">
-                        <label for="isRecommend">推荐</label>
-                    </div>
-                </div>
-                <div class="field">
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox" name="allowAppreciate" id="allowAppreciate" class="hidden"
-                               checked="checked" th:checked="*{allowAppreciate}">
-                        <label for="allowAppreciate">赞赏</label>
-                    </div>
-                </div>
-                <div class="field">
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox" name="allowComment" id="allowComment" class="hidden"
-                               checked="checked" th:checked="*{allowComment}">
-                        <label for="allowComment">评论</label>
-                    </div>
-                </div>
-            </div>
+            <!--            <div class="inline fields">-->
+            <!--                <div class="field">-->
+            <!--                    <div class="ui toggle checkbox">-->
+            <!--                        <input type="checkbox" name="isRecommend" id="isRecommend" class="hidden"-->
+            <!--                               th:checked="*{isRecommend}">-->
+            <!--                        <label for="isRecommend">推荐</label>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                <div class="field">-->
+            <!--                    <div class="ui toggle checkbox">-->
+            <!--                        <input type="checkbox" name="allowAppreciate" id="allowAppreciate" class="hidden"-->
+            <!--                               checked="checked" th:checked="*{allowAppreciate}">-->
+            <!--                        <label for="allowAppreciate">赞赏</label>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                <div class="field">-->
+            <!--                    <div class="ui toggle checkbox">-->
+            <!--                        <input type="checkbox" name="allowComment" id="allowComment" class="hidden"-->
+            <!--                               checked="checked" th:checked="*{allowComment}">-->
+            <!--                        <label for="allowComment">评论</label>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </div>-->
             <div class="ui error message"></div>
             <div class="ui right aligned container">
                 <button type="button" class="ui button" onclick="window.history.go(-1)">返回</button>

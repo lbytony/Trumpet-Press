@@ -3,8 +3,6 @@ package cn.liboyan.trumpetpress.service.impl;
 import cn.liboyan.trumpetpress.exception.NotFoundException;
 import cn.liboyan.trumpetpress.model.entity.Article;
 import cn.liboyan.trumpetpress.model.dao.ArticleDao;
-import cn.liboyan.trumpetpress.model.entity.Tag;
-import cn.liboyan.trumpetpress.model.entity.TagArticle;
 import cn.liboyan.trumpetpress.model.vo.ListArticle;
 import cn.liboyan.trumpetpress.model.vo.SearchArticle;
 import cn.liboyan.trumpetpress.model.vo.ShowIndexArticle;
@@ -51,6 +49,8 @@ public class ArticleServiceImpl implements ArticleService {
         Article article = this.articleDao.queryById(articleId);
         article.init();
         if (onShow) {
+            article.setArticleViews(article.getArticleViews() + 1);
+            this.articleDao.update(article);
             Article a = new Article();
             BeanUtils.copyProperties(article, a);
             String content = a.getArticleContent();

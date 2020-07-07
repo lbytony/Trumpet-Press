@@ -1,5 +1,7 @@
 package cn.liboyan.trumpetpress.controller;
 
+import cn.liboyan.trumpetpress.model.entity.Tag;
+import cn.liboyan.trumpetpress.model.entity.Type;
 import cn.liboyan.trumpetpress.service.ArticleService;
 import cn.liboyan.trumpetpress.service.TagService;
 import cn.liboyan.trumpetpress.service.TypeService;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * TypeShowController
@@ -34,6 +37,8 @@ public class ArchiveShowController {
         model.addAttribute("articleCount", articleService.countAllArticle());
         model.addAttribute("typeCount", typeService.countAllTypes());
         model.addAttribute("tagCount", tagService.countAllTags());
+        model.addAttribute("types", typeService.queryAll());
+        model.addAttribute("tags", tagService.queryListAll());
         return "archives";
     }
 }

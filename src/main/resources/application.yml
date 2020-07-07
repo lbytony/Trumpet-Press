@@ -13,7 +13,7 @@ spring:
   application:
     name: trumpet-press
   profiles:
-    active: dev   # 生产环境prod，开发环境dev
+    active: prod   # 生产环境prod，开发环境dev
 logging:
   file:
     name: log/trumpetpress.log

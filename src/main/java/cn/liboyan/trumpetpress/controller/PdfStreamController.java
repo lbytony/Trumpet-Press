@@ -1,12 +1,14 @@
 package cn.liboyan.trumpetpress.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -19,12 +21,11 @@ import java.io.IOException;
 @Controller
 public class PdfStreamController {
 
-    @GetMapping(value = "/previewPdf")
-    public void pdfStreamHandler(String fileName, HttpServletRequest request, HttpServletResponse response) {
-        // TODO 上线时需要测试是否正常
-        String prefix = System.getProperty("user.dir");
-//        String prefix = request.getServletContext().getRealPath("/");
-        File file = new File(prefix + "\\src\\main\\resources\\static\\lib\\pdfjs\\web\\resume.pdf");
+    @GetMapping("/previewPdf")
+    public void pdfStreamHandler(String fileName, HttpServletRequest request, HttpServletResponse response) throws FileNotFoundException {
+        String classpath = ResourceUtils.getURL("classpath:static/lib/pdfjs/web/resume.pdf").getPath();
+        System.err.println(classpath);
+        File file = new File(classpath);
         if (file.exists()) {
             byte[] data = null;
             FileInputStream input = null;

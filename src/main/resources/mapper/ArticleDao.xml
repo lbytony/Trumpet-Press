@@ -119,7 +119,7 @@
 
     <select id="queryBySearch" parameterType="cn.liboyan.trumpetpress.model.vo.SearchArticle"
             resultMap="ListArticleMap">
-        <bind name="pattern" value="'%' + title + '%'"/>
+        <bind name="pattern" value="'%' + articleTitle + '%'"/>
         select a.article_id,
         a.article_title,
         a.article_views,
@@ -142,7 +142,7 @@
             <if test="articleId != null">
                 and a.article_id = #{articleId}
             </if>
-            <if test="title != null">
+            <if test="articleTitle != null">
                 and a.article_title like #{pattern}
             </if>
             <if test="isRecommend != null">

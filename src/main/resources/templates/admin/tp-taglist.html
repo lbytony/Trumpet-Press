@@ -107,7 +107,7 @@
             </tbody>
             <tfoot>
             <tr>
-                <th colspan="6">
+                <th colspan="6" th:if="${pageInfo.pages}>1">
                     <div class="ui right floated pagination menu">
                         <a class="icon item" th:unless="${pageInfo.isIsFirstPage()}"
                            th:href="@{/tp-admin/tags(pageNum=${pageInfo.getPrePage()})}">

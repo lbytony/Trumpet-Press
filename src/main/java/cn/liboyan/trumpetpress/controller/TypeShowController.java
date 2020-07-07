@@ -40,6 +40,7 @@ public class TypeShowController {
     public String types(Model model, @PathVariable Long id,
                         @RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum) {
         List<Type> types = typeService.queryListAll();
+        System.err.println(types);
         if (id == -1) {
             id = types.get(0).getTypeId();
         }

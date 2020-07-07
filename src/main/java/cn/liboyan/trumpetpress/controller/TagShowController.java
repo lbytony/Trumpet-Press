@@ -2,8 +2,6 @@ package cn.liboyan.trumpetpress.controller;
 
 import cn.liboyan.trumpetpress.model.entity.Article;
 import cn.liboyan.trumpetpress.model.entity.Tag;
-import cn.liboyan.trumpetpress.model.entity.Type;
-import cn.liboyan.trumpetpress.model.vo.SearchArticle;
 import cn.liboyan.trumpetpress.model.vo.ShowIndexArticle;
 import cn.liboyan.trumpetpress.service.ArticleService;
 import cn.liboyan.trumpetpress.service.TagService;
@@ -42,7 +40,8 @@ public class TagShowController {
     public String tags(Model model, @PathVariable Long id,
                        @RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum) {
         List<Tag> tags = tagService.queryListAll();
-        if (id == -1) {
+        System.err.println(tags);
+        if (id == -1 && tags != null) {
             id = tags.get(0).getTagId();
         }
         model.addAttribute("tags", tags);

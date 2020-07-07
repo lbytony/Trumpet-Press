@@ -149,7 +149,9 @@ public class ArticleController {
         PageHelper.startPage(pageNum, 10);
         PageInfo<ListArticle> pageInfo = new PageInfo<>(articlesBySearch);
         model.addAttribute("pageInfo", pageInfo);
-        return "admin/tp-articlelist :: articleList";
+        model.addAttribute("types", typeService.queryAll());
+        model.addAttribute("searchArticle", searchArticle);
+        return "admin/tp-articlelist";
     }
 
 }

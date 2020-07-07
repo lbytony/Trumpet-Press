@@ -70,15 +70,17 @@
 <!-- 中间部分 -->
 <div class="m-container">
     <div class="ui container m-padding-tb">
-        <form action="#" method="post" class="ui segment form">
+        <form action="#" method="post" class="ui segment form" th:action="@{/tp-admin/articles/search}">
             <input type="hidden" name="page">
             <div class="inline fields m-margin-none">
                 <div class="field">
-                    <input type="text" name="title" id="title" placeholder="文章标题">
+                    <input type="text" name="articleTitle" id="articleTitle" placeholder="文章标题"
+                           th:value="${searchArticle} != null ? ${searchArticle.articleTitle}: ''">
                 </div>
                 <div class="field">
                     <div class="ui selection dropdown">
-                        <input type="hidden" name="typeId">
+                        <input type="hidden" name="typeId"
+                               th:value="${searchArticle} != null ? ${searchArticle.typeId}: ''">
                         <i class="dropdown icon"></i>
                         <div class="default text">分类</div>
                         <div class="menu">
@@ -88,25 +90,27 @@
                         </div>
                     </div>
                 </div>
+                <!--                <div class="field">-->
+                <!--                    <div class="ui toggle checkbox">-->
+                <!--                        <input type="checkbox" id="isRecommend" name="isRecommend"-->
+                <!--                               th:checked="${searchArticle} != null ? ${searchArticle.isRecommend}: ''">-->
+                <!--                        <label for="isRecommend">推荐</label>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="field">-->
+                <!--                    <div class="ui toggle checkbox">-->
+                <!--                        <input type="checkbox" id="articleStatus" name="articleStatus"-->
+                <!--                               th:checked="${searchArticle} != null ? ${searchArticle.articleStatus}: ''">-->
+                <!--                        <label for="articleStatus">已发布</label>-->
+                <!--                    </div>-->
+                <!--                </div>-->
                 <div class="field">
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox" id="recommend" name="recommend">
-                        <label for="recommend">推荐</label>
-                    </div>
-                </div>
-                <div class="field">
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox" id="status" name="status">
-                        <label for="status">已发布</label>
-                    </div>
-                </div>
-                <div class="field">
-                    <a href="#" class="ui red basic right button" id="clearBtn">
+                    <a href="#" class="ui red basic right button" id="clearBtn" th:href="@{/tp-admin/articles}">
                         <i class="close icon"></i>清除
                     </a>
                 </div>
                 <div class="field">
-                    <button type="button" class="ui teal basic button" id="searchBtn">
+                    <button type="submit" class="ui teal basic button" id="searchBtn">
                         <i class="search icon"></i>搜索
                     </button>
                 </div>
@@ -119,9 +123,9 @@
                     <th>序号</th>
                     <th>标题</th>
                     <th>分类</th>
-                    <th>推荐</th>
+                    <!--                    <th>推荐</th>-->
                     <th>阅读量</th>
-                    <th>点赞量</th>
+                    <!--                    <th>点赞量</th>-->
                     <th>状态</th>
                     <th>更新时间</th>
                     <th>操作</th>
@@ -132,9 +136,9 @@
                     <td th:text="${iterStat.count}">1</td>
                     <td th:text="${article.articleTitle}">12311111111</td>
                     <td th:text="${article.getArticleType().getTypeName()}">1111</td>
-                    <td th:text="${article.getIsRecommend()? '是': '否'}">是</td>
+                    <!--                    <td th:text="${article.getIsRecommend()? '是': '否'}">是</td>-->
                     <td th:text="${article.articleViews}">111</td>
-                    <td th:text="${article.articleLikes}">2</td>
+                    <!--                    <td th:text="${article.articleLikes}">2</td>-->
                     <td th:text="${article.articleStatus? '已发布': '草稿'}">已发布</td>
                     <td th:text="${#dates.format(article.articleUpdateTime, 'yyyy-MM-dd HH:mm')}">123123：0</td>
                     <td>
@@ -147,14 +151,14 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                    <th colspan="9" th:if="${pageInfo.pages}>1">
+                    <th colspan="7" th:if="${pageInfo.pages}>1">
                         <div class="ui right floated pagination menu">
-                            <a class="icon item" th:unless="${pageInfo.isIsFirstPage()}" onclick="page(this)"
+                            <a class="icon item" th:unless="${pageInfo.isIsFirstPage()}"
                                th:attr="data-page=${pageInfo.getPrePage()}"
                                th:href="@{/tp-admin/articles(pageNum=${pageInfo.getPrePage()})}">
                                 <i class="left chevron icon"></i>
                             </a>
-                            <a class="icon item" th:unless="${pageInfo.isIsLastPage()}" onclick="page(this)"
+                            <a class="icon item" th:unless="${pageInfo.isIsLastPage()}"
                                th:attr="data-page=${pageInfo.getNextPage()}"
                                th:href="@{/tp-admin/articles(pageNum=${pageInfo.getNextPage()})}">
                                 <i class="right chevron icon"></i>
@@ -183,30 +187,6 @@
     });
     $('.ui.dropdown').dropdown();
 
-    function page(obj) {
-        $("[name='page']").val($(obj).data("page"));
-        loadData();
-    }
-
-    $('#searchBtn').click(function () {
-        $("[name='page']").val(0);
-        loadData();
-    });
-
-    $('#clearBtn').click(function () {
-        $('.ui.selection.dropdown').dropdown('clear');
-        $('#title').val('');
-    });
-
-    function loadData() {
-        $("#table-container").load(/*[[@{/tp-admin/articles/search}]]*/ "/tp-admin/articles/search", {
-            articleTitle: $("[name='title']").val(),
-            typeId: $("[name='typeId']").val(),
-            isRecommend: $("[name='recommend']").checked(),
-            articleStatus: $("[name='status']").checked(),
-            pageNum: $("[name='page']").val()
-        });
-    }
 </script>
 <div>
     <button onclick="returnTop()" id="btnTop" title="返回顶部"><i class="arrow up icon"></i></button>

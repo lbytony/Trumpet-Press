@@ -1,10 +1,8 @@
 package cn.liboyan.trumpetpress.controller;
 
-import cn.liboyan.trumpetpress.exception.NotFoundException;
 import cn.liboyan.trumpetpress.model.entity.Article;
 import cn.liboyan.trumpetpress.model.entity.Tag;
 import cn.liboyan.trumpetpress.model.entity.Type;
-import cn.liboyan.trumpetpress.model.vo.ListArticle;
 import cn.liboyan.trumpetpress.model.vo.ShowIndexArticle;
 import cn.liboyan.trumpetpress.service.ArticleService;
 import cn.liboyan.trumpetpress.service.TagService;
@@ -24,7 +22,6 @@ import java.util.List;
 
 /**
  * IndexController
- *
  * @author Li Boyan
  * @version 1.0
  * @date 2020/5/20
@@ -56,14 +53,9 @@ public class IndexController {
         List<ShowIndexArticle> list = articleService.queryIndexAll();
         System.out.println(list);
         PageInfo<ShowIndexArticle> pageInfo = new PageInfo<>(list);
-        List<Tag> tags = tagService.queryListAll();
-        List<Type> types = typeService.queryAll();
         model.addAttribute("pageInfo", pageInfo);
-        model.addAttribute("types", types);
-        model.addAttribute("tags", tags);
-        model.addAttribute("articleCount", articleService.countAllArticle());
-        model.addAttribute("typeCount", typeService.countAllTypes());
-        model.addAttribute("tagCount", tagService.countAllTags());
+        model.addAttribute("types", typeService.queryAll());
+        model.addAttribute("tags", tagService.queryListAll());
         addCount(model);
         return "index";
     }
@@ -84,18 +76,22 @@ public class IndexController {
     public String detail(@PathVariable Long id, Model model) {
         Article article = articleService.queryById(id, true);
         model.addAttribute("article", article);
-        model.addAttribute("tags", tagService.queryAllNames(article.getArticleTags()));
+        model.addAttribute("tagsList", tagService.queryAllNames(article.getArticleTags()));
+        model.addAttribute("types", typeService.queryAll());
+        model.addAttribute("tags", tagService.queryListAll());
         addCount(model);
         return "detail";
     }
 
     @GetMapping("/resume")
-    public String resume() {
+    public String resume(Model model) {
+        addCount(model);
         return "resume";
     }
 
     @GetMapping("/about")
-    public String about() {
+    public String about(Model model) {
+        addCount(model);
         return "about";
     }
 }

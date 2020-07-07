@@ -138,8 +138,8 @@
                 <div class="ui top attached center aligned segment">
                     <h3 class="ui blue header">博客文章</h3>
                 </div>
-                <div class="ui attached segment" th:each="article: ${pageInfo.list}" th:object="${article}">
-                    <div class="ui vertical segment m-padding-tb-mini">
+                <div class="ui attached segment " th:each="article: ${pageInfo.list}" th:object="${article}">
+                    <div class="ui vertical segment m-padding">
                         <a href="#" th:href="@{/articles/{id}(id=*{articleId})}" target="_blank">
                             <h2 class="ui header" th:text="*{articleTitle}">123123</h2>
                         </a>
@@ -160,7 +160,7 @@
                                 </div>
                             </div>
                         </div>
-                        <p th:text="|*{articleDescription}....|" class="m-padding-top-small">
+                        <p th:text="*{articleDescription}" class="m-padding-top-small">
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, dolore dolorum excepturi ipsum
                             maxime minus molestias provident quam rem! Adipisci est laboriosam modi nihil quas
                             recusandae reiciendis sapiente sunt veniam?
